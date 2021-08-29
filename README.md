@@ -1,6 +1,7 @@
 # Guidlines, Standards
 - https://isocpp.org/wiki/faq/coding-standards
 - https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
+  - https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#es-expressions-and-statements
 - https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference
 - https://google.github.io/styleguide/cppguide.html
 

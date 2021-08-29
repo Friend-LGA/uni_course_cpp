@@ -7,6 +7,9 @@
 // The same purpose, but less supported
 // #pragma once
 
+// Prefer the quoted form of #include for files relative to the including file
+// and the angle bracket form everywhere else
+// https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#sf12-prefer-the-quoted-form-of-include-for-files-relative-to-the-including-file-and-the-angle-bracket-form-everywhere-else
 #include <memory>
 #include <optional>
 #include <string>
