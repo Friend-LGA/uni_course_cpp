@@ -17,7 +17,7 @@
 
 # [GitHub](github.com)
 1. Create/Login to your account on [GitHub](github.com)
-2. Generate and add SSH key following the [guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/about-ssh) if you don't have one
+2. Generate and add SSH key following the [guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/about-ssh)
 
 # Useful Links
 - https://docs.github.com/en/get-started/quickstart/set-up-git
