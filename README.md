@@ -1,4 +1,5 @@
-# Plan
+# План Семинарских Занятий
+
 01. Introduction
     01. [Development Environment (IDE)](/01_introduction/01_development_environment)
     02. [Version Control](/01_introduction/02_version_control)
@@ -29,12 +30,16 @@
     02. [Approaches to Concurrency](/03_concurrency_and_parallel_programming/02_approaches_to_concurrency)
     03. [Threads in C++](/03_concurrency_and_parallel_programming/03_threads_in_cpp)
 
+# Задачи по Практике
+
+01. [Hello World!](tasks/task_01)
+
 # Guidlines, Language Standards
 - https://isocpp.org/wiki/faq/coding-standards
 - https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
 - https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference
 - https://google.github.io/styleguide/cppguide.html
 
-# Useful
+# Полезные Ссылки
 - [Design Patterns](https://en.wikipedia.org/wiki/Software_design_pattern)
 - [SOLID](https://en.wikipedia.org/wiki/SOLID)
