@@ -53,7 +53,7 @@
 20. Закоммитьте изменения.
 
 # Пример скриншота
-![Screenshot](tasks/task_01/screenshot.png)
+![Screenshot](./screenshot.png)
 
 # Полезные ссылки:
 - [`git` документация](https://git-scm.com/doc)
