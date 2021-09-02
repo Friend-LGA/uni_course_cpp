@@ -4,7 +4,7 @@
     01. [Development Environment (IDE)](/01_introduction/01_development_environment)
     02. [Version Control](/01_introduction/02_version_control)
     03. [Compilation of a C++ app](/01_introduction/03_compilation_of_cpp_app)
-02. C++ Knowledge Check\
+02. C++ Knowledge Check
     01. [Main Function](/02_knowledge_check/01_main_function)
     02. [Fundamental Types](/02_knowledge_check/02_fundamental_types)
     03. [Pointers and References](/02_knowledge_check/03_pointers_and_references)
