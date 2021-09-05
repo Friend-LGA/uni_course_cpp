@@ -23,7 +23,6 @@ static int sum_positive1(int a, int b) noexcept {
   return a + b;
 }
 
-// Compiles, but at runtime this calls std::terminate
 static int sum_positive2(int a, int b) {
   if (a < 0 || b < 0) {
     throw std::invalid_argument("received negative value");
@@ -31,7 +30,7 @@ static int sum_positive2(int a, int b) {
   return a + b;
 }
 
-// Exceptions are not always easy to handle and they how processing overhead.
+// Exceptions are not always easy to handle and they have processing overhead.
 // Without exceptions you can return obvious self-describing error code.
 // Don't use global enum, put it inside your class or namespace.
 static std::tuple<Status, int> sum_positive3(int a, int b) {
@@ -69,3 +68,6 @@ int main() {
 
   return 0;
 }
+
+// Return errors when you expect you function to fail.
+// Throw exception when failing is unexpected behaviour.

@@ -1,4 +1,4 @@
-# [Version Constrol System (VCS)](https://en.wikipedia.org/wiki/Version_control)
+# [VCS: Version Control System](https://en.wikipedia.org/wiki/Version_control)
 
 1. Install `git` ([Documentation](https://git-scm.com/)) 
     - `MacOS`
