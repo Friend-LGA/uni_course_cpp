@@ -1,14 +1,5 @@
 // https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library
-//
 // https://en.cppreference.com/w/cpp/header
-// https://en.cppreference.com/w/cpp/io/cout
-// https://en.cppreference.com/w/cpp/string/basic_string
-// https://en.cppreference.com/w/cpp/container/array
-// https://en.cppreference.com/w/cpp/container/vector
-// https://en.cppreference.com/w/cpp/chrono
-// https://en.cppreference.com/w/cpp/utility/optional
-// https://en.cppreference.com/w/cpp/utility/tuple
-//
 // https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#sl-the-standard-library
 
 #include <array>
@@ -17,6 +8,8 @@
 #include <string>
 #include <tuple>
 #include <vector>
+
+// Just a few examples of useful standard classes
 
 int main() {
   // String

@@ -103,6 +103,7 @@ int main() {
 }
 
 // Void Type
+// Type with an empty set of values.
 // This type is used when you don't need specific value,
 // for example when function doesn't return a value.
 void func() {

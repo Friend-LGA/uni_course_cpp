@@ -8,7 +8,7 @@
     1. [Main Function](/02_knowledge_check/01_main_function)
     1. [Fundamental Types](/02_knowledge_check/02_fundamental_types)
     1. [Pointers and References](/02_knowledge_check/03_pointers_and_references)
-    1. [Standard Library (STL) `std::`](/02_knowledge_check/04_standard_library)
+    1. [Standard Library `std::`](/02_knowledge_check/04_standard_library)
     1. [`const` Variables](/02_knowledge_check/05_const_variables)
     1. [Functions](/02_knowledge_check/06_functions)
     1. [Lambdas](/02_knowledge_check/07_lambdas)

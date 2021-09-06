@@ -1,23 +1,25 @@
 // https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#con-constants-and-immutability
+// https://en.cppreference.com/w/cpp/language/cv
 
 // in modern c++ the same as `static const` below.
-const int kSomeConstVar1 = 10;
-
-// global `static` - storage duration, which means that it lasts for the lifetime of the program.
-// https://en.cppreference.com/w/cpp/language/storage_duration
-static const int kSomeConstVar2 = 15;
+const int kGlobalConst1 = 15;
 
 // `constexpr` tells compiler to evaluate variable at compile time.
 // Use it whenever possible.
 // https://en.cppreference.com/w/cpp/language/constexpr
-// https://docs.microsoft.com/en-us/cpp/cpp/constexpr-cpp?view=msvc-160
-static constexpr int kSomeConstVar3 = 20;
+// https://docs.microsoft.com/en-us/cpp/cpp/constexpr-cpp
+constexpr int kGlobalConst2 = 20;
 
 // Don't use global non const variables!
 int kGlobalVariable = 5; // BAD
 
 // Don't use MACROS as global constants!
 #define PI 3.14 // BAD
+
+// Result can be calculated at the compiler time
+constexpr int calcSomeNumber() {
+  return kGlobalConst1 * kGlobalConst2;
+}
 
 int main() {
   ////////////

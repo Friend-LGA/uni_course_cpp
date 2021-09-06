@@ -2,7 +2,7 @@
 //
 // https://en.cppreference.com/w/cpp/language/enum
 //
-// https://docs.microsoft.com/en-us/cpp/cpp/enumerations-cpp?view=msvc-160
+// https://docs.microsoft.com/en-us/cpp/cpp/enumerations-cpp
 
 // Don't use plain enums, as they are easily converted to int
 // and they are not forced by compiler. Also they are in global scope.

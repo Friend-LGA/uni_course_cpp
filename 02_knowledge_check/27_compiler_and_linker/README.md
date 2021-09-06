@@ -1,6 +1,7 @@
 # Compiler and Linker
 - https://en.wikipedia.org/wiki/Compiler
 - https://en.wikipedia.org/wiki/Linker_(computing)
+- https://en.cppreference.com/w/cpp/language/translation_phases
 ---
 - https://en.wikipedia.org/wiki/Object_file
 - https://en.wikipedia.org/wiki/Object_code

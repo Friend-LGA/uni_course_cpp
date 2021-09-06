@@ -24,8 +24,8 @@ struct Size {
 };
 
 struct Rectangle {
-  Position pos;
-  Size size;
+  Position pos = {};
+  Size size = {};
 
   Position center() const { return {.x = pos.x + size.width / 2, .y = pos.y + size.height / 2}; }
 };
