@@ -1,0 +1,16 @@
+# Interfaces and Inheritance
+- Hierarchy
+  - https://en.cppreference.com/w/cpp/language/derived_class
+  - https://en.cppreference.com/w/cpp/language/abstract_class
+  - https://docs.microsoft.com/en-us/cpp/cpp/abstract-classes-cpp
+- Override
+  - https://en.cppreference.com/w/cpp/language/override
+- Virtual Functions
+  - https://en.cppreference.com/w/cpp/language/virtual
+  - https://docs.microsoft.com/en-us/cpp/cpp/virtual-functions
+  - https://en.wikipedia.org/wiki/Virtual_function
+- Final
+  - https://en.cppreference.com/w/cpp/language/final
+- Multiple Inheritance
+  - https://docs.microsoft.com/en-us/cpp/cpp/multiple-base-classes
+  - https://en.wikipedia.org/wiki/Virtual_inheritance

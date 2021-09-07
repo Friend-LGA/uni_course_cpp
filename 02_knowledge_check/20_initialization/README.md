@@ -1,0 +1,11 @@
+# Initialization
+- https://en.cppreference.com/w/cpp/language/initialization
+- https://en.cppreference.com/w/cpp/language/value_initialization
+- https://en.cppreference.com/w/cpp/language/direct_initialization
+- https://en.cppreference.com/w/cpp/language/copy_initialization
+- https://en.cppreference.com/w/cpp/language/list_initialization
+- https://en.cppreference.com/w/cpp/language/aggregate_initialization
+- https://en.cppreference.com/w/cpp/language/reference_initialization
+- https://en.cppreference.com/w/cpp/language/default_initialization
+- https://en.cppreference.com/w/cpp/language/zero_initialization
+- https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-lambda-init
