@@ -1,4 +1,4 @@
-# IDE: Integrated development environment
+# IDE: Development Environment
 
 ## Recomended IDE
 - [Visual Studio Code](https://code.visualstudio.com/)
