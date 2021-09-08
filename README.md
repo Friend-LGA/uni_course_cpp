@@ -46,6 +46,7 @@
 # Задачи по Практике
 
 1. [Hello World!](tasks/task_01)
+2. [Graph Generation](tasks/task_02)
 
 # Guidlines, Coding Standards
 - https://isocpp.org/wiki/faq/coding-standards
