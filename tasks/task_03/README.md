@@ -46,7 +46,7 @@
     {
       "id": 0,
       "vertex_ids": [0, 1],
-      "color": "gray" // green|blue|yellow|red
+      "color": "gray|green|blue|yellow|red"
     },
     "..."
   ]
