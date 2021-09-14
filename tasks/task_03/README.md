@@ -66,7 +66,7 @@
     time: Graph Generation: Ended
     > Vertices: count
     > Edges: count
-    > Levels: count [level_0_count, level_1_count, level_2_count, ...]
+    > Depth: count, [depth_1_vertices_count, depth_2_vertices_count, ...]
     ```
 1. Файл создавать внутри поддиректории `temp`.
 1. `JSON` файл переместить туда же.
