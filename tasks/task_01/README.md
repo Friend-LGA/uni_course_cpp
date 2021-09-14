@@ -55,6 +55,14 @@
 # Пример скриншота
 ![Screenshot](./screenshot.png)
 
+# Время Выполнения
+
+1 Неделя
+
+# Количество Баллов
+
+10 Баллов
+
 # Полезные ссылки:
 - [`git` документация](https://git-scm.com/doc)
 - [GitHub документация](https://docs.github.com/en)

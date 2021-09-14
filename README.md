@@ -38,15 +38,38 @@
 1. [Complex Example](/02_knowledge_check/30_complex_example)
 1. [Compiler and Linker](/02_knowledge_check/31_compiler_and_linker)
 
-## Concurrency and Prallel Programming
+## Concurrency and Parallelism
 1. [Processes and Threads](/03_concurrency_and_parallel_programming/01_processes_and_threads)
 1. [Approaches to Concurrency](/03_concurrency_and_parallel_programming/02_approaches_to_concurrency)
 1. [Threads in C++](/03_concurrency_and_parallel_programming/03_threads_in_cpp)
 
 # Задачи по Практике
 
-1. [Hello World!](tasks/task_01)
-2. [Graph Generation](tasks/task_02)
+- Неделя 1. [Hello World!](tasks/task_01)
+- Неделя 2 - 3. [Graph Generation](tasks/task_02)
+- Неделя 4 - 5. [Graph Development, Logger](tasks/task_03)
+  - Vertices and Edges Probabilities
+  - Multiple Graphs Generation (Sequentially)
+  - Add Logger
+- Неделя 6. [Shortest Path Algorith](tasks/task_04)
+  - Add Edge Durations
+  - Single Pair (Sequential Algorithm)
+- Неделя 7. [Shortest Path Algorith](tasks/task_05)
+  - Single Pair (Parallel Algorithm)
+- Неделя 8. [Graph Development](tasks/task_06)
+  - Add Params, Fights and Blessings
+  - Multiple Graphs Generation (Parallel)
+- Неделя 9. [Shortest Path](tasks/task_07)
+  - Multiple Pair (Parallel Algorithm)
+- Неделя 10. [Graph Development](tasks/task_08)
+  - Adjustable Params (Parallel)
+  - Add Enemies and Blessings
+- Неделя 11. [Graph Development](tasks/task_09)
+  - Multiple Players (Parallel)
+  - Add Enemies and Blessings
+- ...
+
+> План временный, для общего понимания. Подробные задания готовятся по мере возможности.
 
 # Guidlines, Coding Standards
 - https://isocpp.org/wiki/faq/coding-standards
