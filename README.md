@@ -39,9 +39,9 @@
 1. [Compiler and Linker](/02_knowledge_check/31_compiler_and_linker)
 
 ## Concurrency and Parallelism
-1. [Processes and Threads](/03_concurrency_and_parallel_programming/01_processes_and_threads)
-1. [Approaches to Concurrency](/03_concurrency_and_parallel_programming/02_approaches_to_concurrency)
-1. [Threads in C++](/03_concurrency_and_parallel_programming/03_threads_in_cpp)
+1. [Processes and Threads](/03_concurrency_and_parallelism/01_processes_and_threads)
+1. [Approaches to Concurrency](/03_concurrency_and_parallelism/02_approaches_to_concurrency)
+1. [Threads in C++](/03_concurrency_and_parallelism/03_threads_in_cpp)
 
 # Задачи по Практике
 
