@@ -1,6 +1,6 @@
 # [VCS: Version Control System](https://en.wikipedia.org/wiki/Version_control)
 
-1. Install `git` ([Documentation](https://git-scm.com/)) 
+1. Install `git` ([Docs](https://git-scm.com/))
     - `MacOS`
         1. Install [`Homebrew`](https://brew.sh/)
         2. Install git using brew
@@ -10,7 +10,7 @@
         - `choco install git`
 2. Check `git` version
     - `git --version`
-3. Initial Setup
+3. Initial Setup ([Docs](https://docs.github.com/en/get-started/getting-started-with-git))
     - Username: `git config --global user.name "Mona Lisa"`
     - Email: `git config --global user.email "email@example.com"`
     - Validate: `git config --global -l`
@@ -21,6 +21,7 @@
 
 # Useful Links
 - https://docs.github.com/en/get-started/quickstart/set-up-git
+- https://docs.github.com/en/get-started/getting-started-with-git
 - https://github.com/git-guides/
 - https://en.wikipedia.org/wiki/Version_control
 - https://en.wikipedia.org/wiki/Git

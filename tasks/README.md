@@ -1,6 +1,6 @@
 # Workflow
 
-1. Делаете `fork` репозитория, где будет вестись вся работа (ссылку спросили у меня).
+1. Сделать `fork` репозитория, куда вы будете загружать выполненные задачи (ссылку спросить у меня).
     - [Docs: About Forks](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks)
     - [Docs: Fork a Repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 2. Для каждой новой задачи создаете новый `branch`:
