@@ -37,7 +37,6 @@
         - [Docs: Requesting a Pull Request Review](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)
 1. Повторяем предыдущий шаг, пока не добьемся успеха.
 
-
 # Common Mistakes
 
 ## 1. Неверное название бранчей (`branch`)
