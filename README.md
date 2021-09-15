@@ -33,10 +33,12 @@
 1. [Variadic Functions](/02_knowledge_check/25_variadic_functions)
 1. [Interfaces and Inheritance](/02_knowledge_check/26_interfaces_and_inheritance)
 1. [Polymorphism](/02_knowledge_check/27_polymorphism)
-1. [Iterators](/02_knowledge_check/28_iterators)
-1. [Headers and Sources](/02_knowledge_check/29_headers_and_sources)
-1. [Complex Example](/02_knowledge_check/30_complex_example)
-1. [Compiler and Linker](/02_knowledge_check/31_compiler_and_linker)
+1. [Headers and Sources](/02_knowledge_check/28_headers_and_sources)
+1. [Include Guards](/02_knowledge_check/29_include_guards)
+1. [Forward Declaration](/02_knowledge_check/30_forward_declaration)
+1. [Complex Example](/02_knowledge_check/31_complex_example)
+1. [Iterators](/02_knowledge_check/32_iterators)
+1. [Compiler and Linker](/02_knowledge_check/33_compiler_and_linker)
 
 ## Concurrency and Parallelism
 1. [Processes and Threads](/03_concurrency_and_parallelism/01_processes_and_threads)
