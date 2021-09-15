@@ -35,3 +35,22 @@
 Кому сильно интересно:
 - [Дискуссия 1](https://stackoverflow.com/questions/5813311/whats-the-significance-of-the-no-newline-at-end-of-file-log)
 - [Дискуссия 2](https://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file)
+
+## 5. `using namespace`
+
+Использовать `using namespace` считается плохой практикой.
+Вместе этого лучше использовать ограниченный `using`:
+
+```cpp
+using cout = std::cout;
+using endl = std::endl;
+```
+
+Или просто писать полностью:
+
+```cpp
+std::cout << "..." << std::endl;
+```
+
+Кому сильно интересно:
+- [Дискуссия](https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice)
