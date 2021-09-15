@@ -1,24 +1,53 @@
+# Workflow
+
+1. Делаете `fork` репозитория, где будет вестись вся работа (ссылку спросили у меня).
+    - [Docs: About Forks](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks)
+    - [Docs: Fork a Repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+2. Для каждой новой задачи создаете новый `branch`:
+    - Формат названий бранчей следующий:
+      - `name_surname/task_number`
+    - Пример:
+      - `grigorii_lutkov/task_01`
+3. Для каждой новой задачи создаете подпапку:
+    - Формат иерархии директорий следующий:
+      - `/task_number/name_surname/*`
+    - Пример:
+      - `/task_01/grigorii_lutkov/*`
+4. Как задача готова, создаете `Pull Request`:
+    - [Docs: About Pull Requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+    - [Docs: Creating a Pull Request from a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+5. Выставляете статус: "Готово к Ревью"
+    - [Docs: Changing the State of a Pull Request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request)
+6. Я провожу ревью и дальнешее развитие может быть:
+    - Я подтверждаю изменения.
+      - Вы можете мерджить `Pull Request`
+        - [Docs: Merging a Pull Request](https://docs.github.com/en/github/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request)
+    - Я оставляю комментарии и запрашиваю изменения.
+      - Исправляете ошибки
+      - Коммитите исправления в свой `branch`
+      - `Pull Request` обновится автоматически
+      - Запрашиваете ревью:
+        - [Docs: Requesting a Pull Request Review](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)
+7. Повторяем шаг 6 пока не добьемся успеха.
+
+
 # Common Mistakes
 
 ## 1. Неверное название бранчей (`branch`)
 
-Формат названий бранчей следующий:
-
-`name_surname/task_number`
-
-Пример:
-
-`grigorii_lutkov/task_01`
+Повторяю:
+- Формат названий бранчей следующий:
+  - `name_surname/task_number`
+- Пример:
+  - `grigorii_lutkov/task_01`
 
 ## 2. Неверная иерархия директорий
 
-Формат иерархии директорий следующий:
-
-`/task_number/name_surname/*`
-
-Пример:
-
-`/task_01/grigorii_lutkov/*`
+Повторяю:
+- Формат иерархии директорий следующий:
+  - `/task_number/name_surname/*`
+- Пример:
+  - `/task_01/grigorii_lutkov/*`
 
 ## 3. Добавление в `Pull Request` неотносящихся изменений
 
