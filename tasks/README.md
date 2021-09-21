@@ -8,12 +8,18 @@
       - `name_surname/task_number`
     - Пример:
       - `grigorii_lutkov/task_01`
-1. Для каждой новой задачи создаете подпапку:
+1. Для каждой новой задачи, при необходимости, создаете подпапку:
     - Формат иерархии директорий следующий:
-      - `/task_number/name_surname/*`
+      - `/task_dir_name/name_surname/*`
+      - `task_dir_name` дано в описании каждой задачи (`Рабочая директория`)
     - Пример:
-      - `/task_01/grigorii_lutkov/*`
-1. Когда задача готова, создаете `Pull Request`:
+      - `/01_hello_world/grigorii_lutkov/*`
+1. Все изменения должны находиться только внутри данной папки. Так как мы все работаем в одном общем репозитории, то каждый работает только внутри своей папки и не трогает файлы других студентов. Каждый отдельный `branch` должен включать в себя только те изменения, которые имеют отношения к конкретной задаче.
+1. Когда задача готова, создаете `Pull Request` со следующими параметрами:
+    - Base Repository: Общий репозиторий
+    - Base Branch: `master`
+    - Head Repository: Ваш `fork` общего репозитория
+    - Compare Branch: `branch`, в котором вы выполняли работу по конкретной задаче
     - Name: `name_surname/task_number`
       - Пример:
         - `grigorii_lutkov/task_01`
@@ -23,6 +29,7 @@
     - Labels: `task_number`
       - Пример:
         - `task_01`
+    - Description: Оставьте пустым
     - [Docs: About Pull Requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
     - [Docs: Creating a Pull Request from a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
 1. Я провожу ревью и дальнешее развитие может быть:
@@ -51,9 +58,9 @@
 
 Повторяю:
 - Формат иерархии директорий следующий:
-  - `/task_number/name_surname/*`
+  - `/task_dir_name/name_surname/*`
 - Пример:
-  - `/task_01/grigorii_lutkov/*`
+  - `/01_hello_world/grigorii_lutkov/*`
 
 ## 3. Добавление в `Pull Request` неотносящихся изменений
 
@@ -74,11 +81,12 @@
 ## 5. `using namespace`
 
 Использовать `using namespace` считается плохой практикой.
-Вместе этого лучше использовать ограниченный `using`:
+Вместе этого лучше использовать ограниченный `using` (см. [aliases](/02_knowledge_check/13_aliases)):
 
 ```cpp
-using cout = std::cout;
-using endl = std::endl;
+using std::cout;
+using std::endl;
+using short_name = foo::bar::baz::long_name;
 ```
 
 Или просто писать полностью:
