@@ -36,7 +36,7 @@
     - Вариант 2: короткая форма
         - `git checkout -b hello_world`
     - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches)
-9. Создайте простое C++ приложение `hello_world.cpp`, которое будет выводить на экран 2 строки:
+9. Напишите простую C++ программу `hello_world.cpp`, которое будет выводить на экран 2 строки:
     ```cpp
     #include <iostream>
 
@@ -70,11 +70,12 @@
 
 Следуя основному `Workflow`, описанному [здесь](/tasks#workflow), залить выполненную первую задачу в общий групповой репозиторий.
 
-Рабочая директория:
-- `/01_hello_world`
-
 # Пример скриншота
 ![Screenshot](./screenshot.png)
+
+# Рабочая директория:
+
+`/02_knight_and_princess`
 
 # Время Выполнения
 
