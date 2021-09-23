@@ -6,7 +6,15 @@
 // and they are not forced by compiler. Also they are in global scope.
 enum Direction { North, East, West, South };
 
-enum class Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
+enum class Day {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday
+};
 
 // Is not very expressive and we need to manually validate the boundaries
 void process1(int day) {
@@ -27,9 +35,9 @@ void process3(Day day) {
 }
 
 int main() {
-  int direction = North; // just an int, not very helpful...
+  int direction = North;  // just an int, not very helpful...
 
-  Day day = Day::Monday; // this is nice!
-  
+  Day day = Day::Monday;  // this is nice!
+
   return 0;
 }

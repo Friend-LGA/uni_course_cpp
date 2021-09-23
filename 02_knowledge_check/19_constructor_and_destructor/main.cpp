@@ -26,7 +26,8 @@ class Amazing {
 
   // Destructor, deletes all resources.
   ~Amazing() {
-    std::cout << "Amazing destructor is executed" << std::endl;  // Should mirror constructor, for example:
+    std::cout << "Amazing destructor is executed" << std::endl;
+    // Should mirror constructor, for example:
     // - delete heap memory
     // - close socket
     // - close file
@@ -57,11 +58,15 @@ class EmptyExample {
 // Deleted constructor and/or destructor
 class DeleteExample {
  public:
-  DeleteExample() = delete;            // If you don't want default constructor.
-  DeleteExample(std::string message) { /* validate message */
+  // If you don't want default constructor.
+  DeleteExample() = delete;
+
+  DeleteExample(std::string message) {
+    // validate message
   }
 
-  ~DeleteExample() = delete;  // It is possible, but you won't be able to delete the instance.
+  // It is possible, but you won't be able to delete the instance.
+  ~DeleteExample() = delete;
 };
 
 // Order of initialization should be the same as order of declaration.
@@ -73,8 +78,13 @@ class OrderExample {
   std::string c;
   std::string d;
 
-  OrderExample(int _a, int _b, std::string _c, std::string _d) : a(_a), b(_b), c(_c), d(_d) {}  // GOOD
-  // OrderClass(int _a, int _b, std::string _c, std::string _d) : d(_d), a(_a), c(_c), b(_b) {}  // BAD
+  // GOOD
+  OrderExample(int _a, int _b, std::string _c, std::string _d)
+      : a(_a), b(_b), c(_c), d(_d) {}
+
+  // BAD
+  // OrderClass(int _a, int _b, std::string _c, std::string _d)
+  //     : d(_d), a(_a), c(_c), b(_b) {}
 };
 
 // Use `explicit` for constructors with single argument.
@@ -84,11 +94,17 @@ class ExplicitExample {
   int a;
   int b;
 
-  explicit ExplicitExample(int _a) : a(_a), b(0) {}  // GOOD
-  // ExplicitExample(int _a) : a(_a) {}  // BAD, implicit conversion `ExplicitExample var = 1;`
+  // GOOD
+  explicit ExplicitExample(int _a) : a(_a), b(0) {}
 
-  ExplicitExample(int _a, int _b) : a(_a), b(_b) {}  // GOOD
-  // explicit ExplicitExample(int _a, int _b) : a(_a), b(_b) {}  // BAD, redundant
+  // BAD, implicit conversion `ExplicitExample var = 1;`
+  // ExplicitExample(int _a) : a(_a) {}
+
+  // GOOD
+  ExplicitExample(int _a, int _b) : a(_a), b(_b) {}
+
+  // BAD, redundant
+  // explicit ExplicitExample(int _a, int _b) : a(_a), b(_b) {}
 };
 
 // Construction Chain

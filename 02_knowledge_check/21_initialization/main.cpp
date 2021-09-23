@@ -127,42 +127,68 @@ int main() {
   // CUSTOM STRUCT //
   ///////////////////
 
-  CustomStruct svar0;                                  // BAD: uninitialized, some trash
-  CustomStructWithDefaults svar1;                      // Still BAD: default initialization, but invisible
-  CustomStructWithDefaults svar2 = {};                 // GOOD: default initialization, visible
-  CustomStructWithDefaults svar3 = {8, 16};            // BAD: unnamed initialization
-  CustomStructWithDefaults svar4 = {.x = 8, .y = 16};  // GOOD
+  // BAD: uninitialized, some trash
+  CustomStruct svar0;
 
-  auto svar5 = CustomStructWithConstructor();       // GOOD: default constructor
-  auto svar6 = CustomStructWithConstructor(8, 16);  // GOOD: custom constructor
-  // CustomStructWithConstructor svar6 = {.x = 8, .y = 16};  // ERROR: you have to use provided constructor
+  // Still BAD: default initialization, but invisible
+  CustomStructWithDefaults svar1;
 
-  std::cout << "svar0 = { x: " << svar0.x << ", y: " << svar0.y << " }" << std::endl
-            << "svar1 = { x: " << svar1.x << ", y: " << svar1.y << " }" << std::endl
-            << "svar2 = { x: " << svar2.x << ", y: " << svar2.y << " }" << std::endl
-            << "svar3 = { x: " << svar3.x << ", y: " << svar3.y << " }" << std::endl
-            << "svar4 = { x: " << svar4.x << ", y: " << svar4.y << " }" << std::endl
-            << "svar5 = { x: " << svar5.x << ", y: " << svar5.y << " }" << std::endl
-            << "svar6 = { x: " << svar6.x << ", y: " << svar6.y << " }" << std::endl
-            << std::endl;
+  // GOOD: default initialization, visible
+  CustomStructWithDefaults svar2 = {};
+
+  // BAD: unnamed initialization
+  CustomStructWithDefaults svar3 = {8, 16};
+
+  // GOOD
+  CustomStructWithDefaults svar4 = {.x = 8, .y = 16};
+
+  // GOOD: default constructor
+  auto svar5 = CustomStructWithConstructor();
+
+  // GOOD: custom constructor
+  auto svar6 = CustomStructWithConstructor(8, 16);
+
+  // ERROR: you have to use provided constructor
+  // CustomStructWithConstructor svar6 = {.x = 8, .y = 16};
+
+  std::cout
+      << "svar0 = { x: " << svar0.x << ", y: " << svar0.y << " }" << std::endl
+      << "svar1 = { x: " << svar1.x << ", y: " << svar1.y << " }" << std::endl
+      << "svar2 = { x: " << svar2.x << ", y: " << svar2.y << " }" << std::endl
+      << "svar3 = { x: " << svar3.x << ", y: " << svar3.y << " }" << std::endl
+      << "svar4 = { x: " << svar4.x << ", y: " << svar4.y << " }" << std::endl
+      << "svar5 = { x: " << svar5.x << ", y: " << svar5.y << " }" << std::endl
+      << "svar6 = { x: " << svar6.x << ", y: " << svar6.y << " }" << std::endl
+      << std::endl;
 
   ///////////////////
   // CUSTOM CLASS //
   ///////////////////
 
-  CustomClass cvar0;                            // BAD: uninitialized, some trash
-  CustomClassWithDefaults cvar1;                // Still BAD: default initialization, but invisible
-  auto cvar2 = CustomClassWithDefaults();       // GOOD: default initialization, visible
-  auto cvar3 = CustomClassWithDefaults(8, 16);  // GOOD: custom constructor
+  // BAD: uninitialized, some trash
+  CustomClass cvar0;
 
-  CustomClass cvar4 = {8, 16};  // BAD: don't use struct style initialization for class
+  // Still BAD: default initialization, but invisible
+  CustomClassWithDefaults cvar1;
 
-  std::cout << "cvar0 = { x: " << cvar0.x << ", y: " << cvar0.y << " }" << std::endl
-            << "cvar1 = { x: " << cvar1.x << ", y: " << cvar1.y << " }" << std::endl
-            << "cvar2 = { x: " << cvar2.x << ", y: " << cvar2.y << " }" << std::endl
-            << "cvar3 = { x: " << cvar3.x << ", y: " << cvar3.y << " }" << std::endl
-            << "cvar4 = { x: " << cvar4.x << ", y: " << cvar4.y << " }" << std::endl
-            << std::endl;
+  // GOOD: default initialization, visible
+  auto cvar2 = CustomClassWithDefaults();
+
+  // GOOD: custom constructor
+  auto cvar3 = CustomClassWithDefaults(8, 16);
+
+  // BAD: don't use struct style initialization for class
+  CustomClass cvar4 = {8, 16};
+
+  // clang-format off
+  std::cout
+      << "cvar0 = { x: " << cvar0.x << ", y: " << cvar0.y << " }" << std::endl
+      << "cvar1 = { x: " << cvar1.x << ", y: " << cvar1.y << " }" << std::endl
+      << "cvar2 = { x: " << cvar2.x << ", y: " << cvar2.y << " }" << std::endl
+      << "cvar3 = { x: " << cvar3.x << ", y: " << cvar3.y << " }" << std::endl
+      << "cvar4 = { x: " << cvar4.x << ", y: " << cvar4.y << " }" << std::endl
+      << std::endl;
+  // clang-format on
 
   /////////////////////////////
   // Uninitialized Variables //
@@ -182,7 +208,8 @@ int main() {
   }
   // some more logic ...
 
-  // GOOD: can be const, complex initialization logic is happening inside it's own scope.
+  // GOOD: can be const, complex initialization logic is happening inside it's
+  // own scope.
   const int good_result = []() -> int {
     int some_condition = 2;
     if (some_condition == 0) {

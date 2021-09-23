@@ -1,8 +1,8 @@
 // https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap
 
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 struct MyAmazingStruct {
   int id = 0;

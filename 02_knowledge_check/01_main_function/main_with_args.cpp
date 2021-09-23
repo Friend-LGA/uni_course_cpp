@@ -8,10 +8,10 @@ int main(int argc, char* argv[]) {
   for (int i = 0; i <= argc; i++) {
     if (const auto val = argv[i]) {
       std::cout << "argv[" << i << "] == " << val << std::endl;
-    }
-    else {
+    } else {
       // End of arguments vector is always `nullptr`
-      std::cout << "argv[" << i << "] == " << "nullptr" << std::endl;
+      std::cout << "argv[" << i << "] == "
+                << "nullptr" << std::endl;
     }
   }
 

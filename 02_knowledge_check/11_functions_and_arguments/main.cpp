@@ -9,7 +9,9 @@
 #include <tuple>
 #include <vector>
 
-int main() { return 0; }
+int main() {
+  return 0;
+}
 
 // Arguments passed by value (copy).
 void func(int a) {}
@@ -21,13 +23,16 @@ void func(float a) {}
 void func(int a, int b = 0) {}
 
 // in-out argument by reference, data can't be null.
-void func(std::string& a) { a.append("something amazing!"); }
+void func(std::string& a) {
+  a.append("something amazing!");
+}
 
 // For heavy data passing use const reference, which can't be changed.
 void func(const std::string& a) {}
 
-// int is not heavy to copy, so pass it just by value, don't use const reference.
-void func(const int& a) {} // Bad
+// int is not heavy to copy, so pass it just by value, don't use const
+// reference.
+void func(const int& a) {}  // Bad
 
 // in-out argument by pointer, data can be null.
 void func(std::string* a) {}
@@ -52,15 +57,20 @@ void func(const std::shared_ptr<int>& a) {}
 void func(std::string&& a) {}
 
 // Return result by value.
-std::string func1(char a) { return ""; }
+std::string func1(char a) {
+  return "";
+}
 
-// Don't return const value, as function usually shouldn't decide how result is used outside
-const std::string func2(char a) { return ""; }
+// Don't return const value, as function usually shouldn't decide how result is
+// used outside
+const std::string func2(char a) {
+  return "";
+}
 
-// Return by reference to local object, can't be null. 
+// Return by reference to local object, can't be null.
 // For example std::vector.at() returns reference.
-// Consider the situation: `b` will be destroyed after execution of the function,
-// then where will reference point to?
+// Consider the situation: `b` will be destroyed after execution of the
+// function, then where will reference point to?
 std::string& func3(char a) {
   static std::string b = "some string";
   return b;
@@ -72,8 +82,8 @@ std::string* func4(char a) {
   return &b;
 }
 
-// If you need to return more then one object and they are unrelated to each other,
-// then use `std::tuple`.
+// If you need to return more then one object and they are unrelated to each
+// other, then use `std::tuple`.
 std::tuple<std::string, int> multipleReturn1() {
   std::string data = "some very useful data";
   int status = 1;  // ok!

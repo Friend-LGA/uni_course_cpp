@@ -36,7 +36,9 @@ class ExampleClass {
   std::unique_ptr<int> smart_pointer;
 
   ExampleClass(int master_int)
-      : value(master_int), pointer(new int(master_int)), smart_pointer(std::make_unique<int>(master_int)) {}
+      : value(master_int),
+        pointer(new int(master_int)),
+        smart_pointer(std::make_unique<int>(master_int)) {}
 
   ~ExampleClass() {
     // Raw pointer needs to be manually deleted.
@@ -49,7 +51,9 @@ class ExampleClass {
 
   // Shallow Copy
   ExampleClass(const ExampleClass& other)
-      : value(other.value), pointer(other.pointer), smart_pointer(std::make_unique<int>(*other.smart_pointer.get())) {}
+      : value(other.value),
+        pointer(other.pointer),
+        smart_pointer(std::make_unique<int>(*other.smart_pointer.get())) {}
 
   // Deep Copy
   // ExampleClass(const ExampleClass& other)
@@ -99,4 +103,6 @@ class ExampleClass {
   }
 };
 
-int main() { return 0; }
+int main() {
+  return 0;
+}

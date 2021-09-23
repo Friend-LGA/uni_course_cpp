@@ -5,10 +5,10 @@
 // https://docs.microsoft.com/en-us/visualstudio/debugger/c-cpp-assertions
 
 #include <cassert>
+#include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <tuple>
-#include <fstream>
 
 enum class Status { Ok, InvalidArgument };
 
@@ -17,7 +17,7 @@ enum class Status { Ok, InvalidArgument };
 // for example if you failed to open a file
 void open_file(const std::string& filename) {
   std::filebuf fb;
-  if (!fb.open(filename, std::ios::binary|std::ios::in)) {
+  if (!fb.open(filename, std::ios::binary | std::ios::in)) {
     throw std::runtime_error("Open file for readind is failed");
   }
   // some logic ...
@@ -43,8 +43,8 @@ std::tuple<Status, int> sum_positive_exception(int a, int b) {
 }
 
 // If by design your function can't have invalid argument, which means,
-// that if you have invalid argument, then it is a bug, which should be addressed.
-// Use `assert` only for debug builds.
+// that if you have invalid argument, then it is a bug, which should be
+// addressed. Use `assert` only for debug builds.
 // https://en.cppreference.com/w/cpp/error/assert
 // https://docs.microsoft.com/en-us/visualstudio/debugger/c-cpp-assertions
 int sum_positive_assert(int a, int b) {

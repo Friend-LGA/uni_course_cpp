@@ -11,10 +11,10 @@ const int kGlobalConst1 = 15;
 constexpr int kGlobalConst2 = 20;
 
 // Don't use global non const variables!
-int kGlobalVariable = 5; // BAD
+int kGlobalVariable = 5;  // BAD
 
 // Don't use MACROS as global constants!
-#define PI 3.14 // BAD
+#define PI 3.14  // BAD
 
 // Result can be calculated at the compiler time
 constexpr int calcSomeNumber() {
@@ -55,7 +55,7 @@ int main() {
   // pointer can be changed, for example to point on different data
   // int can't be changed as it is const
   const int* c2 = &a1;
-  c2 = &b1; // Ok, pointer is not const
+  c2 = &b1;  // Ok, pointer is not const
   // *c2 = 20; // ERROR, value is const
 
   // const pointer to value.
@@ -64,7 +64,7 @@ int main() {
   // just a copy of the other pointer. What important is if data const or not.
   int* const c3 = &a1;
   // c3 = &b1; // ERROR, pointer is const
-  *c3 = 20; // Ok, value is not const
+  *c3 = 20;  // Ok, value is not const
 
   // const pointer to const value.
   // Neither pointer nor string can be changed.

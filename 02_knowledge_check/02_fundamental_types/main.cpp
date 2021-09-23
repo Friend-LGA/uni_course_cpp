@@ -51,8 +51,8 @@ int main() {
   unsigned int integer2 = 0;
 
   // Can store the maximum size of a theoretically possible object of any type.
-  // Should be used whenever you are implementing any collection, for the size of
-  // this collection.
+  // Should be used whenever you are implementing any collection, for the size
+  // of this collection.
   size_t size = 100;
 
   // Floating-Point Types
@@ -85,8 +85,8 @@ int main() {
             << "long long\t\t│ " << sizeof(long long) * 8 << "\t\t│ "
             << std::numeric_limits<long long>::min() << "\t│ "
             << std::numeric_limits<long long>::max() << '\n'
-            << "unsigned long long\t│ " << sizeof(unsigned long long) * 8 << "\t\t│ " 
-            << std::numeric_limits<unsigned long long>::min() << "\t\t\t│ " 
+            << "unsigned long long\t│ " << sizeof(unsigned long long) * 8 << "\t\t│ "
+            << std::numeric_limits<unsigned long long>::min() << "\t\t\t│ "
             << std::numeric_limits<unsigned long long>::max() << '\n'
             << "float\t\t\t│ " << sizeof(float) * 8 << "\t\t│ "
             << std::numeric_limits<float>::min() << "\t\t│ "

@@ -174,8 +174,11 @@ class D : public A {
 
 class E : public A {
  public:
-  // void a_function(float var) override {}  // ERROR: hides virtual member function
-  // int a_function(int var) override {}  // ERROR: has a different return type
+  // ERROR: hides virtual member function
+  // void a_function(float var) override {}
+
+  // ERROR: has a different return type
+  // int a_function(int var) override {}
 };
 
 }  // namespace override_example

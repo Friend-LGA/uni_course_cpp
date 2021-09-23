@@ -56,7 +56,8 @@ int main() {
     result_string.append(item);
   }
 
-  std::cout << "Vector: all elements combined == " << result_string << std::endl;
+  std::cout << "Vector: all elements combined == " << result_string
+            << std::endl;
 
   // Optional
   // It helps to add nullable state to the values, which can't be null.

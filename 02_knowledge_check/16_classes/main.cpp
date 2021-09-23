@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-// Use `class` for objects with complex logic with private members and mutable functions,
-// otherwise use `struct` for simple data containers.
+// Use `class` for objects with complex logic with private members and mutable
+// functions, otherwise use `struct` for simple data containers.
 
 class ClassExample {
  public:
@@ -48,4 +48,6 @@ class NestingExample {
   } size;
 };
 
-int main() { return 0; }
+int main() {
+  return 0;
+}

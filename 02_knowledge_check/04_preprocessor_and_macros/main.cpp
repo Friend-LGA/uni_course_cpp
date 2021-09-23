@@ -34,12 +34,13 @@
 #define PUTS_DEBUG() OUTPUT("Debug is Undefined")
 #endif
 
-#define MY_ASSERT(BOOL_EXPRESSION)                                                          \
-  do {                                                                                      \
-    if (!(BOOL_EXPRESSION)) {                                                               \
-      printf("MY_ASSERT FAILED: \"" #BOOL_EXPRESSION "\" on %s(%d)\n", __FILE__, __LINE__); \
-      exit(-1);                                                                             \
-    }                                                                                       \
+#define MY_ASSERT(BOOL_EXPRESSION)                                     \
+  do {                                                                 \
+    if (!(BOOL_EXPRESSION)) {                                          \
+      printf("MY_ASSERT FAILED: \"" #BOOL_EXPRESSION "\" on %s(%d)\n", \
+             __FILE__, __LINE__);                                      \
+      exit(-1);                                                        \
+    }                                                                  \
   } while (0)
 
 #include <cassert>

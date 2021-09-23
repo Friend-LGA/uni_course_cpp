@@ -58,8 +58,11 @@ class IntVectorWrapper {
 };
 
 // ostream << IntVectorWrapper
-// As we don't have access to `std::ostream` class, we need to define this operator in global space
-std::ostream& operator<<(std::ostream& os, const IntVectorWrapper& vec) { return os << vec.str(); }
+// As we don't have access to `std::ostream` class, we need to define this
+// operator in global space
+std::ostream& operator<<(std::ostream& os, const IntVectorWrapper& vec) {
+  return os << vec.str();
+}
 
 int main() {
   auto vec1 = IntVectorWrapper({0, 1, 2, 3, 4, 5});
@@ -72,7 +75,8 @@ int main() {
 
   std::cout << "vec1 + vec2 = " << (vec1 + vec2) << std::endl << std::endl;
 
-  std::cout << "vec1 < vec2 == " << (vec1 < vec2 ? "true" : "false") << std::endl;
+  std::cout << "vec1 < vec2 == " << (vec1 < vec2 ? "true" : "false")
+            << std::endl;
 
   return 0;
 }

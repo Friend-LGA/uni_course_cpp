@@ -31,7 +31,8 @@ class Resource {
   void replace2(size_t pos, int value) {
     // Will be automatically unlocked when goes out of scope.
     // Use `std::scoped_lock` for multiple mutexes.
-    // Always name the lock with variable, othervise it will be destroyed immediately.
+    // Always name the lock with variable, othervise it will be destroyed
+    // immediately.
     // https://en.cppreference.com/w/cpp/thread/lock_guard
     // https://en.cppreference.com/w/cpp/thread/scoped_lock
     std::lock_guard lock(vector_mutex_);
@@ -46,7 +47,8 @@ class Resource {
   void increase_id() { id_++; }
 
   void produce_deadlock() {
-    // As we lock the same mutex recursively, thread will wait forever for mutex to be unlocked
+    // As we lock the same mutex recursively, thread will wait forever for mutex
+    // to be unlocked
     // std::lock_guard lock(vector_mutex_);  // expect DEADLOCK!!!
     replace2(0, 128);
   }
@@ -71,8 +73,9 @@ class Resource {
 
   // Don't suspend thread, keep asking if it is unlocked.
   // Use only with fundamental types, which `atomic` designed to work with.
-  // If you will have, for example, atomic vector, then it will just make assignement operation thread safe,
-  // but any vector-related operation will not be safe.
+  // If you will have, for example, atomic vector, then it will just make
+  // assignement operation thread safe, but any vector-related operation will
+  // not be safe.
   // https://en.cppreference.com/w/cpp/atomic/atomic
   std::atomic<int> id_ = 0;
 };
@@ -89,12 +92,14 @@ static int sum(int a, int b) {
 }
 
 int main() {
-  // Terminates application `std::terminate` in destructor if not `join()` or `detach()`.
+  // Terminates application `std::terminate` in destructor if not
+  // `join()` or `detach()`.
   std::thread thread1(print_string, "Hello World, Thread 1");
   std::thread thread2(print_string, "Hello World, Thread 2");
 
-  // Current thread isn't waiting for threads to finish and continue its execution.
-  // If program terminates (i.e. `main()` reaches the end), threads are suspended.
+  // Current thread isn't waiting for threads to finish and continue its
+  // execution. If program terminates (i.e. `main()` reaches the end), threads
+  // are suspended.
   // https://en.cppreference.com/w/cpp/thread/thread/detach
   thread1.detach();
 

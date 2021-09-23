@@ -2,11 +2,12 @@
 
 #include <iostream>
 
-// global `static` - storage duration, which means that it lasts for the lifetime of the program.
+// global `static` - storage duration, which means that it lasts for the
+// lifetime of the program.
 static constexpr int kGlobalConst = 323;
 
 // Use `static` keyword for global functions, this will limit it's visibility.
-// They are invisible to the linker, 
+// They are invisible to the linker,
 // allowing other compilation units to define functions with the same signature.
 static int sum(int a, int b) {
   return a + b;

@@ -27,8 +27,12 @@ class Graph {
     VertexId from_vertex_id;
     VertexId to_vertex_id;
 
-    Edge(const EdgeId& _id, const VertexId& _from_vertex_id, const VertexId& _to_vertex_id)
-        : id(_id), from_vertex_id(_from_vertex_id), to_vertex_id(_to_vertex_id) {}
+    Edge(const EdgeId& _id,
+         const VertexId& _from_vertex_id,
+         const VertexId& _to_vertex_id)
+        : id(_id),
+          from_vertex_id(_from_vertex_id),
+          to_vertex_id(_to_vertex_id) {}
 
     bool operator==(const Edge& other) const { return id == other.id; }
   };
@@ -49,17 +53,22 @@ class Graph {
   Vertex add_vertex();
   void remove_vertex(const VertexId& id);
 
-  std::tuple<ConnectionStatus, std::optional<Edge>> add_edge(const VertexId& from_vertex_id,
-                                                             const VertexId& to_vertex_id);
+  std::tuple<ConnectionStatus, std::optional<Edge>> add_edge(
+      const VertexId& from_vertex_id,
+      const VertexId& to_vertex_id);
 
-  DisconnectionStatus remove_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
+  DisconnectionStatus remove_edge(const VertexId& from_vertex_id,
+                                  const VertexId& to_vertex_id);
 
   std::vector<Vertex> neighbours(const VertexId& id) const;
   std::vector<Edge> edges(const VertexId& id) const;
 
-  bool is_connected(const VertexId& from_vertex_id, const VertexId& to_vertex_id) const;
+  bool is_connected(const VertexId& from_vertex_id,
+                    const VertexId& to_vertex_id) const;
 
-  bool operator==(const Graph& other) const { return vertices_ == other.vertices_ && edges_ == other.edges_; };
+  bool operator==(const Graph& other) const {
+    return vertices_ == other.vertices_ && edges_ == other.edges_;
+  };
 
  private:
   std::vector<Vertex> vertices_;

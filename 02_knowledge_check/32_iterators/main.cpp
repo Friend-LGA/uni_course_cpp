@@ -23,7 +23,8 @@ class MyCollection {
   // https://en.cppreference.com/w/cpp/iterator/iterator_tags
   class Iterator : public std::iterator<std::input_iterator_tag, T> {
    public:
-    explicit Iterator(const MyCollection& collection, size_t pos) : collection_(collection), pos_(pos) {}
+    explicit Iterator(const MyCollection& collection, size_t pos)
+        : collection_(collection), pos_(pos) {}
 
     Iterator operator++(int) {
       pos_++;
@@ -45,7 +46,10 @@ class MyCollection {
       return *this;
     }
 
-    bool operator==(const Iterator& other) const { return (collection_ == other.collection_ && pos_ == other.pos_); }
+    bool operator==(const Iterator& other) const {
+      return (collection_ == other.collection_ && pos_ == other.pos_);
+    }
+
     bool operator!=(const Iterator& other) const { return !(*this == other); }
     const T& operator*() const { return collection_[pos_]; }
 
@@ -63,7 +67,9 @@ class MyCollection {
   Iterator begin() const { return Iterator(*this, 0); }
   Iterator end() const { return Iterator(*this, size()); }
 
-  bool operator==(const MyCollection& other) const { return vector_ == other.vector_ && pos_ == other.pos_; }
+  bool operator==(const MyCollection& other) const {
+    return vector_ == other.vector_ && pos_ == other.pos_;
+  }
 
  private:
   std::vector<T> vector_ = {};
@@ -90,6 +96,7 @@ int main() {
   std::unordered_set<int>::iterator c_iter_end = c.end();
   MyCollection<int>::Iterator d_iter_end = d.end();
 
+  // clang-format off
   std::cout << "Array Begin, First: " << *a_iter_begin << std::endl;
   std::cout << "Array (End - 1), Last: " << *(a_iter_end - 1) << std::endl << std::endl;
 
@@ -98,6 +105,7 @@ int main() {
 
   std::cout << "Array (Begin - 1), Out of Range: " << *(a_iter_begin - 1) << std::endl;
   std::cout << "Array End, Out of Range: " << *a_iter_end << std::endl << std::endl;
+  // clang-format on
 
   print_elements("Array: ", a);
   print_elements("Vector: ", b);

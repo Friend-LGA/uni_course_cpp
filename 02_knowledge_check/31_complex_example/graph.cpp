@@ -12,13 +12,15 @@ using DisconnectionStatus = uni::Graph::DisconnectionStatus;
 
 namespace {
 
-// Try to use private namespace functions instead of extending private interface of the object
+// Try to use private namespace functions instead of extending private interface
+// of the object
 void validate_vertex_pos(const std::vector<Vertex>& vertices, size_t pos) {
   assert(pos < vertices.size() && "Vertex position is out of range");
 }
 
 void validate_vertex_existance(const Graph& graph, const VertexId id) {
-  assert(graph.find_vertex(id).has_value() && "Vertex with provided id doesn't exist");
+  assert(graph.find_vertex(id).has_value() &&
+         "Vertex with provided id doesn't exist");
 }
 
 }  // namespace
@@ -50,8 +52,9 @@ void Graph::remove_vertex(const VertexId& id) {
   // ... some complex logic ...
 }
 
-std::tuple<ConnectionStatus, std::optional<Edge>> Graph::add_edge(const VertexId& from_vertex_id,
-                                                                  const VertexId& to_vertex_id) {
+std::tuple<ConnectionStatus, std::optional<Edge>> Graph::add_edge(
+    const VertexId& from_vertex_id,
+    const VertexId& to_vertex_id) {
   // Validate preconditions
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
@@ -59,7 +62,8 @@ std::tuple<ConnectionStatus, std::optional<Edge>> Graph::add_edge(const VertexId
   return {};
 }
 
-DisconnectionStatus Graph::remove_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id) {
+DisconnectionStatus Graph::remove_edge(const VertexId& from_vertex_id,
+                                       const VertexId& to_vertex_id) {
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
   // ... some complex logic ...
@@ -78,7 +82,8 @@ std::vector<Edge> Graph::edges(const VertexId& id) const {
   return {};
 }
 
-bool Graph::is_connected(const VertexId& from_vertex_id, const VertexId& to_vertex_id) const {
+bool Graph::is_connected(const VertexId& from_vertex_id,
+                         const VertexId& to_vertex_id) const {
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
   // ... some complex logic ...

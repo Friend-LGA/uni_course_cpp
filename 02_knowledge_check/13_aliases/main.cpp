@@ -1,6 +1,6 @@
-#include <vector>
-#include <tuple>
 #include <iostream>
+#include <tuple>
+#include <vector>
 
 // If you don't want to write all nested namespaces
 using std::vector;
@@ -12,7 +12,7 @@ using IntPair = std::tuple<int, int>;
 using seconds = float;
 
 // Don't include whole namespaces, it's error-prone.
-using namespace std; // BAD
+using namespace std;  // BAD
 
 void sleep(seconds interval) {
   // some logic

@@ -27,9 +27,12 @@ struct Rectangle {
 
   // Construction Chain
   // Always use chaining instead of duplicating member initialization
-  Rectangle(int x, int y, int width, int height) : Rectangle({.x = x, .y = y}, {.width = width, .height = height}) {}
+  Rectangle(int x, int y, int width, int height)
+      : Rectangle({.x = x, .y = y}, {.width = width, .height = height}) {}
 
-  Position center() const { return {.x = pos.x + size.width / 2, .y = pos.y + size.height / 2}; }
+  Position center() const {
+    return {.x = pos.x + size.width / 2, .y = pos.y + size.height / 2};
+  }
 };
 
 int main() {
@@ -38,9 +41,14 @@ int main() {
 
   Rectangle rect1 = Rectangle(pos, size);
   Rectangle rect2 = Rectangle(8, 16, 10, 10);
-  // Rectangle rect3 = {.pos = pos, .size = size}; // ERROR: You need to use constructor if you have one
 
-  std::cout << "Rect pos == {" << rect1.pos.x << ", " << rect1.pos.y << "}" << std::endl
-            << "Rect size == {" << rect1.size.width << ", " << rect1.size.height << "}" << std::endl
-            << "Rect center == {" << rect1.center().x << ", " << rect1.center().y << "}" << std::endl;
+  // ERROR: You need to use constructor if you have one
+  // Rectangle rect3 = {.pos = pos, .size = size};
+
+  // clang-format off
+  std::cout
+    << "Rect pos == {" << rect1.pos.x << ", " << rect1.pos.y << "}" << std::endl
+    << "Rect size == {" << rect1.size.width << ", " << rect1.size.height << "}" << std::endl
+    << "Rect center == {" << rect1.center().x << ", " << rect1.center().y << "}" << std::endl;
+  // clang-format on
 }
