@@ -122,7 +122,7 @@ std::cout << "..." << std::endl;
 Вот такая форма записи, считается наименее приемлемой, так как она очень детальная, и из-за этого высока вероятность ошибки:
 
 ```cpp
-for (int i = 0; i < items.size(); i++) {
+for (size_t i = 0; i < items.size(); i++) {
   // ...
 }
 ```
@@ -185,3 +185,150 @@ for (const auto& item : items) {
       ```cpp
       constexpr int kMonthsCount = 12;
       ```
+
+## 9. Аргументы Окружения
+
+Если вы не используете аргументы окружения, зачем передаете их в `main`? Старайтесь всегда избегать ненужного кода. Чем больше кода - тем выше вероятность ошибки.
+
+Плохо:
+```cpp
+int main(int argc, char* argv[]) { return 0; }
+```
+
+Хорошо:
+```cpp
+int main() { return 0; }
+```
+
+## 10. Последовательность Секций Видимости в Классах
+
+Больше всего распространена такая последовательность: `public -> protected -> private`.
+Каждая секция должна встречаться только 1 раз.
+
+Плохо:
+```cpp
+class SomeClass {
+ private:
+  //
+ public:
+  // ...
+ protected:
+  // ...
+ public:
+  // ...
+ private:
+  // ...
+}
+```
+
+Хорошо:
+```cpp
+class SomeClass {
+ public:
+  // ...
+ protected:
+  // ...
+ private:
+  // ...
+}
+```
+
+## 11. Not `const` variables
+
+Часто у вас в коде встречаются переменные, которые не изменяются, но при этом не помечены как `const`. Лучше просто всегда, когда создаете локальную переменную, помечайте её `const`, а если возникнет необходжимость изменить её, то `const` можно будет убрать.
+
+Плохо:
+```cpp
+{
+  int var = 32;
+  // var is not changing ...
+}
+```
+
+Хорошо:
+```cpp
+{
+  const int var = 32;
+  // var is not changing ...
+}
+```
+
+## 12. Uninitialised Variables
+
+Старайтесь никогда не оставлять неинициализхированные перменные, особенно если они теряют `const` из-за этого.
+
+Плохо:
+```cpp
+int var;
+if (bla) {
+  var = 0;
+}
+else if (bla_bla) {
+  var = 1;
+}
+else {
+  var = 3;
+}
+```
+
+Хорошо:
+```cpp
+const int var = ([]() {
+  if (bla) {
+    return 0;
+  }
+  else if (bla_bla) {
+    return 1;
+  }
+  else {
+    return 3;
+  }
+})();
+```
+
+## 13. Зона Видимости Переменных
+
+Если есть возможность, переменную всегда стоит объявлять в локальной зоне видимости.
+
+Плохо:
+```cpp
+int can_be_nil = get_value();
+if (can_be_nil) {
+  // `can_be_nil` is used here ...
+}
+// `can_be_nil` is still accessible here ...
+```
+
+Хорошо:
+```cpp
+if (int can_be_nil = get_value()) {
+  // `can_be_nil` is used here ...
+}
+// `can_be_nil` is not accessible here ...
+```
+
+## 14. `unsigned` Types
+
+В целом, старайтесь избегать `unsigned`, так как при конвертации между `signed` и `unsigned` вас могут подстерегать неприятности.
+
+- [CppGuidline](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-mix)
+
+## 15. `int` Instead of `size_t`
+
+Контейнеры используют `size_t` для хранения своего размера и для обращения к элементам по индексу. Поэтому, если работаете с коллекциями, по возможности используйте `size_t` вместо `int`.
+
+Плохо:
+```cpp
+const int size = vector.size();
+for (int i = 0; i < size; i++) {
+  vector[i] = get_val(i);
+}
+```
+
+Хорошо:
+```cpp
+const size_t size = vector.size();
+for (size_t i = 0; i < size; i++) {
+  vector[i] = get_val(i);
+}
+```
