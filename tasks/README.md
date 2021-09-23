@@ -180,8 +180,12 @@ for (const auto& item : items) {
       }
       ```
 - Названия  констант:
-  - Начинаются на `k`
+  - `ALL_CUPS` или начинаются на `k`
     - Пример:
+      ```cpp
+      constexpr int MONTHS_COUNT = 12;
+      ```
+      Или:
       ```cpp
       constexpr int kMonthsCount = 12;
       ```
