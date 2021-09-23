@@ -9,9 +9,11 @@
     - У рыцаря и у его противников есть характеристики (здоровье, выносливость, атака, и т.д.).
     - Нужно найти кратчайший и наиболее безопасный пути к принцессе, а так же подобрать оптимальные характеристики для рыцаря.
 1. У нас есть общий репозиторий, к которому у вас у всех есть/будет доступ. Каждая задача представляет собой `Pull Request` в этот репозиторий.
-   Когда `Pull Request` проверен мной и залит вами в `master`, тогда задача считается выполненной.
+   Когда `Pull Request` прошел все проверки, одобрен мной и залит вами в `master`, тогда задача считается выполненной.
 1. У нас с вами практикум по `C++`, поэтому использовать голый синтаксис `C` без крайней необходимости запрещено.
 1. Использовать сторонние библиотеки также запрещено. Пользуйтесь теми инструментами, которые дает вам язык.
+1. По правилам хорошего тона, когда много людей работают над одним репозиторием, используется `linter` для контроля форматирования текста,
+   чтобы весь код выглядел единообразно и всем его было удобно читать. В нашем случае, мы будем импользовать `clang-format`. Подробнее написано в секции `Workflow` ниже.
 
 # Workflow
 
@@ -30,6 +32,18 @@
     - Пример:
       - `/01_hello_world/grigorii_lutkov/*`
 1. Все изменения должны находиться только внутри данной папки. Так как мы все работаем в одном общем репозитории, то каждый работает только внутри своей папки и не трогает файлы других студентов. Каждый отдельный `branch` должен включать в себя только те изменения, которые имеют отношения к конкретной задаче.
+1. Когда задача готова, вы должны прогнать ваши файлы через `linter`:
+    - Мы будем используем `clang-format`, инструкция по установки описана в [development_environment](/01_introduction/01_development_environment).
+    - Файл конфигурации уже лежит в корне общего репозитория и выглядит так: [`.clang-format`](/.clang-format).
+      - Единственная и самая главная настройка, которую мы будем использовать:
+        - `BasedOnStyle: Chromium` - означает, что за основу взято форматирование, принятое в команде, которая пишет `Chromium`.
+    - Все, что вам нужно сделать, это:
+      - Перейти в директорию с вашей задачей.
+      - Выполнить форматирование `.hpp` и `.cpp` файлов:
+        - `clang-format -i -style=Chromium *.(hpp|cpp)`
+          - `-i` - означает `Inplace`, то есть `linter` будет обновлять файлы при форматировании.
+          - `-style=Chromium` - базовый стиль форматирования.
+          - `*.(hpp|cpp)` - путь и маска, по которому искать файлы.
 1. Когда задача готова, создаете `Pull Request` со следующими параметрами:
     - Base Repository: Общий репозиторий
     - Base Branch: `master`
@@ -47,7 +61,13 @@
     - Description: Оставьте пустым
     - [Docs: About Pull Requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
     - [Docs: Creating a Pull Request from a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
-1. Я провожу ревью и дальнешее развитие может быть:
+1. На `Pull Request` выполняются GitHub Actions:
+    - `clang` компилирует ваши файлы и выполняет программу.
+    - `linter` проверяет соответствие ваших файлов ожидаемому формату.
+    - Вы можете следить за выполнением этих `jobs` на странице `Pull Request`.
+    - Если все `ок`, `Pull Request` помечается зеленой галочкой.
+    - Если где-то произошла ошибка, `Pull Request` помечается красным крестиком.
+1. Если проверки прошли удачно, я провожу код ревью и дальнешее развитие может быть:
     - Я подтверждаю изменения.
       - Вы можете мерджить `Pull Request`
         - [Docs: Merging a Pull Request](https://docs.github.com/en/github/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request)
@@ -58,6 +78,55 @@
       - Запрашиваете ревью:
         - [Docs: Requesting a Pull Request Review](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)
 1. Повторяем предыдущий шаг, пока не добьемся успеха.
+
+# Naming Convention
+
+Я понимаю, что никто не удосужился почитать приведенные ссылки по [Guidlines, Coding Standards](/#guidlines-coding-standards). Поэтому давайте договоримся с вами о наших стандартах:
+
+- Расширения файлов:
+  - `.hpp` и `.cpp`
+- Названия для `Struct`, `Class`, `Type`:
+  - `CamelCase`
+    - Пример:
+      ```cpp
+      struct SomeStruct {};
+      class SomeClass {};
+      using SomeType = int;
+      ```
+- Названия для перменных и функций:
+  - `snake_case` или `camelCase`
+  - Главное, чтобы было постоянство.
+    - Пример:
+      ```cpp
+      int some_var = 15;
+      void some_function();
+      ```
+      Или:
+      ```cpp
+      int someVar = 15;
+      void someFunction();
+      ```
+- Названия для приватных переменных:
+  - Оканчиваются на `_`
+    - Пример:
+      ```cpp
+      class SomeClass {
+       public:
+        int public_var;
+       private:
+        int private_var_;
+      }
+      ```
+- Названия  констант:
+  - `ALL_CUPS` или начинаются на `k`
+    - Пример:
+      ```cpp
+      constexpr int MONTHS_COUNT = 12;
+      ```
+      Или:
+      ```cpp
+      constexpr int kMonthsCount = 12;
+      ```
 
 # Common Mistakes
 
@@ -143,54 +212,7 @@ for (const auto& item : items) {
 }
 ```
 
-## 8. Naming Convention
-
-Я понимаю, что никто не удосужился почитать приведеные ссылки по [Guidlines, Coding Standards](/#guidlines-coding-standards). Поэтому давайте договоримся с вами о наших стандартах:
-
-- Названия для `Struct`, `Class`, `Type`:
-  - `CamelCase`
-    - Пример:
-      ```cpp
-      struct SomeStruct {};
-      class SomeClass {};
-      using SomeType = int;
-      ```
-- Названия для перменных и функций:
-  - `snake_case` или `camelCase`
-  - Главное, чтобы было постоянство.
-    - Пример:
-      ```cpp
-      int some_var = 15;
-      void some_function();
-      ```
-      Или:
-      ```cpp
-      int someVar = 15;
-      void someFunction();
-      ```
-- Названия для приватных переменных:
-  - Оканчиваются на `_`
-    - Пример:
-      ```cpp
-      class SomeClass {
-       public:
-        int public_var;
-       private:
-        int private_var_;
-      }
-      ```
-- Названия  констант:
-  - `ALL_CUPS` или начинаются на `k`
-    - Пример:
-      ```cpp
-      constexpr int MONTHS_COUNT = 12;
-      ```
-      Или:
-      ```cpp
-      constexpr int kMonthsCount = 12;
-      ```
-
-## 9. Аргументы Окружения
+## 8. Аргументы Окружения
 
 Если вы не используете аргументы окружения, зачем передаете их в `main`? Старайтесь всегда избегать ненужного кода. Чем больше кода - тем выше вероятность ошибки.
 
@@ -204,7 +226,7 @@ int main(int argc, char* argv[]) { return 0; }
 int main() { return 0; }
 ```
 
-## 10. Последовательность Секций Видимости в Классах
+## 9. Последовательность Секций Видимости в Классах
 
 Больше всего распространена такая последовательность: `public -> protected -> private`.
 Каждая секция должна встречаться только 1 раз.
@@ -237,7 +259,7 @@ class SomeClass {
 }
 ```
 
-## 11. Not `const` variables
+## 10. Not `const` variables
 
 Часто у вас в коде встречаются переменные, которые не изменяются, но при этом не помечены как `const`. Лучше просто всегда, когда создаете локальную переменную, помечайте её `const`, а если возникнет необходжимость изменить её, то `const` можно будет убрать.
 
@@ -257,7 +279,7 @@ class SomeClass {
 }
 ```
 
-## 12. Uninitialised Variables
+## 11. Uninitialised Variables
 
 Старайтесь никогда не оставлять неинициализхированные перменные, особенно если они теряют `const` из-за этого.
 
@@ -290,7 +312,7 @@ const int var = ([]() {
 })();
 ```
 
-## 13. Зона Видимости Переменных
+## 12. Зона Видимости Переменных
 
 Если есть возможность, переменную всегда стоит объявлять в локальной зоне видимости.
 
@@ -311,13 +333,13 @@ if (int can_be_nil = get_value()) {
 // `can_be_nil` is not accessible here ...
 ```
 
-## 14. `unsigned` Types
+## 13. `unsigned` Types
 
 В целом, старайтесь избегать `unsigned`, так как при конвертации между `signed` и `unsigned` вас могут подстерегать неприятности.
 
 - [CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-mix)
 
-## 15. `int` Instead of `size_t`
+## 14. `int` Instead of `size_t`
 
 Контейнеры используют `size_t` для хранения своего размера и для обращения к элементам по индексу. Поэтому, если работаете с коллекциями, по возможности используйте `size_t` вместо `int`.
 
@@ -337,7 +359,7 @@ for (size_t i = 0; i < size; i++) {
 }
 ```
 
-## 16. Нарушение Зоны Ответственности (Single-Responcibility)
+## 15. Нарушение Зоны Ответственности (Single-Responcibility)
 
 Часто встречается плохое понимание зоны отвественности объявляемой сущности, например класса `Graph`.
 
@@ -356,7 +378,7 @@ for (size_t i = 0; i < size; i++) {
 
 Та логика, за которую он не в отвественности, должна быть реализована вне данного класса.
 
-## 17. Сложные и/или Множество Конструкторов
+## 16. Сложные и/или Множество Конструкторов
 
 В продолжении темы про зону ответственности.
 

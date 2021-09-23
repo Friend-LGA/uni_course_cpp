@@ -1,13 +1,13 @@
 # [VCS: Version Control System](https://en.wikipedia.org/wiki/Version_control)
 
 1. Install `git` ([Docs](https://git-scm.com/))
-    - `MacOS`
-        1. Install [`Homebrew`](https://brew.sh/)
-        2. Install git using brew
-            - `brew install git`
+    - `MacOS`: Use [`homebrew`](https://brew.sh/)
+      - `brew install git`
     - `Linux`: Use your favourite package manager
+      - Пример:
+        - `sudo apt install git`
     - `Windows`: Should be possible to install with [Chocolate](https://community.chocolatey.org/)
-        - `choco install git`
+      - `choco install git`
 2. Check `git` version
     - `git --version`
 3. Initial Setup ([Docs](https://docs.github.com/en/get-started/getting-started-with-git))
