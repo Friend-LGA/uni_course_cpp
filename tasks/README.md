@@ -20,6 +20,8 @@
 1. Сделать `fork` репозитория, куда вы будете загружать выполненные задачи (ссылку спросить у меня).
     - [Docs: About Forks](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks)
     - [Docs: Fork a Repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+1. Если у вас уже есть форк, то нужно поддерживать его в актуальном состоянии, и периодически подтягивать изменения из родителького репозитория:
+    - [Docs: Syncing a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
 1. Для каждой новой задачи создаете новый `branch`:
     - Формат названий бранчей следующий:
       - `name_surname/task_number`
