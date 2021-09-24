@@ -112,7 +112,7 @@
 
 # Рабочая директория:
 
-`/02_knight_and_princess`
+`/02_knight_and_princess/*`
 
 # Время Выполнения
 
