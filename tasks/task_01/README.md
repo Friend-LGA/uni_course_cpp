@@ -82,7 +82,7 @@
 
 # Рабочая директория:
 
-`/01_hello_world/*`
+`/01_hello_world/name_surname/*`
 
 # Время Выполнения
 
