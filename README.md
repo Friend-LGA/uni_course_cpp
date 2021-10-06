@@ -47,6 +47,8 @@
 
 # Задачи по Практике
 
+С описание общей идеи практикума можете ознакомиться [**здесь**](tasks#%D0%BE%D0%B1%D1%89%D0%B0%D1%8F-%D0%B8%D0%B4%D0%B5%D1%8F).
+
 - Неделя 1. [Hello World!](tasks/task_01)
 - Неделя 2 - 3. [Graph Generation](tasks/task_02)
 - Неделя 4 - 5. [Graph Development](tasks/task_03)
