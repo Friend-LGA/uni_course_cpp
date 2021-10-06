@@ -51,25 +51,25 @@
 
 - Неделя 1. [Hello World!](tasks/task_01)
 - Неделя 2 - 3. [Graph Generation](tasks/task_02)
-- Неделя 4 - 5. [Graph Development](tasks/task_03)
+- Неделя 4. [Graph Development](tasks/task_03)
   - Vertices and Edges Probabilities
-- Неделя 6. [Multiple Graphs and Logger](tasks/task_04)
+- Неделя 5. [Multiple Graphs and Logger](tasks/task_04)
   - Multiple Graphs Generation (Sequentially)
   - Add Logger
-- Неделя 7. [Shortest Path Algorith](tasks/)
+- Неделя 6. [Shortest Path Algorith](tasks/)
   - Add Edge Durations
   - Single Pair (Sequential Algorithm)
-- Неделя 8. [Shortest Path Algorith](tasks/)
+- Неделя 7. [Shortest Path Algorith](tasks/)
   - Single Pair (Parallel Algorithm)
-- Неделя 9. [Graph Development](tasks/)
+- Неделя 8. [Graph Development](tasks/)
   - Add Params, Fights and Blessings
   - Multiple Graphs Generation (Parallel)
-- Неделя 10. [Shortest Path Algorith](tasks/)
+- Неделя 9. [Shortest Path Algorith](tasks/)
   - Multiple Pair (Parallel Algorithm)
-- Неделя 11. [Graph Development](tasks/)
+- Неделя 10. [Graph Development](tasks/)
   - Adjustable Params (Parallel)
   - Add Enemies and Blessings
-- Неделя 12. [Graph Development](tasks/)
+- Неделя 11. [Graph Development](tasks/)
   - Multiple Players (Parallel)
   - Add Enemies and Blessings
 - ...
