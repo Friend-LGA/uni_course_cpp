@@ -49,33 +49,38 @@
 
 - Неделя 1. [Hello World!](tasks/task_01)
 - Неделя 2 - 3. [Graph Generation](tasks/task_02)
-- Неделя 4 - 5. [Graph Development, Logger](tasks/task_03)
+- Неделя 4 - 5. [Graph Development](tasks/task_03)
   - Vertices and Edges Probabilities
+- Неделя 6. [Multiple Graphs and Logger](tasks/task_04)
   - Multiple Graphs Generation (Sequentially)
   - Add Logger
-- Неделя 6. [Shortest Path Algorith](tasks/task_04)
+- Неделя 7. [Shortest Path Algorith](tasks/)
   - Add Edge Durations
   - Single Pair (Sequential Algorithm)
-- Неделя 7. [Shortest Path Algorith](tasks/task_05)
+- Неделя 8. [Shortest Path Algorith](tasks/)
   - Single Pair (Parallel Algorithm)
-- Неделя 8. [Graph Development](tasks/task_06)
+- Неделя 9. [Graph Development](tasks/)
   - Add Params, Fights and Blessings
   - Multiple Graphs Generation (Parallel)
-- Неделя 9. [Shortest Path](tasks/task_07)
+- Неделя 10. [Shortest Path Algorith](tasks/)
   - Multiple Pair (Parallel Algorithm)
-- Неделя 10. [Graph Development](tasks/task_08)
+- Неделя 11. [Graph Development](tasks/)
   - Adjustable Params (Parallel)
   - Add Enemies and Blessings
-- Неделя 11. [Graph Development](tasks/task_09)
+- Неделя 12. [Graph Development](tasks/)
   - Multiple Players (Parallel)
   - Add Enemies and Blessings
 - ...
 
-> План временный, для общего понимания. Подробные описания задач готовятся по мере возможности.
+Подробное описание задач и процесса их выполнения вы можете посмотреть внутри папки [**`tasks`**](tasks/).
+
+План временный, для общего понимания. Задачи готовятся по мере возможности.
+
+За каждую неделю задержки отнимается по 5 баллов. В зависимости от количества недостающих баллов в конце семестра, нужно будет выполнить допольнительные задачи.
 
 # Частые Ошибки
 
-Советую так же взглянуть на [частые ошибки](/tasks#common-mistakes), которые студенты совершают при выполнении задач по практике. Это, возможно, сэкономит время и вам и мне.
+Советую так же взглянуть на [**частые ошибки**](/tasks#common-mistakes), которые студенты совершают при выполнении задач по практике. Это, возможно, сэкономит время и вам и мне.
 
 # Guidlines, Coding Standards
 - https://isocpp.org/wiki/faq/coding-standards
