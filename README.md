@@ -45,9 +45,9 @@
 1. [Approaches to Concurrency](/03_concurrency_and_parallelism/02_approaches_to_concurrency)
 1. [Threads in C++](/03_concurrency_and_parallelism/03_threads_in_cpp)
 
-# Задачи по Практике
+# План Практики
 
-С описание общей идеи практикума можете ознакомиться [**здесь**](tasks#%D0%BE%D0%B1%D1%89%D0%B0%D1%8F-%D0%B8%D0%B4%D0%B5%D1%8F).
+С описанием общей идеи практикума можете ознакомиться [**здесь**](tasks#%D0%BE%D0%B1%D1%89%D0%B0%D1%8F-%D0%B8%D0%B4%D0%B5%D1%8F).
 
 - Неделя 1. [Hello World!](tasks/task_01)
 - Неделя 2 - 3. [Graph Generation](tasks/task_02)
@@ -80,17 +80,17 @@
 
 За каждую неделю задержки отнимается по 5 баллов. В зависимости от количества недостающих баллов в конце семестра, нужно будет выполнить допольнительные задачи.
 
-# Частые Ошибки
+# Common Mistakes
 
 Советую так же взглянуть на [**частые ошибки**](/tasks#common-mistakes), которые студенты совершают при выполнении задач по практике. Это, возможно, сэкономит время и вам и мне.
 
-# Guidlines, Coding Standards
+# Guidlines and Coding Standards
 - https://isocpp.org/wiki/faq/coding-standards
 - https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
 - https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference
 - https://google.github.io/styleguide/cppguide.html
 
-# Полезные Ссылки
+# Useful Links
 - [GSL: Guidelines Support Library](https://github.com/Microsoft/GSL)
 - [STL: Standard Template Library](https://en.wikipedia.org/wiki/Standard_Template_Library)
 - [Boost (C++ libraries)](https://en.wikipedia.org/wiki/Boost_(C%2B%2B_libraries))
