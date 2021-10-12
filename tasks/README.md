@@ -37,7 +37,7 @@
 1. Все изменения должны находиться только внутри данной папки. Так как мы все работаем в одном общем репозитории, то каждый работает только внутри своей папки и не трогает файлы других студентов. Каждый отдельный `branch` должен включать в себя только те изменения, которые имеют отношения к конкретной задаче.
 1. Когда задача готова, вы должны прогнать ваши файлы через `linter`:
     - Мы будем используем `clang-format`, инструкция по установки описана в [development_environment](/01_introduction/01_development_environment).
-    - Файл конфигурации уже лежит в корне общего репозитория и выглядит так: [`.clang-format`](/.clang-format).
+    - Файл конфигурации уже лежит в корне общего репозитория и выглядит так: [`.clang-format`](.clang-format).
       - Единственная и самая главная настройка, которую мы будем использовать:
         - `BasedOnStyle: Chromium` - означает, что за основу взято форматирование, принятое в команде, которая пишет `Chromium`.
     - Все, что вам нужно сделать, это:
@@ -48,7 +48,7 @@
           - `-i` - означает `Inplace`, то есть `linter` будет обновлять файлы при форматировании.
           - `-style=Chromium` - базовый стиль форматирования.
           - `*.cpp` - путь и маска, по которому искать файлы.
-1. Когда задача готова, создаете `Pull Request` со следующими параметрами:
+1. После этого создаете `Pull Request` со следующими параметрами:
     - Base Repository: Общий репозиторий
     - Base Branch: `master`
     - Head Repository: Ваш `fork` общего репозитория
@@ -65,7 +65,7 @@
     - Description: Оставьте пустым
     - [Docs: About Pull Requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
     - [Docs: Creating a Pull Request from a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
-1. На `Pull Request` выполняются GitHub Actions:
+1. На `Pull Request` автоматически выполняются проверки (`GitHub Actions`):
     - `clang` компилирует ваши файлы и выполняет программу.
     - `linter` проверяет соответствие ваших файлов ожидаемому формату.
     - Вы можете следить за выполнением этих `jobs` на странице `Pull Request`.

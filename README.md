@@ -47,34 +47,35 @@
 
 # План Практики
 
-С описанием общей идеи практикума можете ознакомиться [**здесь**](tasks#%D0%BE%D0%B1%D1%89%D0%B0%D1%8F-%D0%B8%D0%B4%D0%B5%D1%8F).
+С описанием общей идеи практикума можете ознакомиться [**здесь**](/tasks#%D0%BE%D0%B1%D1%89%D0%B0%D1%8F-%D0%B8%D0%B4%D0%B5%D1%8F).
 
-- Неделя 1. [Hello World!](tasks/task_01)
-- Неделя 2 - 3. [Graph Generation](tasks/task_02)
-- Неделя 4. [Graph Development](tasks/task_03)
+- Неделя 1. [Hello World!](/tasks/task_01)
+- Неделя 2. [Graph Generation](/tasks/task_02)
+- Неделя 3. [JSON Representation](/tasks/task_03)
+- Неделя 4. [Graph Development](/tasks/task_04)
   - Vertices and Edges Probabilities
-- Неделя 5. [Multiple Graphs and Logger](tasks/task_04)
+- Неделя 5. [Multiple Graphs and Logger](/tasks/task_05)
   - Multiple Graphs Generation (Sequentially)
   - Add Logger
-- Неделя 6. [Shortest Path Algorith](tasks/)
+- Неделя 6. [Shortest Path Algorith](/tasks)
   - Add Edge Durations
   - Single Pair (Sequential Algorithm)
-- Неделя 7. [Shortest Path Algorith](tasks/)
+- Неделя 7. [Shortest Path Algorith](/tasks)
   - Single Pair (Parallel Algorithm)
-- Неделя 8. [Graph Development](tasks/)
+- Неделя 8. [Graph Development](/tasks)
   - Add Params, Fights and Blessings
   - Multiple Graphs Generation (Parallel)
-- Неделя 9. [Shortest Path Algorith](tasks/)
+- Неделя 9. [Shortest Path Algorith](/tasks)
   - Multiple Pair (Parallel Algorithm)
-- Неделя 10. [Graph Development](tasks/)
+- Неделя 10. [Graph Development](/tasks)
   - Adjustable Params (Parallel)
   - Add Enemies and Blessings
-- Неделя 11. [Graph Development](tasks/)
+- Неделя 11. [Graph Development](/tasks)
   - Multiple Players (Parallel)
   - Add Enemies and Blessings
 - ...
 
-Подробное описание задач и процесса их выполнения вы можете посмотреть внутри папки [**`tasks`**](tasks/).
+Подробное описание задач и процесса их выполнения вы можете посмотреть внутри папки [**`tasks`**](/tasks).
 
 План временный, для общего понимания. Задачи готовятся по мере возможности.
 
