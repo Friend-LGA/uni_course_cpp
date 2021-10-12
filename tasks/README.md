@@ -386,18 +386,14 @@ class SomeClass {
 
 Плохо:
 ```cpp
-{
-  int var = 32;
-  // var is not changing ...
-}
+int var = 32;
+// var is not changing ...
 ```
 
 Хорошо:
 ```cpp
-{
-  const int var = 32;
-  // var is not changing ...
-}
+const int var = 32;
+// var is not changing ...
 ```
 
 ## 11. Uninitialised Variables
