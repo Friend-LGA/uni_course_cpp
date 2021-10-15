@@ -88,6 +88,23 @@
         - [Docs: Requesting a Pull Request Review](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)
 1. Повторяем предыдущий шаг, пока не добьемся успеха.
 
+# Updating Your Fork
+
+Если у вас заблокирован `merge` для вашего `Pull Request`, или есть другая необходимость получить свежие изменения из общего мастера, то нужно следовать следующей логике:
+
+1. Обновить ваш форк
+    - [Docs: Syncing a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
+1. Перейти в локальный master
+    - `git checkout master`
+1. Обновить локальный master
+    - `git pull origin master`
+1. Перейти в свою ветку
+    - `git checkout name_of_my_branch`
+1. Добавить в неё новые изменения из мастера
+    - `git merge master`
+1. Обновить свой PR
+    - `git push origin name_of_my_branch`
+
 # Naming Convention
 
 Я понимаю, что никто не удосужился почитать приведенные ссылки по [Guidlines, Coding Standards](/#guidlines-coding-standards). Поэтому давайте договоримся с вами о наших стандартах:
