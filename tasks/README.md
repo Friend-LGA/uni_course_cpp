@@ -102,6 +102,7 @@
     - `git checkout name_of_my_branch`
 1. Добавить в неё новые изменения из мастера
     - `git merge master`
+    - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches/git-merge)
 1. Обновить свой PR
     - `git push origin name_of_my_branch`
 
