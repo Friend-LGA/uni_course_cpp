@@ -106,6 +106,27 @@
 1. Обновить свой PR
     - `git push origin name_of_my_branch`
 
+# Rollback Changes from Pull Request
+
+Если у вас в `Pull Request` есть изменения файлов относительно `master`, которые вы хотите откатить, то можно выполнить следующие команды:
+- `git checkout master -- file_path`
+- `git checkout master -- directory_path`
+
+Полностью логика выглядит так:
+- Обновляетесь на свежий `master`
+  - Читать выше, [Updating Your Fork](#updating-your-fork)
+- Переходите в свой `branch`
+  - `git switch your_branch`
+  - или
+  - `git checkout your_branch`
+- Откатываете изменение для файлов:
+  - `git checkout master -- file_path`
+- Создаете `commit` с изменениями
+  - `git add .`
+  - `git commit -m "Commit Message"`
+- Обновляете ваш `Pull Request`
+  - `git push origin your_branch`
+
 # Naming Convention
 
 Я понимаю, что никто не удосужился почитать приведенные ссылки по [Guidlines, Coding Standards](/#guidlines-coding-standards). Поэтому давайте договоримся с вами о наших стандартах:
