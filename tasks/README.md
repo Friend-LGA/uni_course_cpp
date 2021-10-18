@@ -131,8 +131,17 @@
 
 Я понимаю, что никто не удосужился почитать приведенные ссылки по [Guidlines, Coding Standards](/#guidlines-coding-standards). Поэтому давайте договоримся с вами о наших стандартах:
 
-- Расширения файлов:
-  - `.hpp` и `.cpp`
+- Файлы:
+  - `snake_case` или `CamelCase`
+  - Главное, чтобы было постоянство.
+  - Расширения файлов:
+    - `.hpp` и `.cpp`
+  - Пример:
+    - `graph_generator.hpp`
+    - `graph_generator.hpp`
+    - Или:
+    - `GraphGenerator.hpp`
+    - `GraphGenerator.hpp`
 - Названия для `Struct`, `Class`, `Type`:
   - `CamelCase`
     - Пример:
@@ -305,6 +314,148 @@ const auto vertices = std::vector<Vertex>(v);
 const auto edges = std::vector<Edge>(e);
 const auto graph = Graph(vertices, edges);
 ```
+
+# Naming Logic
+
+## Наименование различных сущностей
+
+У некоторых страдает логика наименования различных сущностей, давайте об этом поговорим:
+1. Если это объект, например класс или структура, то он должен быть назван как какая-то сущность, например `генератор графа`:
+    - `class GraphGenerator;`
+    - Если этот объект находится внутри файла, то файл, соответственно, будет назван:
+      - `graph_generator.hpp`
+1. Если это функция, то она должна быть названа как действие, например `генерировать граф`:
+    - `Graph generate_graph();`
+1. Если это набор определенной логики, то задайте себе вопрос: "Что это?" - `генерация`:
+    - `namespace graph_generation {}`
+    - `graph_generation.hpp`
+
+## Названия переменных
+
+1. Если это единственный объект, то он соотвественно должен называться в единственном числе:
+    - ```cpp
+      const auto vertex = Vertex();
+      const auto edge = Edge();
+      ```
+2. Если это коллекция объектов, то это должно быть, соответственно, множественое число:
+    - ```cpp
+      const auto vertices = std::vector<Vertex>();
+      const auto edges = std::vector<Edge>();
+      ```
+
+## Обход коллекций
+
+Коллекция, например `vector` - это набор однотипных сущностей, например `Vertex`.
+Когда их много - это `vertices`, когда она одна - это `vertex`.
+
+В вашем понимании зачастую это не так:
+
+```cpp
+auto vertices = std::vector<Vertex>();
+for (const auto& k : vertices) {
+  // some logic ...
+  k.add_edge();
+  // some more interesting reading ...
+}
+```
+
+К моменту, когда я дочитал до `k.add_edge();`, я уже 100 раз забыл кем является этот некий `k`, для меня такая переменная в первую очередь ассоциируется с Tommy Lee Jones.
+
+Намного логичней будет назвать элемент коллекции, тем, чем он на самом деле и является:
+
+```cpp
+auto vertices = std::vector<Vertex>();
+for (const auto& vertex : vertices) {
+  // some logic ...
+  vertex.add_edge();
+  // some more interesting reading ...
+}
+```
+
+`vertex.add_edge();` - все прозрачно и понятно, никакого лишнего расхода мозговой активности.
+
+## Подмена понятий
+
+Ещё один интересный пример. Предположим у вас есть следующие типы данных:
+- `struct Vertex;`
+- `struct Edge;`
+- `using VertexId = int;`
+- `using EdgeId = int;`
+
+Когда вы читаете код, то ожидаете что:
+- Переменная с названием `vertex` указывает на объект `Vertex`.
+- Переменная с названием `edge` указывает на объект `Edge`.
+- Переменная с названием `vertex_id` указывает на объект `VertexId`.
+- Переменная с названием `edge_id` указывает на объект `EdgeId`.
+
+Вы же перемешиваете все в одну кучу:
+
+```cpp
+struct Vertex {
+  std::vector<EdgeId> edges;
+
+  void has_edge(const EdgeId& edge) const {
+    for (const auto& edg : edges) {
+      if (edg == edge) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
+class Graph {
+  std::vector<Edge> edges;
+
+  void has_edge(const EdgeId& edge) const {
+    for (const auto& edg : edges) {
+      if (edg.id == edge) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+```
+
+Как вам кажется, такой код удобно читать и легко понимать? Кого вы пытаетесь запутать, самих себя?
+Почему разные сущности называются одинаково, чтобы сократить 2 лишние буквы?
+Функции, которые, на первый взгляд выглядят совершенно одинаково, на самом деле оперируют разными данными и имеют разную логику.
+Но чтобы это понять, нужно внимательно вчитаться в код, и не полениться, сходить посмотреть как они все определены, какие типы данных имеют.
+Зачем вы усложняете жизнь и себе, и тем, кто будет читать ваш код и работать с вами?
+
+Самое основное правило: будьте проще, не усложняйте. Видите `Graph` - назовите его `graph`. Видите `VertexId` - назовите его `vertex_id`. Не нужно никакой криптографии, лишних сокращений, подмены понятий.
+
+```cpp
+struct Vertex {
+  std::vector<EdgeId> edge_ids;
+
+  void has_edge(const EdgeId& id) const {
+    for (const auto& edge_id : edge_id) {
+      if (id == edge_id) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
+class Graph {
+  std::vector<Edge> edges;
+
+  void has_edge(const EdgeId& id) const {
+    for (const auto& edge : edges) {
+      if (id == edge.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+```
+
+Как вам такой вариант? Проще? Понятней? Не нужно никуда ходить и ничего проверять, все очевидно из названий перменных.
+Это то, к чему вы должны стремиться, ясный, легко читаемый код, а не закодированный шифр.
 
 ## `using namespace`
 
