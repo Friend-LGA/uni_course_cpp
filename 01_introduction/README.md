@@ -44,7 +44,7 @@
 
 1. Install bare minimum of packages:
     - `sudo apt install build-essential procps curl wget file git`
-1. Follow instruction [Homebrew-on-Linux](https://docs.brew.sh/Homebrew-on-Linux). 
+1. Follow instruction [Homebrew-on-Linux](https://docs.brew.sh/Homebrew-on-Linux).
     - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
     - `echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/grigorii_lutkov/.profile`
     - `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
@@ -53,7 +53,7 @@
 
 # Compilation
 
-Для клмпиляции мы будем использовать [`clang`]((https://clang.llvm.org/)).
+Для клмпиляции мы будем использовать [`clang`](https://clang.llvm.org/).
 
 1. Install `LLVM` and `clang`
     - `brew install llvm`
@@ -94,9 +94,26 @@
 VSCode поддерживает `clang` и `clang-format` из коробки. Для этого просто нужно установить официальный плагин для `C++`:
   - [C/C++ for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 
+Так же нужно обновить настройки:
+
+1. Откройте настройки:
+    - `File` или `Code` -> `Preferences` -> `Settings`.
+1. Update `clang-format` Fallback Style:
+    - Search for `C_Cpp.clang_format_fallbackStyle`.
+    - Set it to `Chromium`.
+1. Update `clang` version of `C++`:
+    - Search for `C_Cpp.default.compilerArgs`.
+    - Add item `-std=c++17`.
+1. Specify `clang` compiler path:
+    - Search for `C_Cpp.default.compilerPath`.
+    - Specify path to your `clang++` binary.
+      - Пример: `/usr/bin/clang++`
+      - Чтобы узнать ваш путь, можете воспользоваться командой:
+        - `where clang++`
+
 # Hello World App
 
-Чтобы проверить, что всё нормально работает, давайте напишем простенькое `Hello World` приложение.
+Чтобы проверить, что всё нормально работает, давайте напишем простенькое `Hello World` приложение:
 
 1. Create `hello_world.cpp` file:
     ```cpp
