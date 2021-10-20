@@ -1,5 +1,6 @@
 # VSCode
 *.code-workspace
+.vscode/
 
 # Xcode
 build/
@@ -20,12 +21,6 @@ DerivedData
 *.ipa
 *.xcuserstate
 .swiftpm
-
-# CocoaPods
-Pods/
-
-# Carthage
-Carthage/Build
 
 # Mercurial
 .hgignore
