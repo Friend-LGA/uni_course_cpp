@@ -92,8 +92,8 @@ class B {
 
 class C : public A, public B {
  public:
-  void a_function() {}
-  void b_function() {}
+  void a_function() override {}
+  void b_function() override {}
   void c_function() {}
 };
 
@@ -210,17 +210,19 @@ class A {
   // Will call A implementation of `func()`
   void func() { std::cout << "A::func()" << std::endl; }
 
+  // You have to make destructor virtual.
+  // So the right derived object will be destroyed.
   virtual ~A() = default;
 };
 
 class B : public A {
  public:
-  void pure_virtual_func() override {
+  virtual void pure_virtual_func() override {
     // A::pure_virtual_func(); // ERROR: is not defined
     std::cout << "B::pure_virtual_func()" << std::endl;
   }
 
-  void virtual_func() override {
+  virtual void virtual_func() override {
     A::virtual_func();
     std::cout << "B::virtual_func()" << std::endl;
   }
@@ -246,6 +248,24 @@ class C : public B {
   void func() {
     B::func();
     std::cout << "C::func()" << std::endl;
+  }
+};
+
+class D : public C {
+ public:
+  void pure_virtual_func() override {
+    C::pure_virtual_func();
+    std::cout << "D::pure_virtual_func()" << std::endl;
+  }
+
+  void virtual_func() override {
+    C::virtual_func();
+    std::cout << "D::virtual_func()" << std::endl;
+  }
+
+  void func() {
+    C::func();
+    std::cout << "D::func()" << std::endl;
   }
 };
 
@@ -312,6 +332,7 @@ int main() {
     // A* a = new A(); // ERROR: abstract class
     A* b = new B();
     A* c = new C();
+    A* d = new D();
 
     std::cout << std::endl;
     std::cout << "b->pure_virtual_func()" << std::endl;
@@ -337,8 +358,21 @@ int main() {
     std::cout << "c->func()" << std::endl;
     c->func();
 
+    std::cout << std::endl;
+    std::cout << "d->pure_virtual_func()" << std::endl;
+    d->pure_virtual_func();
+
+    std::cout << std::endl;
+    std::cout << "d->virtual_func()" << std::endl;
+    d->virtual_func();
+
+    std::cout << std::endl;
+    std::cout << "d->func()" << std::endl;
+    d->func();
+
     delete b;
     delete c;
+    delete d;
   }
 
   return 0;
