@@ -175,12 +175,13 @@
     - Или:
     - `GraphGenerator.hpp`
     - `GraphGenerator.hpp`
-- Названия для `Struct`, `Class`, `Type`:
+- Названия для `Struct`, `Class`, `Enum`, `Type` и опций внутри `Enum`:
   - `CamelCase`
     - Пример:
       ```cpp
       struct SomeStruct {};
       class SomeClass {};
+      enum class SomeEnum { OptionOne, OptionTwo, OptionThree };
       using SomeType = int;
       ```
 - Названия для перменных и функций:
