@@ -7,8 +7,6 @@ using Vertex = uni::Graph::Vertex;
 using VertexId = uni::Graph::VertexId;
 using Edge = uni::Graph::Edge;
 using EdgeId = uni::Graph::EdgeId;
-using ConnectionStatus = uni::Graph::ConnectionStatus;
-using DisconnectionStatus = uni::Graph::DisconnectionStatus;
 
 namespace {
 
@@ -52,22 +50,20 @@ void Graph::remove_vertex(const VertexId& id) {
   // ... some complex logic ...
 }
 
-std::tuple<ConnectionStatus, std::optional<Edge>> Graph::add_edge(
-    const VertexId& from_vertex_id,
-    const VertexId& to_vertex_id) {
+Edge Graph::add_edge(const VertexId& from_vertex_id,
+                     const VertexId& to_vertex_id) {
   // Validate preconditions
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
   // ... some complex logic ...
-  return {};
+  return Edge(0, 0, 0);
 }
 
-DisconnectionStatus Graph::remove_edge(const VertexId& from_vertex_id,
-                                       const VertexId& to_vertex_id) {
+void Graph::remove_edge(const VertexId& from_vertex_id,
+                        const VertexId& to_vertex_id) {
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
   // ... some complex logic ...
-  return {};
 }
 
 std::vector<Vertex> Graph::neighbours(const VertexId& id) const {
@@ -80,6 +76,11 @@ std::vector<Edge> Graph::edges(const VertexId& id) const {
   validate_vertex_existance(*this, id);
   // ... some complex logic ...
   return {};
+}
+
+bool Graph::has_vertex(const VertexId& id) const {
+  // ... some complex logic ...
+  return true;
 }
 
 bool Graph::is_connected(const VertexId& from_vertex_id,

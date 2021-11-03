@@ -37,9 +37,6 @@ class Graph {
     bool operator==(const Edge& other) const { return id == other.id; }
   };
 
-  enum class ConnectionStatus { Ok, AlreadyConnected };
-  enum class DisconnectionStatus { Ok, EdgeDoesNotExist };
-
   Graph() = default;
 
   size_t size() const { return vertices_.size(); }
@@ -53,15 +50,15 @@ class Graph {
   Vertex add_vertex();
   void remove_vertex(const VertexId& id);
 
-  std::tuple<ConnectionStatus, std::optional<Edge>> add_edge(
-      const VertexId& from_vertex_id,
-      const VertexId& to_vertex_id);
+  Edge add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
 
-  DisconnectionStatus remove_edge(const VertexId& from_vertex_id,
-                                  const VertexId& to_vertex_id);
+  void remove_edge(const VertexId& from_vertex_id,
+                   const VertexId& to_vertex_id);
 
   std::vector<Vertex> neighbours(const VertexId& id) const;
   std::vector<Edge> edges(const VertexId& id) const;
+
+  bool has_vertex(const VertexId& id) const;
 
   bool is_connected(const VertexId& from_vertex_id,
                     const VertexId& to_vertex_id) const;

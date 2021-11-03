@@ -8,26 +8,36 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
-#include <string>
 #include <vector>
-
-struct Vertex {
-  std::string id;
-};
-
-struct Edge {
-  std::string id;
-};
 
 class Graph {
  public:
-  Graph() = default;
+  struct Vertex {
+    int id;
 
-  void add_vertex(const Vertex& vertex);
+    explicit Vertex(int id);
+  };
+
+  struct Edge {
+    int id;
+    int from_vertex_id;
+    int to_vertex_id;
+
+    explicit Edge(int id, int from_vertex_id, int to_vertex_id);
+  };
+
+  const Vertex& add_vertex();
+  const Edge& add_edge(int from_vertex_id, int to_vertex_id);
 
  private:
   std::vector<Vertex> vertices_;
   std::vector<Edge> edges_;
+
+  int vertex_id_counter_ = 0;
+  int edge_id_counter_ = 0;
+
+  int get_new_vertex_id() { return vertex_id_counter_++; }
+  int get_new_edge_id() { return edge_id_counter_++; }
 };
 
 #endif  // GRAPH_HPP

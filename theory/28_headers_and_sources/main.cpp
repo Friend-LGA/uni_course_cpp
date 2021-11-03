@@ -5,6 +5,6 @@
 #include "graph.hpp"
 
 int main() {
-  const auto graph = Graph(5);
+  const auto graph = Graph();
   return 0;
 }

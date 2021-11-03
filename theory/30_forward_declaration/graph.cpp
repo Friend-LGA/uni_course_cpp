@@ -3,8 +3,10 @@
 #include "edge.hpp"
 #include "vertex.hpp"
 
-Graph::Graph() : vertices_(), edges_() {}
-
 void Graph::add_vertex(const Vertex& vertex) {
-  vertices_.push_back(std::make_unique<Vertex>(vertex));
+  vertices_.emplace_back(vertex);
+}
+
+void Graph::add_edge(const Edge& edge) {
+  edges_.emplace_back(edge);
 }

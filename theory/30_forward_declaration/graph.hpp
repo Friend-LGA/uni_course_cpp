@@ -9,6 +9,7 @@ class Graph {
   Graph();
 
   void add_vertex(const Vertex& vertex);
+  void add_edge(const Edge& edge);
 
  private:
   std::vector<std::unique_ptr<Vertex>> vertices_;

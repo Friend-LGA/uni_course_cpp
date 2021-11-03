@@ -7,25 +7,29 @@
 class Graph {
  public:
   struct Vertex {
-    std::string id;
-    std::string data;
+    int id;
 
-    explicit Vertex(const std::string& data = "");
+    explicit Vertex(int id);
   };
 
   struct Edge {
-    std::string id;
-    std::string data;
+    int id;
+    int from_vertex_id;
+    int to_vertex_id;
 
-    explicit Edge(const std::string& data = "");
+    explicit Edge(int id, int from_vertex_id, int to_vertex_id);
   };
 
-  Graph(int max_depth, int initial_num_vertices = 0);
-
-  Vertex add_vertex();
+  const Vertex& add_vertex();
+  const Edge& add_edge(int from_vertex_id, int to_vertex_id);
 
  private:
-  int max_depth_ = 0;
   std::vector<Vertex> vertices_;
   std::vector<Edge> edges_;
+
+  int vertex_id_counter_ = 0;
+  int edge_id_counter_ = 0;
+
+  int get_new_vertex_id() { return vertex_id_counter_++; }
+  int get_new_edge_id() { return edge_id_counter_++; }
 };
