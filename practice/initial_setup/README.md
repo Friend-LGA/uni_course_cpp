@@ -46,7 +46,7 @@
     - `sudo apt install build-essential procps curl wget file git`
 1. Follow instruction [Homebrew-on-Linux](https://docs.brew.sh/Homebrew-on-Linux).
     - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    - `echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/grigorii_lutkov/.profile`
+    - `echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile`
     - `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
 1. Check `brew` version
     - `brew --version`
