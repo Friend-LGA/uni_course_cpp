@@ -6,6 +6,7 @@
 # Guidlines and Coding Standards
 - [ISO C++: Coding Standards](https://isocpp.org/wiki/faq/coding-standards)
 - [ISO C++: Core Guidlines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
+- [ISO C++: FAQ](https://isocpp.org/wiki/faq)
 - [Microsoft: C++ Guide](https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference)
 - [Google: C++ Guide](https://google.github.io/styleguide/cppguide.html)
 
