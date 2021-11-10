@@ -940,3 +940,43 @@ class Graph {
 Реальные примеры:
 - [std::vector::at](https://en.cppreference.com/w/cpp/container/vector/at)
 - [std::map::find](https://en.cppreference.com/w/cpp/container/map/find)
+
+## `const` Class Members
+
+Если данные в объекте при жизни не меняются - имеет смысл делать их `const`, например:
+
+```cpp
+class Vertex {
+  const int id = 0;
+  explicit Vertex(int _id) : id(_id) {}
+}
+```
+
+Но, в будущем, вы можете столкнуться с проблемой, что такие объекты нельзя копировать, например:
+
+```cpp
+const auto vertex1 = Vertex(0);
+const auto vertex2 = vertex1; // ERROR, can't assign `id`
+```
+
+Проблема в том, что при копировании, сначала создается пустой объект, а потом его внутреним переменным присваиваются новые значения. Тут и возникает проблема, что нельзя изменить константное поле:
+
+```cpp
+const auto vertex2 = vertex1;
+// 1. vertex2 = Vertex();
+// 2. vertex2.id = vertex1.id
+```
+
+Что бы избежать этой проблемы, приходится убирать `const` и ограничивать доступ к данным:
+
+```cpp
+class Vertex {
+ public:
+  int id() const { return id_; }
+
+ private:
+  int id_ = 0;
+}
+```
+
+Теперь копирование будет работать.
