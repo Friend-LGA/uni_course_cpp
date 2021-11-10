@@ -861,3 +861,82 @@ int main() {
 - И т.д и т.п.
 
 Поэтому, не надо захламлять ваш класс миллионом конструкторов, подумайте, какой из них является минимально необходимым. Если в ходе написания большого приложения, вы поймете, что у вас есть специфические требования по частой генерации объекта с похожими входными параметрами, даже в этом случае, вам скорее нужно будет написать фабрику, или, другими словами, генератор, чья ответственность как раз и будет тем, чтобы генерировать эти самые объекты.
+
+## `const` Methods Overriding
+
+Бывает такое, что вам нужно иметь 2 версии одного метода, `const` и `non-const`.
+
+Пример `const`:
+
+```cpp
+class Graph {
+  const Vertex& get_vertex(int id) const;
+}
+
+void success() {
+  const auto graph = generate_graph();
+  const auto& vertex = graph.get_vertex(0);
+  vertex.get_data();
+}
+
+void fail() {
+  auto graph = generate_graph();
+  const auto& vertex = graph.get_vertex(0);
+  vertex.update(); // ERROR, can't modify const vertex
+}
+```
+
+Пример `non-const`:
+
+```cpp
+class Graph {
+  Vertex& get_vertex(int id);
+}
+
+void success() {
+  auto graph = generate_graph();
+  auto& vertex = graph.get_vertex(0);
+  vertex.update();
+}
+
+void fail() {
+  const auto graph = generate_graph();
+  const auto& vertex = graph.get_vertex(0); // ERROR, can't call non-const method
+  vertex.get_data();
+}
+```
+
+Как решить ситуацию, когда нам нужны обе версии одного метода?
+Соответственно нам нужно использовать `override` этого метода:
+
+```cpp
+class Graph {
+  const Vertex& get_vertex(int id) const;
+  Vertex& get_vertex(int id);
+}
+```
+
+Теперь мы можем использовать этот метод и на `const`, и на `non-const` объектах `Graph`.
+
+Последний момент: чтобы избежать дублирования кода внутри этих методов, мы можем вызвать один метод внутри другого:
+
+```cpp
+class Graph {
+  const Vertex& get_vertex(int id) const {
+    // ... some complix logic to get the vertex ...
+  }
+
+  Vertex& get_vertex(int id) {
+    // Делаем `const` ссылку на себя, чтобы была возможность вызывать `const` методы.
+    const auto& const_this = *this;
+    // Убираем `const` модификтор
+    return const_cast<Vertex&>(const_this.get_vertex(id));
+  }
+}
+```
+
+Не самая красивая запись, но, в целом, это общепринятый подход в данном случае.
+
+Реальные примеры:
+- [std::vector::at](https://en.cppreference.com/w/cpp/container/vector/at)
+- [std::map::find](https://en.cppreference.com/w/cpp/container/map/find)
