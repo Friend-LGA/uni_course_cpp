@@ -65,7 +65,7 @@ class Resource {
   }
 
  private:
-  std::vector<int> vector_ = {0};
+  std::vector<int> vector_ = {0, 1, 2};
 
   // Suspends current thread, swith context overhead.
   // https://en.cppreference.com/w/cpp/thread/mutex
