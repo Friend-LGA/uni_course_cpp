@@ -28,17 +28,25 @@
 
 1. Написать `Logger`, который будет использоваться для вывода следующей информацию в консоль и в файл с названием `log.txt`:
     ```
-    time: Graph 1, Generation Started
-    time: Graph 1, Generation Finished {
+    date_time: Graph 0, Generation Started
+    date_time: Graph 0, Generation Finished {
       depth: number,
-      new_vertices_num: number,
       vertices: count, [depth_0_count, depth_1_count, ...],
       edges: count, {gray: count, green: count, blue: count, yellow: count, red: count}
     }
     ```
-1. Реализовать логгер используя паттерн `Singleton`.
+    Пример:
+    ```
+    2021.11.16 00:43:38: Graph 0, Generation Started
+    2021.11.16 00:43:39: Graph 0, Generation Finished {
+      depth: 8,
+      vertices: 1360, [1, 4, 16, 54, 129, 247, 364, 371, 174],
+      edges: 3079, {gray: 1359, green: 128, blue: 354, yellow: 962, red: 276},
+    }
+    ```
+1. Реализовать используя паттерн `Singleton`.
     - [Wiki: Singleton Pattern](https://en.wikipedia.org/wiki/Singleton_pattern)
-1. В публичном интерфейсе у него должен быть только один метод для логирования данных:
+1. В публичном интерфейсе, для логирования данных, у него должен быть только один метод:
     - ```cpp
       class Logger {
        public:
