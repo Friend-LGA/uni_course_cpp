@@ -259,6 +259,18 @@
     ```cpp
     std::string string = "string";
     ```
+- Enumerations:
+  - `C`:
+    ```cpp
+    enum SomeEnum { Option0 = 0, Option1 = 1 };
+    SomeEnum c_enum = 0; // works
+    ```
+  - `C++`:
+    ```cpp
+    enum class SomeEnum { Option0 = 0, Option1 = 1 };
+    SomeEnum cpp_enum1 = 0; // compilation error
+    SomeEnum cpp_enum2 = SomeEnum::Option0;
+    ```
 - Output:
   - `C`:
     ```cpp
