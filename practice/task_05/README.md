@@ -60,16 +60,29 @@ namespace uni_cpp_practice {
 1. Реализовать используя паттерн `Singleton`.
     - [Wiki: Singleton Pattern](https://en.wikipedia.org/wiki/Singleton_pattern)
 1. В публичном интерфейсе, для логирования данных, у него должен быть только один метод:
-    - ```cpp
-      class Logger {
-       public:
-        void log(const std::string& string);
-      };
-      ```
+    ```cpp
+    class Logger {
+     public:
+      void log(const std::string& string);
+    };
+    ```
 1. Файл `log.txt` создавать внутри поддиректории `temp`.
     - Пример:
       - `/name_surname/temp/log.txt`
 1. `JSON` файлы переместить туда же.
+1. Получать дату и время можно следующим образом:
+    ```cpp
+    #include <chrono>
+
+    std::string get_current_date_time() {
+      const auto date_time = std::chrono::system_clock::now();
+      const auto date_time_t = std::chrono::system_clock::to_time_t(date_time);
+      std::stringstream date_time_string;
+      date_time_string << std::put_time(std::localtime(&date_time_t),
+                                        "%Y.%m.%d %H:%M:%S");
+      return date_time_string.str();
+    }
+    ```
 
 # 5. Обновить `/.gitignore`
 
