@@ -56,6 +56,9 @@
 1. Сделать `fork` репозитория, куда вы будете загружать выполненные задачи (ссылку спросить у меня).
     - [Docs: About Forks](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks)
     - [Docs: Fork a Repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+1. Склонировать данный `fork` к себе на компьютер, чтобы дальше работать с ним локально.
+    - [Docs: Clone a Repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+    - Используйте `SSH` ссылку, а не `HTTPS`.
 1. Если у вас уже есть форк, то нужно поддерживать его в актуальном состоянии, и периодически подтягивать изменения из родителького репозитория:
     - [Docs: Syncing a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
 1. Для каждой новой задачи создаете новый `branch`:
@@ -63,12 +66,12 @@
       - `name_surname/task_number`
     - Пример:
       - `grigorii_lutkov/task_01`
-1. Для каждой новой задачи, при необходимости, создаете подпапку:
+    - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches)
+1. Все файлы должны находиться в вашей подпапке:
     - Формат иерархии директорий следующий:
-      - `/task_dir_name/name_surname/*`
-      - `task_dir_name` дано в описании каждой задачи (`Рабочая директория`)
+      - `/name_surname/*`
     - Пример:
-      - `/01_hello_world/grigorii_lutkov/*`
+      - `/grigorii_lutkov/*`
 1. Все изменения должны находиться только внутри данной папки. Так как мы все работаем в одном общем репозитории, то каждый работает только внутри своей папки и не трогает файлы других студентов. Каждый отдельный `branch` должен включать в себя только те изменения, которые имеют отношения к конкретной задаче.
 1. Когда задача готова, вы должны прогнать ваши файлы через `linter`:
     - Мы будем используем `clang-format`, инструкция по установки описана в [`Initial Setup`](initial_setup).
@@ -78,11 +81,15 @@
     - Все, что вам нужно сделать, это:
       - Перейти в директорию с вашей задачей.
       - Выполнить форматирование `.hpp` и `.cpp` файлов:
-        - `clang-format -i -style=Chromium *.cpp`
-        - `clang-format -i -style=Chromium *.hpp`
-          - `-i` - означает `Inplace`, то есть `linter` будет обновлять файлы при форматировании.
-          - `-style=Chromium` - базовый стиль форматирования.
-          - `*.cpp` - путь и маска, по которому искать файлы.
+        - Вариант 1, в одну строку:
+          - `clang-format -i -style=Chromium *.(cpp|hpp)`
+        - Вариант 2, в две строки, у кого в одну строку не работает:
+          - `clang-format -i -style=Chromium *.cpp`
+          - `clang-format -i -style=Chromium *.hpp`
+            - `-i` - означает `Inplace`, то есть `linter` будет обновлять файлы при форматировании.
+            - `-style=Chromium` - базовый стиль форматирования.
+            - `*.cpp` - путь и маска, по которому искать файлы.
+    - Можно создать `makefile` и автоматизировать этот процесс. Это уже по желанию.
 1. После этого создаете `Pull Request` со следующими параметрами:
     - Base Repository: Общий репозиторий
     - Base Branch: `master`
@@ -313,9 +320,9 @@
 
 Повторяю:
 - Формат иерархии директорий следующий:
-  - `/task_dir_name/name_surname/*`
+  - `/name_surname/*`
 - Пример:
-  - `/01_hello_world/grigorii_lutkov/*`
+  - `/grigorii_lutkov/*`
 
 ## Добавление в `Pull Request` неотносящихся изменений
 

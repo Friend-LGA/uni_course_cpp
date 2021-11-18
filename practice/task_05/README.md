@@ -14,8 +14,6 @@
 - `logger.hpp`
 - `logger.cpp`
 
-Возможно у вас будет больше или меньше файлов, этот список дан чтобы вы поняли общую идею.
-
 # 2. Обернуть код в `namespace`
 
 Обернуть ваш код в `namespace uni_cpp_practice`
@@ -70,25 +68,47 @@ namespace uni_cpp_practice {
       ```
 1. Файл `log.txt` создавать внутри поддиректории `temp`.
     - Пример:
-      - `/task_dir_name/name_surname/temp/log.txt`
+      - `/name_surname/temp/log.txt`
 1. `JSON` файлы переместить туда же.
 
 # 5. Обновить `/.gitignore`
 
 1. Добавить директорию `temp` в конец файла `/.gitignore`:
     - Пример:
-      - `task_dir_name/name_surname/temp/`
+      - `/name_surname/temp/`
 1. Соответственно, этой директории в вашем ПР быть не должно.
+
+### Функция `main` вашей программы
+
+```cpp
+// ... some other logic ...
+
+int main() {
+  const int depth = handle_depth_input();
+  const int new_vertices_num = handle_new_vertices_num_input();
+  const int graphs_count = handle_graphs_count_input();
+
+  const auto params = GraphGenerationParams(depth, new_vertices_num);
+  const auto generator = GraphGenerator(params);
+
+  for (int i = 0; i < graphs_count; i++) {
+    logger.log(start_string(i));
+    const auto graph = generator.generate();
+    logger.log(finish_string(i, graph));
+
+    const auto graph_printer = GraphPrinter(graph);
+    write_to_file(graph_printer.print(), "graph_" + std::to_string(i) + ".json");
+  }
+
+  return 0;
+}
+```
 
 # Содержание `Pull Request`
 
 - `*.cpp` и `*.hpp` исходные файлы.
 - Скомпилированный бинарник.
 - Изменения в `/.gitignore`.
-
-# Рабочая директория
-
-`/02_knight_and_princess/name_surname/*`
 
 # Время Выполнения
 

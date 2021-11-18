@@ -1,42 +1,27 @@
 # Задача 1
 
-1. Создать пустой репозиторий на [GitHub](github.com) с названием `cpp_hello_world`.
-    - [Docs: Create a Repo](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-1. Создать на компьтере папку для проекта с аналогичным названием `cpp_hello_world`, перейти в нее.
-1. Инициализировать `git` репозиторий локально, по умолчанию вы окажетесь в ветке `master`:
-    - `git init`
-      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository), [GitHub](https://github.com/git-guides/git-init), [Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-init)
-1. Создайте файлы:
-    - `.gitignore`
-      - [Docs](https://git-scm.com/docs/gitignore)
-    - `README.md`
-      - [Docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)
-1. В `README.md` укажите ваши `Имя Фамилия` как заголовок:
-    - `# Имя Фамилия`
-5. Добавьте новые файлы в индекс, чтобы `git` отслеживал изменения в них:
-    - Вариант 1: перечислить все файлы:
-        - `git add .gitignore README.md`
-    - Вариант 2: добавляет все файлы по указанному пути:
-        - `git add ./` или `git add .`
-    - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [GitHub](https://github.com/git-guides/git-add), [Atlassian](https://www.atlassian.com/git/tutorials/saving-changes)
-5. Создайте локально новый `commit` в ветке `master` с названием `Init`.
-   Этот `commit` будет включать в себя добавленные выше файлы:
-    - `git commit -m "Init"`
-      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [GitHub](https://github.com/git-guides/git-commit), [Atlassian](https://www.atlassian.com/git/tutorials/saving-changes/git-commit)
-6. Добавьте SSH ссылку на связанный удаленный репозиторий GitHub:
-    - `git remote add origin git@github.com:username/repository_name.git`
-      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes), [GitHub](https://github.com/git-guides/git-remote), [Atlassian](https://www.atlassian.com/git/tutorials/syncing)
-7. Отправьте ваши изменения в ветке `master` на GitHub:
-    - `git push origin master`
-      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes), [GitHub](https://github.com/git-guides/git-push), [Atlassian](https://www.atlassian.com/git/tutorials/syncing/git-push)
-8. Создайте новую ветку с названием `hello_world` и переключитесь на неё:
-    - Вариант 1: сделать это в 2 действия
-        - `git branch hello_world`
-        - `git switch hello_world`
-    - Вариант 2: короткая форма
-        - `git checkout -b hello_world`
+1. Открыть [GitHub.com](github.com)
+1. Сделать `fork` репозитория, куда вы будете загружать выполненные задачи (ссылку спросить у меня).
+    - [Docs: About Forks](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks)
+    - [Docs: Fork a Repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+1. Склонировать данный `fork` к себе на компьютер, чтобы дальше работать с ним локально.
+    - [Docs: Clone a Repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+    - Используйте `SSH` ссылку, а не `HTTPS`.
+1. Перейти в склонированную папку.
+1. Создайте новую ветку с названием `name_surname/task_01` и переключитесь на неё:
+    - Пример названия:
+      - `grigorii_lutkov/task_01`
+    - Вариант 1, сделать это в 2 действия:
+      - `git branch name_surname/task_01`
+      - `git switch name_surname/task_01`
+    - Вариант 2, короткая форма:
+      - `git checkout -b name_surname/task_01`
     - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches)
-9. Напишите простую C++ программу `hello_world.cpp`, которое будет выводить на экран 2 строки:
+1. Создайте папку с вашим именем `name_surname`:
+    - Пример:
+      - `grigorii_lutkov`
+1. Перейдите в свою папку.
+1. Напишите простую C++ программу `hello_world.cpp`, которая будет выводить на экран 2 строки:
     ```cpp
     #include <iostream>
 
@@ -45,33 +30,59 @@
       return 0;
     }
     ```
-10. Скомпилируйте его для C++17 c использованием `-Werror` флага (мы будем всегда его использовать в обучающих целях):
+1. Чтобы удостовериться, что форматирование текста верное, выполните `clang-format`:
+    - `clang-format -i -style=Chromium hello_world.cpp`
+1. Скомпилируйте её для `C++17` c использованием `-Werror` флага (мы будем всегда его использовать в обучающих целях):
     - `clang++ hello_world.cpp -o hello_world -std=c++17 -Werror`
-11. Выполните скомпилированную программу:
-    - `./hello_world`
-12. Создайте локально новый коммит в ветке `hello_world` с названием `Add hello_world app`
-13. Запушьте изменения в ветке `hello_world`
-15. Переключитесь на ветку `master`
-14. Смерджите ветку `hello_world` с веткой `master`
-    - `git merge hello_world`
-      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches/git-merge)
-15. Запушьте изменения в `master`
-16. Очистите командную строку, чтобы не было лишней информации и выполните следующие команды
-    - `clang++ --version`
+1. Очистите командную строку, чтобы не было лишней информации и выполните следующие команды
     - `git --version`
+    - `git config --global user.name`
+    - `git config --global user.email`
+    - `clang++ --version`
+    - `clang-format --version`
     - `./hello_world`
-17. Сделайте скриншот окна терминала с полученной информацией.
-18. Закоммитьте скриншот в репозиторий.
-19. Обновите `README.md` чтобы оно показывало полученный скриншот.
-20. Закоммитьте изменения.
-21. Отправить ссылку на репозиторий мне для проверки.
+1. Сделайте скриншот окна терминала с полученной информацией.
+    ![Screenshot](screenshot.png)
+1. Создайте `README.md` файл:
+    - [Docs: About Readmes](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)
+1. В `README.md` укажите ваши `Имя Фамилия` как заголовок и добавьте скриншот:
+    ```md
+    # Имя Фамилия
+    ![Screenshot](screenshot.png)
+    ```
+1. Добавьте новые файлы в индекс, чтобы `git` отслеживал изменения в них:
+    - Вариант 1: перечислить все файлы:
+        - `git add README.md hello_world.cpp hello_world screenshot.png`
+    - Вариант 2: добавляет все файлы по указанному пути:
+        - `git add ./` или `git add .`
+    - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [GitHub](https://github.com/git-guides/git-add), [Atlassian](https://www.atlassian.com/git/tutorials/saving-changes)
+1. Создайте локально новый коммит в ветке `hello_world` с названием `Add hello_world app`
+    - `git commit -m "Add hello_world app"`
+      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [GitHub](https://github.com/git-guides/git-commit), [Atlassian](https://www.atlassian.com/git/tutorials/saving-changes/git-commit)
+1. Отправьте ваши изменения в ветке `name_surname/task_01` в ваш `fork` на GitHub:
+    - `git push origin name_surname/task_01`
+      - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes), [GitHub](https://github.com/git-guides/git-push), [Atlassian](https://www.atlassian.com/git/tutorials/syncing/git-push)
+1. Переключитесь на ветку `master`
+    - `git switch master`
+1. Откройте свой `fork` на [GitHub.com](github.com) и создайте `Pull Request` со следующими параметрами:
+    - Base Repository: Тот, откуда вы делали `fork`
+    - Base Branch: `master`
+    - Head Repository: Ваш `fork`
+    - Compare Branch: `name_surname/task_01`, в котором вы выполняли работу по конкретной задаче
+    - Name: `name_surname/task_01`
+    - Status: `Ready for Review`
+      - [Docs: Changing the State of a Pull Request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request)
+    - Reviewers: `Grigorii Lutkov`
+    - Labels: `task_01`
+    - Description: Оставьте пустым
+    - [Docs: About Pull Requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+    - [Docs: Creating a Pull Request from a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+1. На `Pull Request` автоматически выполнятся проверки на то, что текст вашей программы правильно отформатирован, и что она компилируется без ошибок.
+1. Далее я его проверю, если все нормально - изменю статус на `Accepted`.
+1. После этого вы сможете нажать кнопку `Merge`, чтобы слить ваш `PR` с веткой `master` общего репозитория.
+1. Теперь задача считается выполненной.
 
-# Финал
-
-Следуя основному `Workflow`, описанному [здесь](/practice#workflow), залить выполненную первую задачу в общий групповой репозиторий.
-
-# Пример скриншота
-![Screenshot](screenshot.png)
+Все эти шаги так же описаны в основном [`Workflow`](/practice#workflow).
 
 # Содержание `Pull Request`
 
@@ -79,10 +90,6 @@
 - Скомпилированный бинарник.
 - Скриншот командной строки с данными.
 - `README.md` с вашим именем и скриншотом.
-
-# Рабочая директория
-
-`/01_hello_world/name_surname/*`
 
 # Время Выполнения
 

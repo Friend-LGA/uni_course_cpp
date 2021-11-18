@@ -19,6 +19,36 @@
 Так как новые вершины и грани у нас будут генерироваться с определенной вероятность, может быть ситуация, когда глубина графа будет ниже заданной пользователем.
 Эта ситуация нормальная, но в данном случае нужно проинформировать пользователя о финальной, получившейся глубине графа.
 
+## Выделить генерацию графа в отдельный класс
+
+Так как генерация графа становится все больше и сложнее, имеет смысл отделить её в отдельную сущность:
+```cpp
+class GraphGenerator;
+```
+
+А так же объединить входные параметры в структуру, которая содержит в себе параметры генерации:
+```cpp
+struct GraphGenerationParams {
+  GraphGenerationParams(int depth, int new_vertices_num) :
+    depth_(depth), new_vertices_num_(new_vertices_num) {}
+
+  const int depth = 0;
+  const int new_vertices_num = 0;
+}
+```
+
+Интерфейс для взаимодействия с генератором должен быть следующий:
+```cpp
+class GraphGenerator {
+ public:
+  GraphGenerator(const GraphGenerationParams& params) : params_(params) {}
+  Graph generate() const;
+
+ private:
+  const GraphGenerationParams params_;
+}
+```
+
 ## Новые вершины будут генерироваться с определенной вероятностью
 
 - Пример, если `depth = 2` и `new_vertices_num = 3`:
@@ -60,6 +90,9 @@
     - Глубина графа N-1: 100%
 - **Красная**: 33% что вершина будет соединена с рандомной вершиной, находящейся на 2 уровня глубже.
 
+Для упрощения, примем то, что глубина графа вычисляется только из серых граней.
+Все остальные грани (зеленая, синяя, желтая и красная) никак не влияют на глубину графа.
+
 ## Визуализация примера графа
 
 ![Graph](graph.png)
@@ -91,15 +124,33 @@
 
 - Возможные цвета граней: `gray`, `green`, `blue`, `yellow`, `red`.
 
+### Функция `main` вашей программы
+
+```cpp
+// ... some other logic ...
+
+int main() {
+  const int depth = handle_depth_input();
+  const int new_vertices_num = handle_new_vertices_num_input();
+
+  const auto params = GraphGenerationParams(depth, new_vertices_num);
+  const auto generator = GraphGenerator(params);
+  const auto graph = generator.generate();
+  const auto graph_printer = GraphPrinter(graph);
+  const auto graph_json = graph_printer.print();
+
+  std::cout << graph_json << std::endl;
+  write_to_file(graph_json, "graph.json");
+
+  return 0;
+}
+```
+
 # Содержание `Pull Request`
 
 - `*.cpp` и/или `*.hpp` исходные файлы.
 - Скомпилированный бинарник.
 - `graph.json` - результат выполнения программы.
-
-# Рабочая директория
-
-`/02_knight_and_princess/name_surname/*`
 
 # Время Выполнения
 

@@ -8,6 +8,16 @@
 - Если вы создаете новую грань между вершинами, нужно проверить, что эти вершины еще не связаны друг с другом.
 - И т.д. и т.п.
 
+Цель данной валидации - отловить баги в коде, а значит программа должна падать в случае неудачи.
+Поэтому для валидации использовать `assert`.
+
+Примеры:
+```cpp
+assert(should_be_true() && "This condition should be true");
+assert(has_vertex(id) && "Vertex doesn't exist");
+assert(!has_edge(from_vertex_id, to_vertex_id) && "Vertices are already connected");
+```
+
 ## Реализовать текстовый вывод графа в файл в формате `JSON`
 
 Доработать программу, чтобы она выводила созданный граф в файл в формате `JSON`.
@@ -21,7 +31,12 @@ class GraphPrinter;
 Интерфейс для взаимодействия с принтером должен быть следующий:
 ```cpp
 class GraphPrinter {
+ public:
+  GraphPrinter(const Graph& graph) : graph_(graph) {}
   std::string print() const;
+
+ private:
+  const Graph& graph_;
 };
 ```
 
@@ -66,12 +81,12 @@ class GraphPrinter {
 int main() {
   const auto graph = generate_graph();
   const auto graph_printer = GraphPrinter(graph);
-  std::cout << graph_printer.print() << std::endl;
-  write_to_file(graph_printer, "graph.json");
+  const auto graph_json = graph_printer.print();
+  std::cout << graph_json << std::endl;
+  write_to_file(graph_json, "graph.json");
 
   return 0;
 }
-
 ```
 
 # Содержание `Pull Request`
@@ -79,10 +94,6 @@ int main() {
 - `*.cpp` и/или `*.hpp` исходные файлы.
 - Скомпилированный бинарник.
 - `graph.json` - результат выполнения программы.
-
-# Рабочая директория:
-
-`/02_knight_and_princess/name_surname/*`
 
 # Время Выполнения
 

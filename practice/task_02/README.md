@@ -26,9 +26,35 @@ using EdgeId = int;
 Интерфейс для взаимодействия с графом должен быть следующий:
 ```cpp
 class Graph {
+ public:
   void add_vertex();
-  void add_edge(const VertexId from_vertex_id, const VertexId to_vertex_id);
+  void add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
 };
+```
+
+Вершина должна иметь поле `id` и ничего более:
+```cpp
+struct Vertex {
+  Vertex(const VertexId& _id) : id(_id) {}
+
+  const VertexId id = 0;
+}
+```
+
+Грань должна иметь поле `id` и `id` вершин, которые она связывает, и ничего более:
+```cpp
+struct Edge {
+  Edge(const EdgeId& _id,
+       const VertexId& _from_vertex_id,
+       const VertexId& _to_vertex_id) :
+    id(_id),
+    from_vertex_id(_from_vertex_id),
+    to_vertex_id(_to_vertex_id) {}
+
+  const EdgeId id_ = 0;
+  const VertexId from_vertex_id_ = 0;
+  const VertexId to_vertex_id_ = 0;
+}
 ```
 
 Остальной интерфейс и имплементация за вами, дерзайте!
@@ -80,10 +106,6 @@ int main() {
 
 - `*.cpp` и/или `*.hpp` исходные файлы.
 - Скомпилированный бинарник.
-
-# Рабочая директория
-
-`/02_knight_and_princess/name_surname/*`
 
 # Время Выполнения
 
