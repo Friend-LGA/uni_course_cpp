@@ -28,24 +28,28 @@ class GraphGenerator;
 
 А так же объединить входные параметры в структуру, которая содержит в себе параметры генерации:
 ```cpp
-struct GraphGenerationParams {
-  GraphGenerationParams(int depth, int new_vertices_num) :
-    depth_(depth), new_vertices_num_(new_vertices_num) {}
-
-  const int depth = 0;
-  const int new_vertices_num = 0;
-}
+struct GraphGeneration::Params;
 ```
 
 Интерфейс для взаимодействия с генератором должен быть следующий:
 ```cpp
 class GraphGenerator {
  public:
-  GraphGenerator(const GraphGenerationParams& params) : params_(params) {}
+  struct Params {
+    explicit Params(int depth = 0, int new_vertices_num = 0) :
+      depth_(depth), new_vertices_num_(new_vertices_num) {}
+
+    const int depth = 0;
+    const int new_vertices_num = 0;
+  }
+
+  explicit GraphGenerator(const Params& params = Params()) :
+    params_(params) {}
+
   Graph generate() const;
 
  private:
-  const GraphGenerationParams params_;
+  const Params params_ = Params();
 }
 ```
 

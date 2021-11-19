@@ -14,19 +14,28 @@
 - `logger.hpp`
 - `logger.cpp`
 
+Все методы и константы, которые импользуются только локально и не имеют смысла как часть публичного интерфейса, должны находиться в `.cpp` файлах.
+
 # 2. Обернуть код в `namespace`
 
-Обернуть ваш код в `namespace uni_cpp_practice`
+Обернуть ваш код в `namespace uni_cource_cpp`.
+Оба типа файлов, и `.hpp` и `.cpp`.
+`main.cpp` не нужно оборачивать.
+
+Все глобальные функции и константы внутри `.cpp` файлов записывайте в приватный `namespace`:
 
 ```cpp
-namespace uni_cpp_practice {
+namespace {
+// This is a private namespace
+// It doesn't have a name
+} // namepsace
 
-  // your
-  // code
-  // is
-  // here
-
-} // namepsace uni_cpp_practice
+namespace uni_cource_cpp {
+// your
+// code
+// is
+// here
+} // namepsace uni_cource_cpp
 ```
 
 # 3. Генерировать множество графов
