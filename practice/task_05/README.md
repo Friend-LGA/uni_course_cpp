@@ -118,8 +118,9 @@ int main() {
     const auto graph = generator.generate();
     logger.log(finish_string(i, graph));
 
-    const auto graph_printer = GraphPrinter(graph);
-    write_to_file(graph_printer.print(), "graph_" + std::to_string(i) + ".json");
+    const auto graph_printer = GraphPrinter();
+    write_to_file(graph_printer.print(graph),
+                  "graph_" + std::to_string(i) + ".json");
   }
 
   return 0;
