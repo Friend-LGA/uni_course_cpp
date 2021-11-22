@@ -83,8 +83,8 @@ class GraphPrinter {
 
 int main() {
   const auto graph = generate_graph();
-  const auto graph_printer = GraphPrinter();
-  const auto graph_json = graph_printer.print_graph(graph);
+  const auto graph_printer = GraphPrinter(graph);
+  const auto graph_json = graph_printer.print();
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
 

@@ -140,8 +140,8 @@ int main() {
   const auto params = GraphGenerationParams(depth, new_vertices_num);
   const auto generator = GraphGenerator(params);
   const auto graph = generator.generate();
-  const auto graph_printer = GraphPrinter();
-  const auto graph_json = graph_printer.print_graph(graph);
+  const auto graph_printer = GraphPrinter(graph);
+  const auto graph_json = graph_printer.print();
 
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
