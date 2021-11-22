@@ -27,8 +27,8 @@ using EdgeId = int;
 ```cpp
 class Graph {
  public:
-  void add_vertex();
-  void add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
+  Vertex& add_vertex();
+  Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
 };
 ```
 
