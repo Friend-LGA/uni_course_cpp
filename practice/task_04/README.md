@@ -114,15 +114,15 @@ Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
 Соответственно логика должна быть следующая (псевдокод):
 - Глубина:
   - ```cpp
-    const auto& from_vertex_depth = get_vertex_depth(from_vertex_id);
+    const auto from_vertex_depth = get_vertex_depth(from_vertex_id);
     set_vertex_depth(to_vertex_id, from_vertex_depth + 1);
     ```
 - Цвет:
   - ```cpp
     const auto& to_vertex = get_vertex(to_vertex_id);
     const auto& to_vertex_edges = get_edges(to_vertex_id);
-    const auto& from_vertex_depth = get_vertex_depth(from_vertex_id);
-    const auto& to_vertex_depth = get_vertex_depth(to_vertex_id);
+    const auto from_vertex_depth = get_vertex_depth(from_vertex_id);
+    const auto to_vertex_depth = get_vertex_depth(to_vertex_id);
     if (to_vertex_edges.size() == 0)
       return Edge::Color::Grey;
     if (from_vertex_id == to_vertex_id)
