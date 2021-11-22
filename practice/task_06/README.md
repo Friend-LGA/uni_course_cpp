@@ -4,13 +4,13 @@
 
 1. Запрашивать у пользователя новый входной параметр:
     - `threads_count`: Количество потоков генерации графов.
-1. Создать структуру `GraphGeneration::Params`, которая будет включать в себя:
+1. Создать структуру `GraphGenerator::Params`, которая будет включать в себя:
     - `depth`
     - `new_vertices_num`
 1. Добавить класс `GraphGenerationController`, который будет принимать в себя аргументы для генерации всех графов:
     - `threads_count`
     - `graphs_count`
-    - `graph_generation_params`
+    - `graph_generator_params`
 1. `GraphGenerationController` должен создавать пул работников `GraphGenerationWorker`, числом `threads_count`. Соответственно, каждый свободный работник должен начинать генерировать новый граф, пока все графы не будут сгенерированы.
 1. `GraphGenerationController` должен иметь интерфейс для старта генерации и для возвращения каждого сгенерированного графа используя `lambda`:
     - ```cpp
