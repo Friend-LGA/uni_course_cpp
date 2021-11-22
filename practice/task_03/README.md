@@ -32,9 +32,14 @@ class GraphPrinter;
 ```cpp
 class GraphPrinter {
  public:
-  std::string print_graph(const Graph& graph) const;
+  GraphPrinter(const Graph& graph) : graph_(graph) {}
+
+  std::string print() const;
   std::string print_vertex(const Vertex& vertex) const;
   std::string print_edge(const Edge& edge) const;
+
+ private:
+  Graph& graph_;
 };
 ```
 
