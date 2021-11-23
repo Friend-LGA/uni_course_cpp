@@ -3,14 +3,18 @@
 - [Теория](theory)
 - [Практика](practice)
 
-# Guidlines and Coding Standards
+# Guidlines, Coding Standards, Naming Conventions
+
 - [ISO C++: Coding Standards](https://isocpp.org/wiki/faq/coding-standards)
 - [ISO C++: Core Guidlines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
 - [ISO C++: FAQ](https://isocpp.org/wiki/faq)
 - [Microsoft: C++ Guide](https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference)
 - [Google: C++ Guide](https://google.github.io/styleguide/cppguide.html)
+- [Perforce: C++ Coding Standard](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard)
+- [GeoSoft: C++ Style](https://geosoft.no/development/cppstyle.html)
 
 # Useful Links
+
 - [STL: Standard Template Library](https://en.wikipedia.org/wiki/Standard_Template_Library)
 - [GSL: Guidelines Support Library](https://github.com/Microsoft/GSL)
 - [Boost (C++ libraries)](https://en.wikipedia.org/wiki/Boost_(C%2B%2B_libraries))

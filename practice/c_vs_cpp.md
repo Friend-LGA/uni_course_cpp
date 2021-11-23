@@ -67,11 +67,17 @@
     ```cpp
     char c = 'a';
     int* p = (int*)&c; // works
+
+    int a = 5;
+    float b = (float)a;
     ```
   - `C++`:
     ```cpp
     char c = 'a';
     int* p = static_cast<int*>(&c); // compilation error
+
+    int a = 5;
+    float b = static_cast<float>(a);
     ```
 - Asserts:
   - Не имеет аналога в `C++`, можно использовать `C`.
