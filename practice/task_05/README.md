@@ -112,11 +112,12 @@ int main() {
 
   const auto params = GraphGenerationParams(depth, new_vertices_num);
   const auto generator = GraphGenerator(params);
+  auto& logger = prepare_logger();
 
   for (int i = 0; i < graphs_count; i++) {
-    logger.log(start_string(i));
+    logger.log(gen_started_string(i));
     const auto graph = generator.generate();
-    logger.log(finish_string(i, graph));
+    logger.log(gen_finished_string(i, graph));
 
     const auto graph_printer = GraphPrinter(graph);
     write_to_file(graph_printer.print(),
