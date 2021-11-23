@@ -403,6 +403,7 @@ const int var = 32;
 Плохо:
 ```cpp
 int var;
+// `var` is not initialized and is not `const`
 if (bla) {
   var = 0;
 }
@@ -412,6 +413,17 @@ else if (bla_bla) {
 else {
   var = 3;
 }
+
+int index; // value is unpredictable
+get_object(index); // what is value of `index`?
+
+struct Point {
+  int x; // value is unpredictable
+  int y; // value is unpredictable
+};
+
+Point point; // value is unpredictable
+set_point(point); // what are values of `point.x` and `point.y`?
 ```
 
 Хорошо:
@@ -427,6 +439,18 @@ const int var = ([]() {
     return 3;
   }
 })();
+// `var` is initialized and is `const`
+
+int index = 0; // default value
+get_object(index); // `index` has value
+
+struct Point {
+  int x = 0; // default value
+  int y = 0; // default value
+};
+
+auto point = Point(); // default value
+set_point(point); // `point.x` and `point.y` have values
 ```
 
 # Зона Видимости Переменных
