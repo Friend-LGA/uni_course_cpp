@@ -82,6 +82,7 @@
 - Asserts:
   - Не имеет аналога в `C++`, можно использовать `C`.
     ```cpp
+    #include <cassert>
     assert(some_condition() && "Description message");
     ```
 - И т.д. и т.п.
