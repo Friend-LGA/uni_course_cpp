@@ -92,6 +92,10 @@ static int sum(int a, int b) {
 }
 
 int main() {
+  int max_threads_count = std::thread::hardware_concurrency();
+  std::cout << "Max Supported Number of Threads: " << max_threads_count
+            << std::endl;
+
   // Terminates application `std::terminate` in destructor if not
   // `join()` or `detach()`.
   std::thread thread1(print_string, "Hello World, Thread 1");
