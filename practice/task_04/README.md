@@ -191,7 +191,7 @@ add_edge(1, 0);
 
 - Возможные цвета граней: `grey`, `green`, `blue`, `yellow`, `red`.
 
-### Функция `main` вашей программы
+## Функция `main` вашей программы
 
 ```cpp
 // ... some other logic ...
