@@ -35,7 +35,7 @@ class GraphGenerationController {
 
   class Worker {
    public:
-    Worker(const GetJobCallback& get_job_callback);
+    explicit Worker(const GetJobCallback& get_job_callback);
 
     void start();
     void stop();
