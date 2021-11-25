@@ -14,12 +14,88 @@
 - `logger.hpp`
 - `logger.cpp`
 
-Все методы и константы, которые импользуются только локально и не имеют смысла как часть публичного интерфейса, должны находиться в `.cpp` файлах.
+`.hpp` файлы включают в себя только декларацию - интерфейс.
+Исключение только однострочные методы.
+
+`.cpp` файлы включают в себя только имплементацию.
+
+Возьмём, к примеру, файлы `graph.hpp` и `graph.cpp`:
+```cpp
+// graph.hpp
+class Graph {
+  Vertex& add_vertex();
+  Edge& add_edge(const VertexId& from_vertex_id,
+                 const VertexId& to_vertex_id);
+  int depth() const { return depth_map_.size(); }
+  // ...
+};
+```
+```cpp
+// graph.cpp
+#include "graph.hpp"
+
+Vertex& Graph::add_vertex() {
+  // function body
+}
+
+Edge& Graph::add_edge(const VertexId& from_vertex_id,
+                      const VertexId& to_vertex_id) {
+  // function body
+}
+
+// ...
+```
+
+Все методы и константы, которые используются только локально и не имеют смысла как часть публичного интерфейса, должны находиться в `.cpp` файлах.
+
+## Какие файлы нужно указывать в `#include`
+
+В `#include` нужно указывать только `.hpp` файлы.
+Возьмём, к примеру, файлы `main.cpp`, `graph.hpp` и `graph.cpp`:
+```cpp
+// graph.hpp
+class Graph {
+  Vertex& add_vertex();
+  // ...
+};
+```
+```cpp
+// graph.cpp
+#include "graph.hpp"
+
+Vertex& Graph::add_vertex() {
+  // function body
+}
+```
+```cpp
+// main.cpp
+#include "graph.hpp"
+int main() {
+  auto graph = Graph();
+  // ...
+  return 0;
+}
+```
+
+## Include Guard
+
+Чтобы избежать множественного копирования `.hpp` файлов компилятором, нужно обязательно использовать `include guards` - это директивы компилятора, которые помогут ему понять, заходил ли он уже внутрь данного файла, или нет.
+Возьмём, к примеру, файл `graph.hpp`:
+```cpp
+#pragma once // <-- Это и есть Include Guard
+// ...
+class Graph {
+  // ...
+};
+```
+
+Повторяю, они указываются только внутри `.hpp` файлов.
 
 # 2. Обернуть код в `namespace`
 
 Обернуть ваш код в `namespace uni_cource_cpp`.
 Оба типа файлов, и `.hpp` и `.cpp`.
+
 `main.cpp` не нужно оборачивать.
 
 Все глобальные функции и константы внутри `.cpp` файлов записывайте в приватный `namespace`:
@@ -28,14 +104,14 @@
 namespace {
 // This is a private namespace
 // It doesn't have a name
-} // namepsace
+}  // namepsace
 
 namespace uni_cource_cpp {
 // your
 // code
 // is
 // here
-} // namepsace uni_cource_cpp
+}  // namepsace uni_cource_cpp
 ```
 
 # 3. Генерировать множество графов
