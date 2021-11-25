@@ -58,6 +58,7 @@ class GraphGenerationController {
  private:
   std::list<Worker> workers_;
   std::list<JobCallback> jobs_;
+  // std::mutex ...
 };
 ```
 
