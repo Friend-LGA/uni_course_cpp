@@ -35,7 +35,7 @@ class Graph {
 Вершина должна иметь поле `id` и ничего более:
 ```cpp
 struct Vertex {
-  Vertex(const VertexId& _id) : id(_id) {}
+  explicit Vertex(const VertexId& _id) : id(_id) {}
 
   const VertexId id = 0;
 }

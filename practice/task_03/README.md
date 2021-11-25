@@ -14,7 +14,7 @@ class GraphPrinter;
 ```cpp
 class GraphPrinter {
  public:
-  GraphPrinter(const Graph& graph) : graph_(graph) {}
+  explicit GraphPrinter(const Graph& graph) : graph_(graph) {}
 
   std::string print() const;
   std::string print_vertex(const Vertex& vertex) const;
