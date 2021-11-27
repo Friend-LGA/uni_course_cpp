@@ -45,7 +45,14 @@ class GraphGenerator {
   explicit GraphGenerator(const Params& params = Params()) :
     params_(params) {}
 
-  Graph generate() const;
+  Graph generate() const {
+    auto graph = Graph();
+    graph.add_vertex();
+    generate_gray_edges(graph);
+    generate_green_edges(graph);
+    generate_yellow_edges(graph);
+    generate_red_edges(graph);
+  }
 
  private:
   const Params params_ = Params();
@@ -95,12 +102,12 @@ class GraphGenerator {
 ## Дополнительная информация
 
 1) Для реализации логики разных цветов граней - существует специальный инструмент - "перечисление" (по-английски "enumeration").
-Соответственно у нас есть тип данных `Color`, в котором мы перечисляем набор опций: `Grey`, `Green`, `Yellow`, `Red`.
+Соответственно у нас есть тип данных `Color`, в котором мы перечисляем набор опций: `Gray`, `Green`, `Yellow`, `Red`.
 Делается это при помощи `enum class`:
 
 ```cpp
 struct Edge {
-  enum class Color { Grey, Green, Yellow, Red };
+  enum class Color { Gray, Green, Yellow, Red };
 }
 ```
 
@@ -137,7 +144,7 @@ Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
     const auto from_vertex_depth = get_vertex_depth(from_vertex_id);
     const auto to_vertex_depth = get_vertex_depth(to_vertex_id);
     if (to_vertex_edges.size() == 0)
-      return Edge::Color::Grey;
+      return Edge::Color::Gray;
     if (from_vertex_id == to_vertex_id)
       return Edge::Color::Green;
     if (to_vertex_depth - from_vertex_depth == 1)
@@ -179,14 +186,14 @@ add_edge(1, 0);
     {
       "id": 0,
       "vertex_ids": [0, 1],
-      "color": "grey"
+      "color": "gray"
     },
     "..."
   ]
 }
 ```
 
-- Возможные цвета граней: `grey`, `green`, `yellow`, `red`.
+- Возможные цвета граней: `gray`, `green`, `yellow`, `red`.
 
 ## Функция `main` вашей программы
 
@@ -218,11 +225,11 @@ int main() {
 
 # Время Выполнения
 
-1 Неделя
+1 Неделя.
 
 # Количество Баллов
 
-10 Баллов
+10 Баллов.
 
 # Полезные ссылки
 - [Graph Depth](https://en.wikipedia.org/wiki/Tree-depth)

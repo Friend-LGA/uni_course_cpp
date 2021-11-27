@@ -109,11 +109,11 @@ int main() {
 
 # Время Выполнения
 
-1 Недели
+1 Неделя.
 
 # Количество Баллов
 
-10 Баллов
+10 Баллов.
 
 # Полезные ссылки:
 - [Graph Theory](https://en.wikipedia.org/wiki/Graph_theory)
