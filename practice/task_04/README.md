@@ -139,15 +139,14 @@ Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
     ```
 - Цвет:
   - ```cpp
-    const auto& to_vertex = get_vertex(to_vertex_id);
-    const auto& to_vertex_edges = get_edges(to_vertex_id);
     const auto from_vertex_depth = get_vertex_depth(from_vertex_id);
     const auto to_vertex_depth = get_vertex_depth(to_vertex_id);
-    if (to_vertex_edges.size() == 0)
+    if (get_edges(to_vertex_id).size() == 0)
       return Edge::Color::Gray;
     if (from_vertex_id == to_vertex_id)
       return Edge::Color::Green;
-    if (to_vertex_depth - from_vertex_depth == 1)
+    if (to_vertex_depth - from_vertex_depth == 1 &&
+        !is_connected(from_vertex_id, to_vertex_id))
       return Edge::Color::Yellow;
     if (to_vertex_depth - from_vertex_depth == 2)
       return Edge::Color::Red;
