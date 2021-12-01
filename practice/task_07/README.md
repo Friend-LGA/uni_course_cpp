@@ -108,11 +108,6 @@ Worker::~Worker() {
 void GraphGenerationController::generate(
     const GenStartedCallback& gen_started_callback,
     const GenFinishedCallback& gen_finished_callback) {
-  // Запускаем воркеров
-  for (auto& worker : workers_) {
-    worker.start();
-  }
-
   // Заполняем список работ для воркеров
   for (int i = 0; i < graphs_count_; i++) {
     jobs_.emplace_back([...]() {
@@ -122,12 +117,14 @@ void GraphGenerationController::generate(
     });
   }
 
-  // Ждем, что все `jobs` выполнены, и, соответственно, все графы сгенерированы
-
-  // Останавливаем воркеров
+  // Запускаем воркеров
   for (auto& worker : workers_) {
     worker.start();
   }
+
+  // Ждем, что все `jobs` выполнены, и, соответственно, все графы сгенерированы
+
+  // Останавливаем воркеров
 }
 ```
 
