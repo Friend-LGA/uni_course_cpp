@@ -24,20 +24,21 @@
 - Неделя 3. [JSON Representation](task_03)
 - Неделя 4. [Generation Probabilities](task_04)
 - Неделя 5. [Multiple Graphs and Logger](task_05)
-- Неделя 6. [Concurrent Graphs Generation](task_06)
-- Неделя 7. [Shortest Path Algorith](./)
+- Неделя 6. [Concurrent Edges Generation](task_06)
+- Неделя 7. [Concurrent Graphs Generation](task_07)
+- Неделя 8. [Shortest Path Algorith](./)
   - Add Edge Durations
   - Single Pair (Sequential Algorithm)
-- Неделя 8. [Shortest Path Algorith](./)
+- Неделя 9. [Shortest Path Algorith](./)
   - Single Pair (Parallel Algorithm)
-- Неделя 9. [Graph Development](./)
+- Неделя 10. [Graph Development](./)
   - Add Params, Fights and Blessings
-- Неделя 10. [Shortest Path Algorith](./)
+- Неделя 11. [Shortest Path Algorith](./)
   - Multiple Pair (Parallel Algorithm)
-- Неделя 11. [Graph Development](./)
+- Неделя 12. [Graph Development](./)
   - Adjustable Params (Parallel)
   - Add Enemies and Blessings
-- Неделя 12. [Graph Development](./)
+- Неделя 13. [Graph Development](./)
   - Multiple Players (Parallel)
   - Add Enemies and Blessings
 - ...
