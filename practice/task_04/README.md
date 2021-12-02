@@ -141,24 +141,21 @@ Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
   - ```cpp
     const auto from_vertex_depth = get_vertex_depth(from_vertex_id);
     const auto to_vertex_depth = get_vertex_depth(to_vertex_id);
-    if (get_edges(to_vertex_id).size() == 0)
-      return Edge::Color::Gray;
-    if (from_vertex_id == to_vertex_id)
+    if (from_vertex_id == to_vertex_id) {
       return Edge::Color::Green;
+    }
+    if (get_edges(to_vertex_id).size() == 0) {
+      return Edge::Color::Gray;
+    }
     if (to_vertex_depth - from_vertex_depth == 1 &&
-        !is_connected(from_vertex_id, to_vertex_id))
+        !is_connected(from_vertex_id, to_vertex_id)) {
       return Edge::Color::Yellow;
-    if (to_vertex_depth - from_vertex_depth == 2)
+    }
+    if (to_vertex_depth - from_vertex_depth == 2) {
       return Edge::Color::Red;
+    }
+    throw std::runtime_error("Failed to determine color");
     ```
-
-Обратите внимание, так как у нас ненаправленный граф, в методе `add_edge` неважна последовательность аргументов.
-Оба данных вызова должны быть идентичны друг другу, и логика их работы не должна отличаться:
-
-```cpp
-add_edge(0, 1);
-add_edge(1, 0);
-```
 
 3) Для определения вероятностей - почитайте про [`std::bernoulli_distribution`](https://en.cppreference.com/w/cpp/numeric/random/bernoulli_distribution).
 Оно реализует именно ту логику, которая нам необходима.
