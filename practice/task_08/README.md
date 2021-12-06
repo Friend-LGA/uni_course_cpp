@@ -81,11 +81,9 @@ class GraphTraversalController {
     ]
     ```
 
-# Функция `main` вашей программы
+## Пример интерфейса
 
 ```cpp
-// ... some other logic ...
-
 void traverse_graphs(const std::vector<Graph>& graphs) {
   // prepare jobs
   // prepare workers
@@ -93,6 +91,12 @@ void traverse_graphs(const std::vector<Graph>& graphs) {
   // wait for all jobs to be done
   // stop workers
 }
+```
+
+# Функция `main` вашей программы
+
+```cpp
+// ... some other logic ...
 
 int main() {
   const int depth = handle_depth_input();
