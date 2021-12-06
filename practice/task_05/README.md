@@ -191,9 +191,9 @@ int main() {
   auto& logger = prepare_logger();
 
   for (int i = 0; i < graphs_count; i++) {
-    logger.log(gen_started_string(i));
+    logger.log(generation_started_string(i));
     const auto graph = generator.generate();
-    logger.log(gen_finished_string(i, graph));
+    logger.log(generation_finished_string(i, graph));
 
     const auto graph_printer = GraphPrinter(graph);
     write_to_file(graph_printer.print(),

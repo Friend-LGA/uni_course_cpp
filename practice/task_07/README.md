@@ -160,10 +160,10 @@ int main() {
 
   generation_controller.generate(
       [&logger](int index) {
-        logger.log(gen_started_string(index));
+        logger.log(generation_started_string(index));
       },
       [&logger, &graphs](int index, Graph graph) {
-        logger.log(gen_finished_string(index, graph));
+        logger.log(generation_finished_string(index, graph));
         graphs.push_back(graph);
         const auto graph_printer = GraphPrinter(graph);
         write_to_file(graph_printer.print(),
