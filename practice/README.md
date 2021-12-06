@@ -26,24 +26,17 @@
 - Неделя 5. [Multiple Graphs and Logger](task_05)
 - Неделя 6. [Concurrent Edges Generation](task_06)
 - Неделя 7. [Concurrent Graphs Generation](task_07)
-- Неделя 8. [Shortest Path Algorith](./)
-  - Add Edge Durations
-  - Single Pair (Sequential Algorithm)
-- Неделя 9. [Shortest Path Algorith](./)
-  - Single Pair (Parallel Algorithm)
+- Неделя 8. [Concurrent Graphs Traversal](task_08)
 - Неделя 10. [Graph Development](./)
+  - Add Edge Durations
   - Add Params, Fights and Blessings
-- Неделя 11. [Shortest Path Algorith](./)
-  - Multiple Pair (Parallel Algorithm)
 - Неделя 12. [Graph Development](./)
   - Adjustable Params (Parallel)
   - Add Enemies and Blessings
-- Неделя 13. [Graph Development](./)
+- Неделя 14. [Graph Development](./)
   - Multiple Players (Parallel)
   - Add Enemies and Blessings
 - ...
-
-Подробные описания задач готовятся по мере вашего прогресса.
 
 # Разделы
 
