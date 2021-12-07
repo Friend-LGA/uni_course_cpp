@@ -189,7 +189,7 @@ namespace uni_cource_cpp {
       return date_time_string.str();
     }
     ```
-1. Непосредственную генерацию строки добавить в `graph_printing`:
+1. Непосредственную генерацию строки c данными графа добавить в `graph_printing`:
     ```cpp
     namespace graph_printing {
       std::string print_graph_description(const Graph& graph);
