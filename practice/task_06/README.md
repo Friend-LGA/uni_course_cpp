@@ -6,7 +6,7 @@
 - Серые грани должны генерироваться многопоточно.
   Образно говоря, каждая отдельная ветка, отходящая от корневой вершины, должна генерироваться в своём потоке.
 
-  Пример, если `new_vertices_num = 3`, соотвентственно 3 потока:
+  Пример, если `new_vertices_count = 3`, соответственно 3 потока:
   ```
                  ┌──────────────────────────────────────────────╮
                  | branch 1, thread 1                     - ... |
@@ -36,7 +36,7 @@
                  |                                        - ... |
                  ╰──────────────────────────────────────────────╯
   ```
-    - Максимальное число потоков 4, независимо от `new_vertices_num`
+    - Максимальное число потоков 4, независимо от `new_vertices_count`
     - Если все 4 потока заняты, соответственно следующие ветки ждут своей очереди.
 - После того, как вершины и серые грани сгенерированы, переходим к остальным цветам граней:
   - Зеленые грани генерируются в отдельном потоке
@@ -92,7 +92,7 @@ class GraphGenerator {
     auto jobs = std::list<JobCallback>();
 
     // Заполняем список работ для воркеров
-    for (int i = 0; i < new_vertices_num; i++) {
+    for (int i = 0; i < new_vertices_count; i++) {
       jobs.push_back(
           [...]() {
             generate_gray_branch(...);
@@ -125,7 +125,7 @@ class GraphGenerator {
 
     // Создаем и запускаем потоки с воркерами
     // MAX_THREADS_COUNT = 4
-    const auto threads_count = std::max(MAX_THREADS_COUNT, new_vertices_num);
+    const auto threads_count = std::max(MAX_THREADS_COUNT, new_vertices_count);
     auto threads = std::vector<std::thread>();
     threads.reserve(threads_count);
     // fill threads

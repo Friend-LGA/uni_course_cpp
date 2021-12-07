@@ -183,10 +183,10 @@ namespace uni_cource_cpp {
 
 int main() {
   const int depth = handle_depth_input();
-  const int new_vertices_num = handle_new_vertices_num_input();
+  const int new_vertices_count = handle_new_vertices_count_input();
   const int graphs_count = handle_graphs_count_input();
 
-  const auto params = GraphGenerationParams(depth, new_vertices_num);
+  const auto params = GraphGenerationParams(depth, new_vertices_count);
   const auto generator = GraphGenerator(params);
   auto& logger = prepare_logger();
 

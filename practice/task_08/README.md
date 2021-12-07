@@ -100,11 +100,11 @@ void traverse_graphs(const std::vector<Graph>& graphs) {
 
 int main() {
   const int depth = handle_depth_input();
-  const int new_vertices_num = handle_new_vertices_num_input();
+  const int new_vertices_count = handle_new_vertices_count_input();
   const int graphs_count = handle_graphs_count_input();
   const int threads_count = handle_threads_count_input();
 
-  const auto params = GraphGenerator::Params(depth, new_vertices_num);
+  const auto params = GraphGenerator::Params(depth, new_vertices_count);
   const auto graphs = generate_graphs(params, graphs_count, threads_count);
 
   traverse_graphs(graphs);

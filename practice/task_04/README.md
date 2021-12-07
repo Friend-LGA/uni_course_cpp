@@ -6,7 +6,7 @@
 
 Ваша программа должна запрашивать у пользователя следующие параметры:
 - `depth`: Максимальная глубина графа (`int` от 0 и до бесконечности).
-- `new_vertices_num`: Количество новых генерируемых вершин из каждой вершины графа (`int` от 0 и до бесконечности).
+- `new_vertices_count`: Количество новых генерируемых вершин из каждой вершины графа (`int` от 0 и до бесконечности).
 
 Входные параметры нужно валидировать и, в случае ошибки, информировать об этом пользователя, после чего запрашивать данные повторно.
 
@@ -29,11 +29,11 @@ struct GraphGeneration::Params;
 class GraphGenerator {
  public:
   struct Params {
-    explicit Params(int _depth = 0, int _new_vertices_num = 0) :
-      depth(_depth), new_vertices_num(_new_vertices_num) {}
+    explicit Params(int _depth = 0, int _new_vertices_count = 0) :
+      depth(_depth), new_vertices_count(_new_vertices_count) {}
 
     const int depth = 0;
-    const int new_vertices_num = 0;
+    const int new_vertices_count = 0;
   };
 
   explicit GraphGenerator(const Params& params = Params()) :
@@ -55,7 +55,7 @@ class GraphGenerator {
 
 ## Новые вершины будут генерироваться с определенной вероятностью
 
-- Пример, если `depth = 2` и `new_vertices_num = 3`:
+- Пример, если `depth = 2` и `new_vertices_count = 3`:
   - Глубина графа 0:
     - 100% каждая вершина на этой глубине сгенерирует 3 новых.
   - Глубина графа 1:
@@ -63,7 +63,7 @@ class GraphGenerator {
   - Глубина графа 2:
     - 0% каждая вершина на этой глубине сгенерирует 3 новых.
 
-- Пример, если `depth = 4` и `new_vertices_num = 5`:
+- Пример, если `depth = 4` и `new_vertices_count = 5`:
   - Глубина графа 0:
     - 100% каждая вершина на этой глубине сгенерирует 5 новых.
   - Глубина графа 1:
@@ -199,9 +199,9 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 
 int main() {
   const int depth = handle_depth_input();
-  const int new_vertices_num = handle_new_vertices_num_input();
+  const int new_vertices_count = handle_new_vertices_count_input();
 
-  const auto params = GraphGenerationParams(depth, new_vertices_num);
+  const auto params = GraphGenerationParams(depth, new_vertices_count);
   const auto generator = GraphGenerator(params);
   const auto graph = generator.generate();
   const auto graph_printer = GraphPrinter(graph);

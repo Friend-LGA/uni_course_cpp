@@ -6,7 +6,7 @@
     - `threads_count`: Количество потоков генерации графов.
 1. Создать структуру `GraphGenerator::Params`, которая будет включать в себя:
     - `depth`
-    - `new_vertices_num`
+    - `new_vertices_count`
 1. Добавить класс `GraphGenerationController`, который будет принимать в себя аргументы для генерации всех графов:
     - `threads_count`
     - `graphs_count`
@@ -146,11 +146,11 @@ void GraphGenerationController::generate(
 
 int main() {
   const int depth = handle_depth_input();
-  const int new_vertices_num = handle_new_vertices_num_input();
+  const int new_vertices_count = handle_new_vertices_count_input();
   const int graphs_count = handle_graphs_count_input();
   const int threads_count = handle_threads_count_input();
 
-  const auto params = GraphGenerator::Params(depth, new_vertices_num);
+  const auto params = GraphGenerator::Params(depth, new_vertices_count);
   auto generation_controller =
       GraphGenerationController(threads_count, graphs_count, params);
   auto& logger = prepare_logger();
