@@ -14,6 +14,13 @@
 
 ## Выделить генерацию графа в отдельный класс
 
+Создать для глубины отдельный тип внутри класса `Graph`:
+```cpp
+class Graph {
+  using Depth = int;
+};
+```
+
 Так как генерация графа становится все больше и сложнее, имеет смысл отделить её в отдельную сущность:
 ```cpp
 class GraphGenerator;
@@ -29,15 +36,19 @@ struct GraphGeneration::Params;
 class GraphGenerator {
  public:
   struct Params {
-    explicit Params(int _depth = 0, int _new_vertices_count = 0) :
-      depth(_depth), new_vertices_count(_new_vertices_count) {}
+   public:
+    explicit Params(Graph::Depth depth = 0, int new_vertices_count = 0) :
+      depth_(depth), new_vertices_count_(new_vertices_count) {}
 
-    const int depth = 0;
-    const int new_vertices_count = 0;
+    Graph::Depth depth() const { return depth_; }
+    int new_vertices_count() const { return new_vertices_count_; }
+
+   private:
+    Graph::Depth depth_ = 0;
+    int new_vertices_count_ = 0;
   };
 
-  explicit GraphGenerator(const Params& params = Params()) :
-    params_(params) {}
+  explicit GraphGenerator(const Params& params = Params()) : params_(params) {}
 
   Graph generate() const {
     auto graph = Graph();
@@ -87,7 +98,7 @@ class GraphGenerator {
 
 - **Зеленая**: 10% что у вершины будеть грань сама на себя.
 - **Желтая**: Вершина будет соединена с рандомной вершиной, находящейся на 1 уровень глубже, исключая её собственных потомков.
-  - Вероятность обратная к обычным (серым) граням:
+  - Вероятность обратная к обычным (серым) граням, с учетом сдвига на одну глубину:
     - Глубина графа 0: 0%
     - . . .
     - Глубина графа N-1: 100%
@@ -109,10 +120,10 @@ struct Edge {
 Обратите вниманием что в `C++` используется `enum color`, тогда как в `C` - просто `enum`.
 `enum color` лучше, так как он позволяет избежать автоматического приведения типов, что делает код надежней и позволяет компилятору отловить ошибки на ранней стадии.
 
-Для перевода `Edge::Color` в строку, расширьте класс `GraphPrinter`:
+Для перевода `Edge::Color` в строку, расширьте логику `graph_printing`:
 ```cpp
-class GraphPrinter {
-  print_edge_color(const Edge::Color& color) const;
+namespace graph_printing {
+  std::string print_edge_color(const Edge::Color& color) const;
 }
 ```
 
@@ -204,9 +215,8 @@ int main() {
   const auto params = GraphGenerationParams(depth, new_vertices_count);
   const auto generator = GraphGenerator(params);
   const auto graph = generator.generate();
-  const auto graph_printer = GraphPrinter(graph);
-  const auto graph_json = graph_printer.print();
 
+  const auto graph_json = graph_printing::print_graph(graph);
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
 
@@ -218,7 +228,8 @@ int main() {
 
 - `*.cpp` и/или `*.hpp` исходные файлы.
 - Скомпилированный бинарник.
-- `graph.json` - результат выполнения программы.
+- `graph.json` (результат выполнения программы).
+- `makefile` (по желанию).
 
 # Время Выполнения
 
