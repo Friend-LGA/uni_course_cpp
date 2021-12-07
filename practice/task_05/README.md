@@ -172,8 +172,8 @@ namespace uni_cource_cpp {
 1. Обновить `config.hpp` и забирать из него путь до файла `log.txt`:
     ```cpp
     namespace config {
-    constexpr const char* kLoggerFilename = "log.txt";
-    std::string logger_file_path() { ... };
+    constexpr const char* kLogFilename = "log.txt";
+    std::string log_file_path() { ... };
     }  // namespace config
     ```
 1. Получать дату и время можно следующим образом:
