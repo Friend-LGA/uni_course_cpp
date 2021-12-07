@@ -129,7 +129,7 @@ namespace uni_cource_cpp {
   На данный момент, добавьте туда только путь к папке `temp`, где теперь должны создаваться `JSON` файлы:
     ```cpp
     namespace config {
-    constexpr const char* kTempDirectoryPath = "./temp/";
+      constexpr const char* kTempDirectoryPath = "./temp/";
     }  // namespace config
     ```
 1. Пример пути до директории `temp`:
@@ -172,8 +172,8 @@ namespace uni_cource_cpp {
 1. Обновить `config.hpp` и забирать из него путь до файла `log.txt`:
     ```cpp
     namespace config {
-    constexpr const char* kLogFilename = "log.txt";
-    std::string log_file_path() { ... };
+      constexpr const char* kLogFilename = "log.txt";
+      std::string log_file_path() { ... };
     }  // namespace config
     ```
 1. Получать дату и время можно следующим образом:
@@ -188,6 +188,12 @@ namespace uni_cource_cpp {
                                         "%Y.%m.%d %H:%M:%S");
       return date_time_string.str();
     }
+    ```
+1. Непосредственную генерацию строки добавить в `graph_printing`:
+    ```cpp
+    namespace graph_printing {
+      std::string print_graph_description(const Graph& graph);
+    }  // namespace graph_printing
     ```
 
 ## Функция `main` вашей программы
