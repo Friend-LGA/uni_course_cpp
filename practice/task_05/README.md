@@ -13,6 +13,7 @@
 - `graph_printer.cpp`
 - `logger.hpp`
 - `logger.cpp`
+- `config.hpp`
 
 `.hpp` файлы включают в себя только декларацию - интерфейс.
 Исключение только однострочные методы.
@@ -122,6 +123,20 @@ namespace uni_cource_cpp {
 - Запрашивать входные параметры только 1 раз, и использовать их для всех графов.
 - Для каждого графа создавать отдельный `JSON` файл.
 
+# 5. Создать файл конфигурации
+
+1. Создайте файл `config.hpp`, в котором будет храниться конфигурация нашего проекта.
+  На данный момент, добавьте туда только путь к папке `temp`, где теперь должны создаваться `JSON` файлы:
+  ```cpp
+  namespace config {
+  constexpr const char* kTempDirectoryPath = "./temp/";
+  }  // namespace config
+  ```
+1. Пример пути до директории `temp`:
+  - `/name_surname/temp/`
+1. Добавить директорию `temp` в конец файла `/.gitignore`:
+1. Соответственно, этой директории в вашем ПР быть не должно.
+
 # 4. Добавить Логирование
 
 1. Написать `Logger`, который будет использоваться для вывода следующей информацию в консоль и в файл с названием `log.txt`:
@@ -154,7 +169,11 @@ namespace uni_cource_cpp {
 1. Файл `log.txt` создавать внутри поддиректории `temp`.
     - Пример:
       - `/name_surname/temp/log.txt`
-1. `JSON` файлы переместить туда же.
+1. Обновить `config.hpp`
+    ```cpp
+    constexpr const char* kLoggerFilename = "log.txt";
+    static std::string logger_file_path() { ... };
+    ```
 1. Получать дату и время можно следующим образом:
     ```cpp
     #include <chrono>
@@ -169,13 +188,6 @@ namespace uni_cource_cpp {
     }
     ```
 
-# 5. Обновить `/.gitignore`
-
-1. Добавить директорию `temp` в конец файла `/.gitignore`:
-    - Пример:
-      - `/name_surname/temp/`
-1. Соответственно, этой директории в вашем ПР быть не должно.
-
 ## Функция `main` вашей программы
 
 ```cpp
@@ -185,19 +197,19 @@ int main() {
   const int depth = handle_depth_input();
   const int new_vertices_count = handle_new_vertices_count_input();
   const int graphs_count = handle_graphs_count_input();
+  prepare_temp_directory();
 
   const auto params = GraphGenerationParams(depth, new_vertices_count);
   const auto generator = GraphGenerator(params);
-  auto& logger = prepare_logger();
+  auto& logger = Logger::get_logger();
 
   for (int i = 0; i < graphs_count; i++) {
     logger.log(generation_started_string(i));
     const auto graph = generator.generate();
     logger.log(generation_finished_string(i, graph));
 
-    const auto graph_printer = GraphPrinter(graph);
-    write_to_file(graph_printer.print(),
-                  "graph_" + std::to_string(i) + ".json");
+    const auto graph_json = graph_printing::print_graph(graph);
+    write_to_file(graph_json, "graph_" + std::to_string(i) + ".json");
   }
 
   return 0;
