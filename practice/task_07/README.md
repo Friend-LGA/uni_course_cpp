@@ -144,31 +144,40 @@ void GraphGenerationController::generate(
 ```cpp
 // ... some other logic ...
 
-int main() {
-  const int depth = handle_depth_input();
-  const int new_vertices_count = handle_new_vertices_count_input();
-  const int graphs_count = handle_graphs_count_input();
-  const int threads_count = handle_threads_count_input();
-
-  const auto params = GraphGenerator::Params(depth, new_vertices_count);
+std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
+                                   int graphs_count,
+                                   int threads_count) {
   auto generation_controller =
       GraphGenerationController(threads_count, graphs_count, params);
-  auto& logger = prepare_logger();
+
+  auto& logger = Logger::get_logger();
 
   auto graphs = std::vector<Graph>();
   graphs.reserve(graphs_count);
 
   generation_controller.generate(
-      [&logger](int index) {
-        logger.log(generation_started_string(index));
-      },
+      [&logger](int index) { logger.log(generation_started_string(index)); },
       [&logger, &graphs](int index, Graph graph) {
-        logger.log(generation_finished_string(index, graph));
+        const auto graph_description =
+            graph_printing::print_graph_description(graph);
+        logger.log(generation_finished_string(index, graph_description));
         graphs.push_back(graph);
-        const auto graph_printer = GraphPrinter(graph);
-        write_to_file(graph_printer.print(),
-                      "graph_" + std::to_string(index) + ".json");
+        const auto graph_json = graph_printing::print_graph(graph);
+        write_to_file(graph_json, "graph_" + std::to_string(index) + ".json");
       });
+
+  return graphs;
+}
+
+int main() {
+  const int depth = handle_depth_input();
+  const int new_vertices_count = handle_new_vertices_count_input();
+  const int graphs_count = handle_graphs_count_input();
+  const int threads_count = handle_threads_count_input();
+  prepare_temp_directory();
+
+  const auto params = GraphGenerator::Params(depth, new_vertices_count);
+  const auto graphs = generate_graphs(params, graphs_count, threads_count);
 
   return 0;
 }
