@@ -3,29 +3,24 @@
 # Реализовать вывод графа в файл в формате `JSON`
 
 Доработать программу, чтобы она выводила созданный граф в файл в формате `JSON`.
-Для этого вам нужно будет создать новую сущность:
+Для этого вам нужно будет добавить новую логику по распечатке графа и выделить её в отдельный `namespace`:
 ```cpp
-class GraphPrinter;
+namespace graph_printing {}
 ```
-Который будет включать в себя всю логику по распечатке графа,
-но не должен включать логику по работе с файлами, так как это не относится к его зоне ответственности.
+Логика по работе с файлами здесь присутствовать не должна, только генерация строк.
 
-Интерфейс для взаимодействия с принтером должен быть следующий:
+Набор функций должен быть следующий:
 ```cpp
-class GraphPrinter {
- public:
-  explicit GraphPrinter(const Graph& graph) : graph_(graph) {}
+namespace graph_printing {
 
-  std::string print() const;
-  std::string print_vertex(const Vertex& vertex) const;
-  std::string print_edge(const Edge& edge) const;
+std::string print_graph(const Graph& graph);
+std::string print_vertex(const Graph::Vertex& vertex, const Graph& graph);
+std::string print_edge(const Graph::Edge& edge, const Graph& graph);
 
- private:
-  Graph& graph_;
-};
+}  // namespace graph_printing
 ```
 
-Пример структуры (ключей и значений) выводимого файла:
+Пример `JSON` структуры (ключей и значений) выводимого файла:
 ```json
 {
   "vertices": [
@@ -81,8 +76,7 @@ class GraphPrinter {
 
 int main() {
   const auto graph = generate_graph();
-  const auto graph_printer = GraphPrinter(graph);
-  const auto graph_json = graph_printer.print();
+  const auto graph_json = graph_printing::print_graph(graph);
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
 
@@ -94,7 +88,8 @@ int main() {
 
 - `*.cpp` и/или `*.hpp` исходные файлы.
 - Скомпилированный бинарник.
-- `graph.json` - результат выполнения программы.
+- `graph.json` (результат выполнения программы).
+- `makefile` (по желанию).
 
 # Время Выполнения
 
