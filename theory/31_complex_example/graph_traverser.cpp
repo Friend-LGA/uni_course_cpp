@@ -14,21 +14,21 @@ void validate_vertex_existance(const Graph& graph, const VertexId id) {
 
 namespace uni {
 
-void GraphTraverser::traverse(const VertexId& from_vertex_id,
+void GraphTraverser::traverse(VertexId from_vertex_id,
                               const VertexCallback& vertex_callback,
                               const EdgeCallback& edge_callback) const {
   validate_vertex_existance(graph_, from_vertex_id);
   // ... some complex logic ...
 }
 
-void GraphTraverser::traverse_bfs(const VertexId& from_vertex_id,
+void GraphTraverser::traverse_bfs(VertexId from_vertex_id,
                                   const VertexCallback& vertex_callback,
                                   const EdgeCallback& edge_callback) const {
   validate_vertex_existance(graph_, from_vertex_id);
   // ... some complex logic ...
 }
 
-void GraphTraverser::traverse_dfs(const VertexId& from_vertex_id,
+void GraphTraverser::traverse_dfs(VertexId from_vertex_id,
                                   const VertexCallback& vertex_callback,
                                   const EdgeCallback& edge_callback) const {
   validate_vertex_existance(graph_, from_vertex_id);
@@ -36,8 +36,8 @@ void GraphTraverser::traverse_dfs(const VertexId& from_vertex_id,
 }
 
 std::optional<std::vector<Graph::Vertex>> GraphTraverser::path_dijkstra(
-    const VertexId& from_vertex_id,
-    const VertexId& to_vertex_id) const {
+    VertexId from_vertex_id,
+    VertexId to_vertex_id) const {
   validate_vertex_existance(graph_, from_vertex_id);
   validate_vertex_existance(graph_, to_vertex_id);
   // ... some complex logic ...

@@ -130,7 +130,7 @@ class GraphPrinter {
 
 ```cpp
 Vertex& add_vertex();
-Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
+Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 ```
 
 Вычислять глубину вершины и цвет граней нужно динамически, внутри графа, без перекладывания этой ответственности на внешнего пользователя.

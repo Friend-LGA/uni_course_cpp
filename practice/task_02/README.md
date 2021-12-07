@@ -28,25 +28,27 @@ using EdgeId = int;
 class Graph {
  public:
   Vertex& add_vertex();
-  Edge& add_edge(const VertexId& from_vertex_id, const VertexId& to_vertex_id);
+  Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 };
 ```
 
 Вершина должна иметь поле `id` и ничего более:
 ```cpp
 struct Vertex {
-  explicit Vertex(const VertexId& _id) : id(_id) {}
+  public:
+  explicit Vertex(VertexId _id) : id(_id) {}
 
-  const VertexId id = 0;
+private:
+  VertexId id = 0;
 }
 ```
 
 Грань должна иметь поле `id` и `id` вершин, которые она связывает, и ничего более:
 ```cpp
 struct Edge {
-  Edge(const EdgeId& _id,
-       const VertexId& _from_vertex_id,
-       const VertexId& _to_vertex_id) :
+  Edge(EdgeId _id,
+       VertexId _from_vertex_id,
+       VertexId _to_vertex_id) :
     id(_id),
     from_vertex_id(_from_vertex_id),
     to_vertex_id(_to_vertex_id) {}

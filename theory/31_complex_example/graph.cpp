@@ -36,7 +36,7 @@ Vertex Graph::operator[](size_t pos) const {
   return vertices_[pos];
 }
 
-std::optional<Vertex> Graph::find_vertex(const VertexId& id) const {
+std::optional<Vertex> Graph::find_vertex(VertexId id) const {
   // ... some complex logic ...
   return std::nullopt;
 }
@@ -46,12 +46,12 @@ Vertex Graph::add_vertex() {
   return Vertex(0);
 }
 
-void Graph::remove_vertex(const VertexId& id) {
+void Graph::remove_vertex(VertexId id) {
   // ... some complex logic ...
 }
 
-Edge Graph::add_edge(const VertexId& from_vertex_id,
-                     const VertexId& to_vertex_id) {
+Edge Graph::add_edge(VertexId from_vertex_id,
+                     VertexId to_vertex_id) {
   // Validate preconditions
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
@@ -59,32 +59,32 @@ Edge Graph::add_edge(const VertexId& from_vertex_id,
   return Edge(0, 0, 0);
 }
 
-void Graph::remove_edge(const VertexId& from_vertex_id,
-                        const VertexId& to_vertex_id) {
+void Graph::remove_edge(VertexId from_vertex_id,
+                        VertexId to_vertex_id) {
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
   // ... some complex logic ...
 }
 
-std::vector<Vertex> Graph::neighbours(const VertexId& id) const {
+std::vector<Vertex> Graph::neighbours(VertexId id) const {
   validate_vertex_existance(*this, id);
   // ... some complex logic ...
   return {};
 }
 
-std::vector<Edge> Graph::edges(const VertexId& id) const {
+std::vector<Edge> Graph::edges(VertexId id) const {
   validate_vertex_existance(*this, id);
   // ... some complex logic ...
   return {};
 }
 
-bool Graph::has_vertex(const VertexId& id) const {
+bool Graph::has_vertex(VertexId id) const {
   // ... some complex logic ...
   return true;
 }
 
-bool Graph::is_connected(const VertexId& from_vertex_id,
-                         const VertexId& to_vertex_id) const {
+bool Graph::is_connected(VertexId from_vertex_id,
+                         VertexId to_vertex_id) const {
   validate_vertex_existance(*this, from_vertex_id);
   validate_vertex_existance(*this, to_vertex_id);
   // ... some complex logic ...

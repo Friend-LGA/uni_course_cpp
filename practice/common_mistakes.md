@@ -136,7 +136,7 @@ for (const auto& vertex : vertices) {
 struct Vertex {
   std::vector<EdgeId> edges;
 
-  void has_edge(const EdgeId& edge) const {
+  void has_edge(EdgeId edge) const {
     for (const auto& edg : edges) {
       if (edg == edge) {
         return true;
@@ -149,7 +149,7 @@ struct Vertex {
 class Graph {
   std::vector<Edge> edges;
 
-  void has_edge(const EdgeId& edge) const {
+  void has_edge(EdgeId edge) const {
     for (const auto& edg : edges) {
       if (edg.id == edge) {
         return true;
@@ -172,7 +172,7 @@ class Graph {
 struct Vertex {
   std::vector<EdgeId> edge_ids;
 
-  void has_edge(const EdgeId& id) const {
+  void has_edge(EdgeId id) const {
     for (const auto& edge_id : edge_id) {
       if (id == edge_id) {
         return true;
@@ -185,7 +185,7 @@ struct Vertex {
 class Graph {
   std::vector<Edge> edges;
 
-  void has_edge(const EdgeId& id) const {
+  void has_edge(EdgeId id) const {
     for (const auto& edge : edges) {
       if (id == edge.id) {
         return true;

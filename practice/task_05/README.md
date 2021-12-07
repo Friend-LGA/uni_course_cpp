@@ -24,8 +24,8 @@
 // graph.hpp
 class Graph {
   Vertex& add_vertex();
-  Edge& add_edge(const VertexId& from_vertex_id,
-                 const VertexId& to_vertex_id);
+  Edge& add_edge(VertexId from_vertex_id,
+                 VertexId to_vertex_id);
   int depth() const { return depth_map_.size(); }
   // ...
 };
@@ -38,8 +38,8 @@ Vertex& Graph::add_vertex() {
   // function body
 }
 
-Edge& Graph::add_edge(const VertexId& from_vertex_id,
-                      const VertexId& to_vertex_id) {
+Edge& Graph::add_edge(VertexId from_vertex_id,
+                      VertexId to_vertex_id) {
   // function body
 }
 
