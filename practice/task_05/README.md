@@ -144,8 +144,8 @@ namespace uni_cource_cpp {
     date_time: Graph 0, Generation Started
     date_time: Graph 0, Generation Finished {
       depth: number,
-      vertices: count, [depth_0_count, depth_1_count, ...],
-      edges: count, {gray: count, green: count, blue: count, yellow: count, red: count}
+      vertices: {amount: number, distribution: [depth_0_count, depth_1_count, ...]},
+      edges: {amount: number, distribution: {gray: count, green: count, yellow: count, red: count}}
     }
     ```
     Пример:
@@ -153,8 +153,8 @@ namespace uni_cource_cpp {
     2021.11.16 00:43:38: Graph 0, Generation Started
     2021.11.16 00:43:39: Graph 0, Generation Finished {
       depth: 8,
-      vertices: 1360, [1, 4, 16, 54, 129, 247, 364, 371, 174],
-      edges: 3079, {gray: 1359, green: 128, blue: 354, yellow: 962, red: 276},
+      vertices: {amount: 1360, distribution: [1, 4, 16, 54, 129, 247, 364, 371, 174]},
+      edges: {amount: 3079, distribution: {gray: 1359, green: 128, yellow: 962, red: 276}}
     }
     ```
 1. Реализовать используя паттерн `Singleton`.
