@@ -127,13 +127,13 @@ namespace uni_cource_cpp {
 
 1. Создайте файл `config.hpp`, в котором будет храниться конфигурация нашего проекта.
   На данный момент, добавьте туда только путь к папке `temp`, где теперь должны создаваться `JSON` файлы:
-  ```cpp
-  namespace config {
-  constexpr const char* kTempDirectoryPath = "./temp/";
-  }  // namespace config
-  ```
+    ```cpp
+    namespace config {
+    constexpr const char* kTempDirectoryPath = "./temp/";
+    }  // namespace config
+    ```
 1. Пример пути до директории `temp`:
-  - `/name_surname/temp/`
+    - `/name_surname/temp/`
 1. Добавить директорию `temp` в конец файла `/.gitignore`:
 1. Соответственно, этой директории в вашем ПР быть не должно.
 
