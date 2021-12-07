@@ -35,27 +35,35 @@ class Graph {
 Вершина должна иметь поле `id` и ничего более:
 ```cpp
 struct Vertex {
-  public:
-  explicit Vertex(VertexId _id) : id(_id) {}
+ public:
+  explicit Vertex(VertexId id) : id_(id) {}
 
-private:
-  VertexId id = 0;
+  VertexId id() const { return id_; }
+
+ private:
+  VertexId id_ = 0;
 }
 ```
 
 Грань должна иметь поле `id` и `id` вершин, которые она связывает, и ничего более:
 ```cpp
 struct Edge {
-  Edge(EdgeId _id,
-       VertexId _from_vertex_id,
-       VertexId _to_vertex_id) :
-    id(_id),
-    from_vertex_id(_from_vertex_id),
-    to_vertex_id(_to_vertex_id) {}
+ public:
+  Edge(EdgeId id,
+       VertexId from_vertex_id,
+       VertexId to_vertex_id) :
+    id_(id),
+    from_vertex_id_(from_vertex_id),
+    to_vertex_id_(to_vertex_id) {}
 
-  const EdgeId id_ = 0;
-  const VertexId from_vertex_id_ = 0;
-  const VertexId to_vertex_id_ = 0;
+  EdgeId id() const { return id_; }
+  VertexId from_vertex_id() const { return from_vertex_id_; }
+  VertexId to_vertex_id() const { return to_vertex_id_; }
+
+ private:
+  EdgeId id_ = 0;
+  VertexId from_vertex_id_ = 0;
+  VertexId to_vertex_id_ = 0;
 }
 ```
 
@@ -64,8 +72,7 @@ struct Edge {
 ## Визуализация графа, который вы должны сгенерировать
 ![Graph](graph.png)
 
-- Порядок `id` вершин и граней могут отличаться от нарисованных здесь. Главное чтобы первая вершина имела `id = 0`, последняя вершина имела `id = 13` и форма графа совпадали.
-- Визуализация дана только для лучшего понимания задачи, вам ничего рисовать не нужно.
+Визуализация дана только для лучшего понимания задачи, вам ничего рисовать не нужно.
 
 ## Функция `main` вашей программы
 
