@@ -14,6 +14,7 @@
 - `logger.hpp`
 - `logger.cpp`
 - `config.hpp`
+- `config.cpp`
 
 `.hpp` файлы включают в себя только декларацию - интерфейс.
 Исключение только однострочные методы.
@@ -169,11 +170,11 @@ namespace uni_cource_cpp {
 1. Файл `log.txt` создавать внутри поддиректории `temp`.
     - Пример:
       - `/name_surname/temp/log.txt`
-1. Обновить `config.hpp` и забирать из него путь до файла `log.txt`:
+1. Обновить `config` и забирать из него путь до файла `log.txt`:
     ```cpp
     namespace config {
       constexpr const char* kLogFilename = "log.txt";
-      std::string log_file_path() { ... };
+      std::string log_file_path();
     }  // namespace config
     ```
 1. Получать дату и время можно следующим образом:
