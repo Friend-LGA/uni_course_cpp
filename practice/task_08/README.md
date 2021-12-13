@@ -31,10 +31,10 @@ class GraphTraverser {
 
 # Реализовать многопоточный поиск кратчайших путей
 
-- По аналогии с `task_07` создать `GraphTraversalController`, который будет искать все кратчайшие пути между корневой вершиной и вершинами на последней глубине.
+- По аналогии с `task_06` добавить `find_all_paths` метод, который будет искать все кратчайшие пути между корневой вершиной и вершинами на последней глубине.
 - Максимальное количество воркеров:
   - `const int MAX_WORKERS_COUNT = std::thread::hardware_concurrency();`
-- Пример. Если корневая вершина - `0`, а на последней глубине 3 вершины - `[32, 15, 28]`, то `GraphTraversalController` должен найти и вернуть 3 пути:
+- Пример. Если корневая вершина - `0`, а на последней глубине 3 вершины - `[32, 15, 28]`, то `find_all_paths` должен найти и вернуть 3 пути:
   - Path 0: 0 -> ... -> ... -> 32
   - Path 1: 0 -> ... -> ... -> 15
   - Path 2: 0 -> ... -> ... -> 28
@@ -42,24 +42,15 @@ class GraphTraverser {
 ## Пример интерфейса
 
 ```cpp
-class GraphTraversalController {
-  using TraversalStartedCallback = std::function<void(const Graph&)>;
-  using TraversalFinishedCallback =
-      std::function<void(const Graph&, std::vector<GraphTraverser::Path>)>;
-
-  class Worker;
-
-  GraphTraversalController(const Graph& graph);
-
-  void traverse(
-      const TraversalStartedCallback& traversalStartedCallback,
-      const TraversalFinishedCallback& traversalFinishedCallback);
-};
+class GraphTraverser {
+  // From root vertex to all vertices at the last depth
+  std::vector<Path> find_all_paths() const;
+}
 ```
 
 # Реализовать многопоточный поиск путей среди множества графов
 
-- По аналогии с `task_06` написать логику, которая будет принимать список графов и, используя `GraphTraversalController` находить для каждого все кратчайшие пути.
+- По аналогии с `task_07` создать `GraphTraversalController`, который будет принимать список графов и находить для каждого все кратчайшие пути.
 - Максимальное количество воркеров:
   - `const int MAX_WORKERS_COUNT = std::thread::hardware_concurrency();`
 - Логировать начало и конец обхода каждого графа, аналогично логированию генерации графов:
@@ -90,19 +81,44 @@ class GraphTraversalController {
 ## Пример интерфейса
 
 ```cpp
-void traverse_graphs(const std::vector<Graph>& graphs) {
-  // prepare jobs
-  // prepare workers
-  // start workers
-  // wait for all jobs to be done
-  // stop workers
-}
+class GraphTraversalController {
+  using TraversalStartedCallback =
+      std::function<void(int /* index */,
+                         const Graph& /* graph */)>;
+  using TraversalFinishedCallback =
+      std::function<void(int /* index */,
+                         const Graph& /* graph */,
+                         std::vector<GraphTraverser::Path> /* paths */)>;
+
+  class Worker;
+
+  GraphTraversalController(const std::vector<Graph>& graphs);
+
+  void traverse(
+      const TraversalStartedCallback& traversalStartedCallback,
+      const TraversalFinishedCallback& traversalFinishedCallback);
+};
 ```
 
 # Функция `main` вашей программы
 
 ```cpp
 // ... some other logic ...
+
+void traverse_graphs(const std::vector<Graph>& graphs) {
+  auto traversal_controller = GraphTraversalController(graphs);
+
+  traversal_controller.traverse(
+      [](int index, const Graph& traversed_graph) {
+        auto& logger = Logger::get_logger();
+        logger.log(traversal_started_string(index));
+      },
+      [](int index, const Graph& traversed_graph,
+         std::vector<GraphTraverser::Path> paths) {
+        auto& logger = Logger::get_logger();
+        logger.log(traversal_finished_string(index, paths));
+      });
+}
 
 int main() {
   const int depth = handle_depth_input();
