@@ -95,7 +95,7 @@ class Graph {
 
 # 2. Обернуть код в `namespace`
 
-Обернуть ваш код в `namespace uni_cource_cpp`.
+Обернуть ваш код в `namespace uni_course_cpp`.
 Оба типа файлов, и `.hpp` и `.cpp`.
 
 `main.cpp` не нужно оборачивать.
@@ -108,12 +108,12 @@ namespace {
 // It doesn't have a name
 }  // namepsace
 
-namespace uni_cource_cpp {
+namespace uni_course_cpp {
 // your
 // code
 // is
 // here
-}  // namepsace uni_cource_cpp
+}  // namepsace uni_course_cpp
 ```
 
 # 3. Генерировать множество графов
