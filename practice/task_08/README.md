@@ -23,9 +23,8 @@ class GraphTraverser {
 
   GraphTraverser(const Graph& graph);
 
-  std::optional<Path> find_shortest_path(
-    VertexId source_vertex_id,
-    VertexId destination_vertex_id) const;
+  Path find_shortest_path(VertexId source_vertex_id,
+                          VertexId destination_vertex_id) const;
 };
 ```
 
