@@ -6,25 +6,30 @@
 - Внутри `GraphTraverser` реализовать интерфейс для поиска кратчайшего пути между 2умя вершинами по алгоритму Дейкстры.
   - [Wiki: Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 - Возвращать путь между вершинами в виде массива из `VertexId`.
-  - Для реализации данной логики создать структуру `GraphTraverser::Path`.
+  - Для реализации данной логики создать структуру `GraphPath`.
 - Для определения дистанции между вершинами добавить пользовательский тип:
   - `using Distance = int;`
+- На данный момент дистанция между любыми 2умя вершинами - `1`.
 
 ## Пример интерфейса
 
+`graph_path.hpp`:
 ```cpp
-class GraphTraverser {
+struct GraphPath {
   using Distance = int;
 
-  struct Path {
-    std::vector<VertexId> vertex_ids;
-    Distance distance = 0;
-  }
+  std::vector<VertexId> vertex_ids;
+  Distance distance = 0;
+};
+```
 
+`graph_traverser.hpp`:
+```cpp
+class GraphTraverser {
   GraphTraverser(const Graph& graph);
 
-  Path find_shortest_path(VertexId source_vertex_id,
-                          VertexId destination_vertex_id) const;
+  GraphPath find_shortest_path(VertexId source_vertex_id,
+                               VertexId destination_vertex_id) const;
 };
 ```
 
@@ -43,7 +48,7 @@ class GraphTraverser {
 ```cpp
 class GraphTraverser {
   // From root vertex to all vertices at the last depth
-  std::vector<Path> find_all_paths() const;
+  std::vector<GraphPath> find_all_paths() const;
 }
 ```
 
