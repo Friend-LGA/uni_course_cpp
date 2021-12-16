@@ -18,8 +18,9 @@
 struct GraphPath {
   using Distance = int;
 
+  Distance distance() const;
+
   std::vector<VertexId> vertex_ids;
-  Distance distance = 0;
 };
 ```
 
