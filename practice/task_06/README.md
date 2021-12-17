@@ -67,7 +67,7 @@ class GraphGenerator {
     auto graph = Graph();
     graph.add_vertex();
 
-    generate_gray_edges(...);
+    generate_grey_edges(...);
 
     // Обернуть в поток `std::thread green_thread`
     generate_green_edges(...);
@@ -86,7 +86,7 @@ class GraphGenerator {
     return graph;
   }
 
-  void generate_gray_edges(...) {
+  void generate_grey_edges(...) {
     // Job - это lambda функция,
     // которая энкапсулирует в себе генерацию однйо ветви
     using JobCallback = std::function<void()>;
@@ -96,7 +96,7 @@ class GraphGenerator {
     for (int i = 0; i < new_vertices_count; i++) {
       jobs.push_back(
           [...]() {
-            generate_gray_branch(...);
+            generate_grey_branch(...);
           });
     }
 
@@ -141,9 +141,9 @@ class GraphGenerator {
     }
   }
 
-  void generate_gray_branch(...) {
+  void generate_grey_branch(...) {
     // рекурсивно вызывает сам себя
-    generate_gray_branch(...);
+    generate_grey_branch(...);
   }
 
 }

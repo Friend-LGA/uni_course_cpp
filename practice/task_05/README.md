@@ -146,7 +146,7 @@ namespace uni_course_cpp {
     date_time: Graph 0, Generation Finished {
       depth: number,
       vertices: {amount: number, distribution: [depth_0_count, depth_1_count, ...]},
-      edges: {amount: number, distribution: {gray: count, green: count, yellow: count, red: count}}
+      edges: {amount: number, distribution: {grey: count, green: count, yellow: count, red: count}}
     }
     ```
     Пример:
@@ -155,7 +155,7 @@ namespace uni_course_cpp {
     2021.11.16 00:43:39: Graph 0, Generation Finished {
       depth: 8,
       vertices: {amount: 1360, distribution: [1, 4, 16, 54, 129, 247, 364, 371, 174]},
-      edges: {amount: 3079, distribution: {gray: 1359, green: 128, yellow: 962, red: 276}}
+      edges: {amount: 3079, distribution: {grey: 1359, green: 128, yellow: 962, red: 276}}
     }
     ```
 1. Реализовать используя паттерн `Singleton`.

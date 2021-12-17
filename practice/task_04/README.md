@@ -53,7 +53,7 @@ class GraphGenerator {
   Graph generate() const {
     auto graph = Graph();
     graph.add_vertex();
-    generate_gray_edges(graph);
+    generate_grey_edges(graph);
     generate_green_edges(graph);
     generate_yellow_edges(graph);
     generate_red_edges(graph);
@@ -107,12 +107,12 @@ class GraphGenerator {
 ## Дополнительная информация
 
 1\) Для реализации логики разных цветов граней - существует специальный инструмент - "перечисление" (по-английски "enumeration").
-Соответственно у нас есть тип данных `Color`, в котором мы перечисляем набор опций: `Gray`, `Green`, `Yellow`, `Red`.
+Соответственно у нас есть тип данных `Color`, в котором мы перечисляем набор опций: `Grey`, `Green`, `Yellow`, `Red`.
 Делается это при помощи `enum class`:
 
 ```cpp
 struct Edge {
-  enum class Color { Gray, Green, Yellow, Red };
+  enum class Color { Grey, Green, Yellow, Red };
 }
 ```
 
@@ -157,7 +157,7 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
       return Edge::Color::Green;
     }
     if (get_edges(to_vertex_id).size() == 0) {
-      return Edge::Color::Gray;
+      return Edge::Color::Grey;
     }
     if (to_vertex_depth - from_vertex_depth == 1 &&
         !is_connected(from_vertex_id, to_vertex_id)) {
@@ -194,14 +194,14 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
     {
       "id": 0,
       "vertex_ids": [0, 1],
-      "color": "gray"
+      "color": "grey"
     },
     "..."
   ]
 }
 ```
 
-- Возможные цвета граней: `gray`, `green`, `yellow`, `red`.
+- Возможные цвета граней: `grey`, `green`, `yellow`, `red`.
 
 ## Функция `main` вашей программы
 
