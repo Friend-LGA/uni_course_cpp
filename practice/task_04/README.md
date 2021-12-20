@@ -202,6 +202,7 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 ```
 
 - Возможные цвета граней: `grey`, `green`, `yellow`, `red`.
+- Пример файла можете посмотреть здесь: [graph.json](graph.json).
 
 ## Функция `main` вашей программы
 
