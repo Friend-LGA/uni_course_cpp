@@ -27,13 +27,12 @@
 - Неделя 6. [Concurrent Edges Generation](task_06)
 - Неделя 7. [Concurrent Graphs Generation](task_07)
 - Неделя 8. [Concurrent Graphs Traversal](task_08)
-- Неделя 10. [Graph Development](./)
-  - Add Edge Durations
+- Неделя 9. [Basic Game](task_09)
+- Неделя 10. [Advanced Game](./)
   - Add Params, Fights and Blessings
-- Неделя 12. [Graph Development](./)
   - Adjustable Params (Parallel)
   - Add Enemies and Blessings
-- Неделя 14. [Graph Development](./)
+- Неделя 11. [Graph Development](./)
   - Multiple Players (Parallel)
   - Add Enemies and Blessings
 - ...
