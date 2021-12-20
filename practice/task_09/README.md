@@ -80,9 +80,9 @@
     knight position: {vertex_id: 0, depth: 0},
     princess position: {vertex_id: 17, depth: 7}
   }
-  2021.12.20 10:44:42 Searching Shortest Path...
+  2021.12.20 10:44:42 Searching for Shortest Path...
   2021.12.20 10:44:42 Shortest Path: {vertices: [0, 1, 22, 38, 39, 16, 17], distance: 6, duration: 11}
-  2021.12.20 10:44:42 Searching Fastest Path...
+  2021.12.20 10:44:42 Searching for Fastest Path...
   2021.12.20 10:44:42 Fastest Path: {vertices: [0, 1, 4, 10, 12, 14, 16, 17], distance: 7, duration: 9}
   ```
 
@@ -100,13 +100,14 @@
 1. Выполняете поиск скорейшего пути.
     - `game.find_fastest_path();`
 1. Параллельно с выполнением программы логируете данные.
-  1. `Game is Preparing...`
-  1. `Game is Ready`
-  1. `Searching for Shortest Path...`
-  1. `Shortest Path: { ... }`
-  1. `Searching for Fastest Path...`
-  1. `Fastest Path: { ... }`
-1. Распечатываете игровую карту в файл `map.json`
+    1. `Game is Preparing...`
+    1. `Game is Ready`
+    1. `Searching for Shortest Path...`
+    1. `Shortest Path: { ... }`
+    1. `Searching for Fastest Path...`
+    1. `Fastest Path: { ... }`
+1. Распечатываете игровую карту в файл `map.json` в корень вашей папки.
+    - Повторяю, не в `/temp`, а в корень `./`.
 
 # Функция `main` вашей программы
 
@@ -153,7 +154,7 @@ int main() {
 
 # Время Выполнения
 
-1 Недели.
+1 Неделя.
 
 # Количество Баллов
 
