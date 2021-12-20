@@ -5,7 +5,7 @@
 - Создать класс `GraphTraverser`, ответственностью которого будет обход графа.
 - Внутри `GraphTraverser` реализовать интерфейс для поиска кратчайшего пути между 2умя вершинами по алгоритму Дейкстры.
   - [Wiki: Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-- Возвращать путь между вершинами в виде массива из `VertexId`.
+- Возвращать путь между вершинами в виде массивов из `VertexId` и `EdgeId`.
   - Для реализации данной логики создать структуру `GraphPath`.
 - Для определения дистанции между вершинами добавить пользовательский тип:
   - `using Distance = int;`
@@ -21,6 +21,7 @@ struct GraphPath {
   Distance distance() const;
 
   std::vector<VertexId> vertex_ids;
+  std::vector<EdgeId> edge_ids;
 };
 ```
 
@@ -88,12 +89,11 @@ class GraphTraverser {
 ```cpp
 class GraphTraversalController {
   using TraversalStartedCallback =
-      std::function<void(int /* index */,
-                         const Graph& /* graph */)>;
+      std::function<void(int index, const Graph& graph)>;
   using TraversalFinishedCallback =
-      std::function<void(int /* index */,
-                         const Graph& /* graph */,
-                         std::vector<GraphTraverser::Path> /* paths */)>;
+      std::function<void(int index,
+                         const Graph& graph,
+                         std::vector<GraphTraverser::Path> paths)>;
 
   class Worker;
 

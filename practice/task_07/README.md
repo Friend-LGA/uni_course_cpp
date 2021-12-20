@@ -31,8 +31,8 @@
 class GraphGenerationController {
  public:
   using JobCallback = std::function<void()>;
-  using GenStartedCallback = std::function<void(int)>;
-  using GenFinishedCallback = std::function<void(int, Graph)>;
+  using GenStartedCallback = std::function<void(int index)>;
+  using GenFinishedCallback = std::function<void(int index, Graph graph)>;
 
   class Worker {
    public:
