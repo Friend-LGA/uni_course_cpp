@@ -14,7 +14,6 @@
 - `logger.hpp`
 - `logger.cpp`
 - `config.hpp`
-- `config.cpp`
 
 `.hpp` файлы включают в себя только декларацию - интерфейс.
 Исключение только однострочные методы.
@@ -174,7 +173,7 @@ namespace uni_course_cpp {
     ```cpp
     namespace config {
       constexpr const char* kLogFilename = "log.txt";
-      std::string log_file_path();
+      static const std::string kLogFilePath = kTempDirectoryPath + kLogFilename;
     }  // namespace config
     ```
 1. Получать дату и время можно следующим образом:
