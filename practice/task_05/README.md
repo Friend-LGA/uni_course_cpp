@@ -129,7 +129,7 @@ namespace uni_course_cpp {
   На данный момент, добавьте туда только путь к папке `temp`, где теперь должны создаваться `JSON` файлы:
     ```cpp
     namespace config {
-      constexpr const char* kTempDirectoryPath = "./temp/";
+      static constexpr const char* kTempDirectoryPath = "./temp/";
     }  // namespace config
     ```
 1. Пример пути до директории `temp`:
@@ -172,7 +172,7 @@ namespace uni_course_cpp {
 1. Обновить `config` и забирать из него путь до файла `log.txt`:
     ```cpp
     namespace config {
-      constexpr const char* kLogFilename = "log.txt";
+      static constexpr const char* kLogFilename = "log.txt";
       static const std::string kLogFilePath = kTempDirectoryPath + kLogFilename;
     }  // namespace config
     ```

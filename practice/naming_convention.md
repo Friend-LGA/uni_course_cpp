@@ -53,11 +53,11 @@
   - `ALL_CUPS` или `kCamelCase` или `k_snake_case`
   - Пример:
     ```cpp
-    constexpr int MONTHS_COUNT = 12;
+    static constexpr int MONTHS_COUNT = 12;
     // или
-    constexpr int kMonthsCount = 12;
+    static constexpr int kMonthsCount = 12;
     // или
-    constexpr int k_months_count = 12;
+    static constexpr int k_months_count = 12;
     ```
 
 # Links
