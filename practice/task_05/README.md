@@ -141,8 +141,8 @@ namespace uni_course_cpp {
 
 1. Написать `Logger`, который будет использоваться для вывода следующей информацию в консоль и в файл с названием `log.txt`:
     ```
-    date_time: Graph 0, Generation Started
-    date_time: Graph 0, Generation Finished {
+    date_time Graph 0, Generation Started
+    date_time Graph 0, Generation Finished {
       depth: number,
       vertices: {amount: number, distribution: [depth_0_count, depth_1_count, ...]},
       edges: {amount: number, distribution: {grey: count, green: count, yellow: count, red: count}}
@@ -150,8 +150,8 @@ namespace uni_course_cpp {
     ```
     Пример:
     ```
-    2021.11.16 00:43:38: Graph 0, Generation Started
-    2021.11.16 00:43:39: Graph 0, Generation Finished {
+    2021.11.16 00:43:38 Graph 0, Generation Started
+    2021.11.16 00:43:39 Graph 0, Generation Finished {
       depth: 8,
       vertices: {amount: 1360, distribution: [1, 4, 16, 54, 129, 247, 364, 371, 174]},
       edges: {amount: 3079, distribution: {grey: 1359, green: 128, yellow: 962, red: 276}}
@@ -166,6 +166,20 @@ namespace uni_course_cpp {
       void log(const std::string& string);
     };
     ```
+    - Добавлять дату и время логирования автоматически внутри метода `log()`.
+      Получать дату и время можно следующим образом:
+      ```cpp
+      #include <chrono>
+
+      std::string get_current_date_time() {
+        const auto date_time = std::chrono::system_clock::now();
+        const auto date_time_t = std::chrono::system_clock::to_time_t(date_time);
+        std::stringstream date_time_string;
+        date_time_string << std::put_time(std::localtime(&date_time_t),
+                                          "%Y.%m.%d %H:%M:%S");
+        return date_time_string.str();
+      }
+      ```
 1. Файл `log.txt` создавать внутри поддиректории `temp`.
     - Пример:
       - `/name_surname/temp/log.txt`
@@ -175,19 +189,6 @@ namespace uni_course_cpp {
       static constexpr const char* kLogFilename = "log.txt";
       static const std::string kLogFilePath = kTempDirectoryPath + kLogFilename;
     }  // namespace config
-    ```
-1. Получать дату и время можно следующим образом:
-    ```cpp
-    #include <chrono>
-
-    std::string get_current_date_time() {
-      const auto date_time = std::chrono::system_clock::now();
-      const auto date_time_t = std::chrono::system_clock::to_time_t(date_time);
-      std::stringstream date_time_string;
-      date_time_string << std::put_time(std::localtime(&date_time_t),
-                                        "%Y.%m.%d %H:%M:%S");
-      return date_time_string.str();
-    }
     ```
 1. Непосредственную генерацию строки c данными графа добавить в `graph_printing`:
     ```cpp

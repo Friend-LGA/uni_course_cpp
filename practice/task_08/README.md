@@ -61,8 +61,8 @@ class GraphTraverser {
   - `const int MAX_WORKERS_COUNT = std::thread::hardware_concurrency();`
 - Логировать начало и конец обхода каждого графа, аналогично логированию генерации графов:
   ```
-  date_time: Graph 0, Traversal Started
-  date_time: Graph 0, Traversal Finished, Paths: [
+  date_time Graph 0, Traversal Started
+  date_time Graph 0, Traversal Finished, Paths: [
     {vertices: [root_vertex_id, .., .., .., last_depth_vertex_id], distance: distance},
     {vertices: [root_vertex_id, .., .., .., last_depth_vertex_id], distance: distance},
     ...
@@ -70,8 +70,8 @@ class GraphTraverser {
   ```
   Пример:
   ```
-  2021.12.06 19:16:28: Graph 0, Traversal Started
-  2021.12.06 19:16:28: Graph 0, Traversal Finished, Paths: [
+  2021.12.06 19:16:28 Graph 0, Traversal Started
+  2021.12.06 19:16:28 Graph 0, Traversal Finished, Paths: [
     {vertices: [0, 2, 18, 19, 20], distance: 4},
     {vertices: [0, 2, 6, 7, 5, 9], distance: 5},
     {vertices: [0, 2, 6, 12, 13, 14], distance: 5}
