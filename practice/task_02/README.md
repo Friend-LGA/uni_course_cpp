@@ -82,7 +82,7 @@ struct Edge {
 ```cpp
 // ... some other logic ...
 
-constexpr int kVerticesCount = 14;
+static constexpr int kVerticesCount = 14;
 
 int main() {
   auto graph = Graph();
