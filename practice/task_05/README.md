@@ -170,6 +170,9 @@ namespace uni_course_cpp {
       Получать дату и время можно следующим образом:
       ```cpp
       #include <chrono>
+      #include <ctime>
+      #include <iomanip>
+      #include <sstream>
 
       std::string get_current_date_time() {
         const auto date_time = std::chrono::system_clock::now();
