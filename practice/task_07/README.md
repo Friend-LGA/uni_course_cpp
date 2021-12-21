@@ -163,7 +163,7 @@ std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
         const auto graph_description = printing::graph::print_graph(graph);
         logger.log(generation_finished_string(index, graph_description));
         graphs.push_back(graph);
-        const auto graph_json = printing::json::graph::print_graph(graph);
+        const auto graph_json = printing::json::print_graph(graph);
         write_to_file(graph_json, "graph_" + std::to_string(index) + ".json");
       });
 

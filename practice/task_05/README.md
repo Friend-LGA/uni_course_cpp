@@ -232,7 +232,7 @@ int main() {
     const auto graph_description = printing::graph::print_graph(graph);
     logger.log(generation_finished_string(i, graph_description));
 
-    const auto graph_json = printing::json::graph::print_graph(graph);
+    const auto graph_json = printing::json::print_graph(graph);
     write_to_file(graph_json, "graph_" + std::to_string(i) + ".json");
   }
 

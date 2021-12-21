@@ -13,11 +13,9 @@
 ```cpp
 namespace printing {
 namespace json {
-namespace graph {
 
 // Here is everything related to graph json printing
 
-}  // namespace graph
 }  // namespace json
 }  // namespace printing
 ```
@@ -86,7 +84,7 @@ std::string print_edge(const Graph::Edge& edge, const Graph& graph);
 
 int main() {
   const auto graph = generate_graph();
-  const auto graph_json = printing::json::graph::print_graph(graph);
+  const auto graph_json = printing::json::print_graph(graph);
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
 

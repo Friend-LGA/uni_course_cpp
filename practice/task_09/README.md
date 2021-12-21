@@ -149,7 +149,7 @@ int main() {
 
   logger.log(fastest_path_ready_string(fastest_path));
 
-  const auto map_json = printing::json::game::print_map(game.map());
+  const auto map_json = printing::json::print_map(game.map());
   write_to_file(map_json, "map.json");
 
   return 0;
