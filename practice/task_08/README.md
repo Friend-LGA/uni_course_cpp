@@ -119,10 +119,10 @@ void traverse_graphs(const std::vector<Graph>& graphs) {
   auto& logger = Logger::get_logger();
 
   traversal_controller.traverse(
-      [&logger](int index, const Graph& traversed_graph) {
+      [&logger](int index, const Graph& graph) {
         logger.log(traversal_started_string(index));
       },
-      [&logger](int index, const Graph& traversed_graph,
+      [&logger](int index, const Graph& graph,
                 std::vector<GraphPath> paths) {
         logger.log(traversal_finished_string(index, paths));
       });
