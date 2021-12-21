@@ -228,7 +228,9 @@ int main() {
   for (int i = 0; i < graphs_count; i++) {
     logger.log(generation_started_string(i));
     const auto graph = generator.generate();
-    logger.log(generation_finished_string(i, graph));
+
+    const auto graph_description = printing::graph::print_graph(graph);
+    logger.log(generation_finished_string(i, graph_description));
 
     const auto graph_json = printing::json::graph::print_graph(graph);
     write_to_file(graph_json, "graph_" + std::to_string(i) + ".json");
