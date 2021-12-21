@@ -77,11 +77,15 @@ class GraphTraverser {
     {vertices: [0, 2, 6, 12, 13, 14], distance: 5}
   ]
   ```
-- Расширить логику `graph_printing`:
+- Расширить логику `printing`:
   ```cpp
-  namespace graph_printing {
-    std::string print_path(const GraphTraverser::Path& path);
-  }  // namespace graph_printing
+  namespace printing {
+  namespace graph {
+
+  std::string print_path(const GraphPath& path);
+
+  }  // namespace graph
+  }  // namespace printing
   ```
 
 ## Пример интерфейса
@@ -93,7 +97,7 @@ class GraphTraversalController {
   using TraversalFinishedCallback =
       std::function<void(int index,
                          const Graph& graph,
-                         std::vector<GraphTraverser::Path> paths)>;
+                         std::vector<GraphPath> paths)>;
 
   class Worker;
 
@@ -112,15 +116,14 @@ class GraphTraversalController {
 
 void traverse_graphs(const std::vector<Graph>& graphs) {
   auto traversal_controller = GraphTraversalController(graphs);
+  auto& logger = Logger::get_logger();
 
   traversal_controller.traverse(
-      [](int index, const Graph& traversed_graph) {
-        auto& logger = Logger::get_logger();
+      [&logger](int index, const Graph& traversed_graph) {
         logger.log(traversal_started_string(index));
       },
-      [](int index, const Graph& traversed_graph,
-         std::vector<GraphTraverser::Path> paths) {
-        auto& logger = Logger::get_logger();
+      [&logger](int index, const Graph& traversed_graph,
+                std::vector<GraphPath> paths) {
         logger.log(traversal_finished_string(index, paths));
       });
 }

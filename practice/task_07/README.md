@@ -156,13 +156,14 @@ std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
   graphs.reserve(graphs_count);
 
   generation_controller.generate(
-      [&logger](int index) { logger.log(generation_started_string(index)); },
+      [&logger](int index) {
+        logger.log(generation_started_string(index));
+      },
       [&logger, &graphs](int index, Graph graph) {
-        const auto graph_description =
-            graph_printing::print_graph_description(graph);
+        const auto graph_description = printing::graph::print_graph(graph);
         logger.log(generation_finished_string(index, graph_description));
         graphs.push_back(graph);
-        const auto graph_json = graph_printing::print_graph(graph);
+        const auto graph_json = printing::json::graph::print_graph(graph);
         write_to_file(graph_json, "graph_" + std::to_string(index) + ".json");
       });
 

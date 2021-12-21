@@ -120,11 +120,15 @@ struct Edge {
 Обратите вниманием что в `C++` используется `enum color`, тогда как в `C` - просто `enum`.
 `enum color` лучше, так как он позволяет избежать автоматического приведения типов, что делает код надежней и позволяет компилятору отловить ошибки на ранней стадии.
 
-Для перевода `Edge::Color` в строку, расширьте логику `graph_printing`:
+Для перевода `Edge::Color` в строку, расширьте логику `printing`:
 ```cpp
-namespace graph_printing {
-  std::string print_edge_color(const Edge::Color& color) const;
-}
+namespace printing {
+namespace graph {
+
+std::string print_edge_color(const Edge::Color& color) const;
+
+}  // namespace graph
+}  // namespace printing
 ```
 
 2\) По дизайну, любая новая вершина в графе, которая не связани ни с одной другой вершиной, находится на глубине 0.
@@ -217,7 +221,7 @@ int main() {
   const auto generator = GraphGenerator(params);
   const auto graph = generator.generate();
 
-  const auto graph_json = graph_printing::print_graph(graph);
+  const auto graph_json = printing::json::graph::print_graph(graph);
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
 

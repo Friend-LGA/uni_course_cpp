@@ -9,8 +9,10 @@
 - `graph.cpp`
 - `graph_generator.hpp`
 - `graph_generator.cpp`
-- `graph_printer.hpp`
-- `graph_printer.cpp`
+- `graph_json_printing.hpp`
+- `graph_json_printing.cpp`
+- `graph_printing.hpp`
+- `graph_printing.cpp`
 - `logger.hpp`
 - `logger.cpp`
 - `config.hpp`
@@ -126,10 +128,12 @@ namespace uni_course_cpp {
 # 4. Создать файл конфигурации
 
 1. Создайте файл `config.hpp`, в котором будет храниться конфигурация нашего проекта.
-  На данный момент, добавьте туда только путь к папке `temp`, где теперь должны создаваться `JSON` файлы:
+  Добавьте туда путь к папке `temp`, где теперь должны создаваться `JSON` файлы:
     ```cpp
     namespace config {
-      static constexpr const char* kTempDirectoryPath = "./temp/";
+
+    inline constexpr const char* kTempDirectoryPath = "./temp/";
+
     }  // namespace config
     ```
 1. Пример пути до директории `temp`:
@@ -189,15 +193,21 @@ namespace uni_course_cpp {
 1. Обновить `config` и забирать из него путь до файла `log.txt`:
     ```cpp
     namespace config {
-      static constexpr const char* kLogFilename = "log.txt";
-      static const std::string kLogFilePath = kTempDirectoryPath + kLogFilename;
+
+    inline constexpr const char* kLogFilename = "log.txt";
+    inline const std::string kLogFilePath = kTempDirectoryPath + kLogFilename;
+
     }  // namespace config
     ```
-1. Непосредственную генерацию строки c данными графа добавить в `graph_printing`:
+1. Непосредственную генерацию строки c данными графа добавить в `printing`:
     ```cpp
-    namespace graph_printing {
-      std::string print_graph_description(const Graph& graph);
-    }  // namespace graph_printing
+    namespace printing {
+    namespace graph {
+
+    std::string print_graph(const Graph& graph);
+
+    }  // namespace graph
+    }  // namespace printing
     ```
 
 ## Функция `main` вашей программы
@@ -220,7 +230,7 @@ int main() {
     const auto graph = generator.generate();
     logger.log(generation_finished_string(i, graph));
 
-    const auto graph_json = graph_printing::print_graph(graph);
+    const auto graph_json = printing::json::graph::print_graph(graph);
     write_to_file(graph_json, "graph_" + std::to_string(i) + ".json");
   }
 

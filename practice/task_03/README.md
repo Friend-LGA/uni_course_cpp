@@ -11,19 +11,23 @@
 Доработать программу, чтобы она выводила созданный граф в файл в формате `JSON`.
 Для этого вам нужно будет добавить новую логику по распечатке графа и выделить её в отдельный `namespace`:
 ```cpp
-namespace graph_printing {}
+namespace printing {
+namespace json {
+namespace graph {
+
+// Here is everything related to graph json printing
+
+}  // namespace graph
+}  // namespace json
+}  // namespace printing
 ```
 Логика по работе с файлами здесь присутствовать не должна, только генерация строк.
 
 Набор функций должен быть следующий:
 ```cpp
-namespace graph_printing {
-
 std::string print_graph(const Graph& graph);
 std::string print_vertex(const Graph::Vertex& vertex, const Graph& graph);
 std::string print_edge(const Graph::Edge& edge, const Graph& graph);
-
-}  // namespace graph_printing
 ```
 
 Пример `JSON` структуры (ключей и значений) выводимого файла:
@@ -82,7 +86,7 @@ std::string print_edge(const Graph::Edge& edge, const Graph& graph);
 
 int main() {
   const auto graph = generate_graph();
-  const auto graph_json = graph_printing::print_graph(graph);
+  const auto graph_json = printing::json::graph::print_graph(graph);
   std::cout << graph_json << std::endl;
   write_to_file(graph_json, "graph.json");
 

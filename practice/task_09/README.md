@@ -47,14 +47,25 @@
   ```
 - Соответственно, для поиска путей добавить класс `GameMapTraverser`, аналогичный классу `GraphTraverser`.
 - Создать класс `GameGenerator`, который принимает параметры графа `GraphGenerator::Params` и генерирует игру `Game`.
-- Добавить логику `game_printing`, аналогичную `graph_printing`:
+- Расширить логику `printing`:
   ```cpp
-  namespace game_printing {
-    std::string print_game(const Game& game);
-    std::string print_character_position(VertexId vertex_id, const Graph& graph);
-    std::string print_path(const GameMapPath& path);
-    std::string print_map(const GameMap& map);
-  }  // namespace game_printing
+  namespace printing {
+  namespace json {
+  namespace game {
+
+  std::string print_map(const GameMap& map);
+
+  }  // namespace game
+  }  // namespace json
+
+  namespace game {
+
+  std::string print_game(const Game& game);
+  std::string print_character_position(VertexId vertex_id, const Graph& graph);
+  std::string print_path(const GameMapPath& path);
+
+  }  // namespace game
+  }  // namespace printing
   ```
   - Метод `print_map` должен печатать карту в `JSON` формате. Пример:
   ```json
@@ -138,7 +149,7 @@ int main() {
 
   logger.log(fastest_path_ready_string(fastest_path));
 
-  const auto map_json = game_printing::print_map(game.map());
+  const auto map_json = printing::json::game::print_map(game.map());
   write_to_file(map_json, "map.json");
 
   return 0;
