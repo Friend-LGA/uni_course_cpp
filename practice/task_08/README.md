@@ -80,11 +80,9 @@ class GraphTraverser {
 - Расширить логику `printing`:
   ```cpp
   namespace printing {
-  namespace graph {
 
   std::string print_path(const GraphPath& path);
 
-  }  // namespace graph
   }  // namespace printing
   ```
 

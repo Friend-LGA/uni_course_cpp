@@ -202,11 +202,9 @@ namespace uni_course_cpp {
 1. Непосредственную генерацию строки c данными графа добавить в `printing`:
     ```cpp
     namespace printing {
-    namespace graph {
 
     std::string print_graph(const Graph& graph);
 
-    }  // namespace graph
     }  // namespace printing
     ```
 
@@ -229,7 +227,7 @@ int main() {
     logger.log(generation_started_string(i));
     const auto graph = generator.generate();
 
-    const auto graph_description = printing::graph::print_graph(graph);
+    const auto graph_description = printing::print_graph(graph);
     logger.log(generation_finished_string(i, graph_description));
 
     const auto graph_json = printing::json::print_graph(graph);

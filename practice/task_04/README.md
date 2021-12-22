@@ -123,11 +123,9 @@ struct Edge {
 Для перевода `Edge::Color` в строку, расширьте логику `printing`:
 ```cpp
 namespace printing {
-namespace graph {
 
 std::string print_edge_color(const Edge::Color& color) const;
 
-}  // namespace graph
 }  // namespace printing
 ```
 
