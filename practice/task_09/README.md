@@ -2,26 +2,22 @@
 
 # Добавить основу игровой логики
 
-- Создать класс `GameMap`, который будет хранить в себе граф и продолжительность (`Duration`) перехода по каждой грани:
+- Добавить `Edge::Duration`:
   ```cpp
-  class GameMap {
-  public:
+  struct Edge {
     using Duration = int;
-  private:
-    Graph graph_;
-    std::unordered_map<EdgeId, Duration> edge_durations_;
+    Duration duration_;
   };
   ```
-  - `Duration` может принимать рандомное `int` значение из соответствующего диапазона:
+  - `Duration` может принимать рандомное значение из соответствующего диапазона:
     - Grey = [1, 2]
     - Green = [1, 2]
-    - Blue = [1, 3]
     - Yellow = [1, 3]
     - Red = [2, 4]
-- Добавить структуру `GameMapPath`, унаследованную от `GraphPath`, которая должна знать продолжительность пути:
+- Расширить `GraphPath`, добавить продолжительность пути:
   ```cpp
-  struct GameMapPath : public GraphPath {
-    GameMap::Duration duration() const { return duration_; }
+  struct GraphPath {
+    Graph::Edge::Duration duration() const;
   };
   ```
 - Создать класс `Game`, который будет инкапсулировать игровую логику:
@@ -31,53 +27,31 @@
   - Поиск кратчайшего пути между рыцарем и принцессой
     - Параметр поиска - `GraphPath::Distance`, количество шагов пути
   - Поиск скорейшего пути между рыцарем и принцессой
-    - Параметр поиска - `GameMap::Duration`, продолжительность пути
+    - Параметр поиска - `Graph::Edge::Duration`, продолжительность пути
   ```cpp
   class Game {
    public:
     // Traverse by `Distance`
-    GameMapPath find_shortest_path() const;
+    GraphPath find_shortest_path() const;
     // Traverse by `Duration`
-    GameMapPath find_fastest_path() const;
+    GraphPath find_fastest_path() const;
    private:
-    GameMap map_;
+    Graph map_;
     Graph::VertexId knight_position_;
     Graph::VertexId princess_position_;
   };
   ```
-- Соответственно, для поиска путей добавить класс `GameMapTraverser`, аналогичный классу `GraphTraverser`.
+- Соответственно, для поиска скорейшего пути расширить класс `GraphTraverser`.
 - Создать класс `GameGenerator`, который принимает параметры графа `GraphGenerator::Params` и генерирует игру `Game`.
 - Расширить логику `printing`:
   ```cpp
   namespace printing {
-  namespace json {
-  namespace game {
-
-  std::string print_map(const GameMap& map);
-
-  }  // namespace game
-  }  // namespace json
-
-  namespace game {
 
   std::string print_game(const Game& game);
-  std::string print_character_position(VertexId vertex_id, const Graph& graph);
-  std::string print_path(const GameMapPath& path);
 
-  }  // namespace game
   }  // namespace printing
   ```
-  - Метод `print_map` должен печатать карту в `JSON` формате. Пример:
-  ```json
-  {
-    "graph": { "..." },
-    "edge_durations": [
-      {"edge_id": 0, "duration": 1},
-      {"edge_id": 1, "duration": 1},
-      "..."
-    ]
-  }
-  ```
+  - Методы `print_edge` и `print_path` должены печатать новый параметр `Duration`.
   - Пример файла можете посмотреть здесь: [map.json](map.json).
 - Ваша программа должна создать игру и залогировать её данные. Пример:
   ```
