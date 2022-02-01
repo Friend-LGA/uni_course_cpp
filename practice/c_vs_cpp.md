@@ -79,6 +79,19 @@
     int a = 5;
     float b = static_cast<float>(a);
     ```
+- Random:
+  - `C`:
+    ```cpp
+    srand(time(NULL));
+    const int random = rand() % 10;
+    ```
+  - `C++`:
+    ```cpp
+    std::random_device device;
+    std::default_random_engine engine(device());
+    std::uniform_int_distribution<int> distribution(0, 10);
+    const int random = distribution(engine);
+    ```
 - Asserts:
   - Не имеет аналога в `C++`, можно использовать `C`.
     ```cpp

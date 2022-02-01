@@ -4,17 +4,17 @@
 
 Повторяю:
 - Формат названий бранчей следующий:
-  - `name_surname/task_number`
+  - `surname_name/task_number`
 - Пример:
-  - `grigorii_lutkov/task_01`
+  - `lutkov_grigorii/task_01`
 
-# Неверная иерархия директорий
+# Неверная иерархия/название директорий
 
 Повторяю:
-- Формат иерархии директорий следующий:
-  - `/name_surname/*`
+- Формат следующий:
+  - `/surname_name/*`
 - Пример:
-  - `/grigorii_lutkov/*`
+  - `/lutkov_grigorii/*`
 
 # Добавление в `Pull Request` неотносящихся изменений
 
@@ -94,6 +94,7 @@ const auto graph = Graph(vertices, edges);
 
 ```cpp
 auto vertices = std::vector<Vertex>();
+// fill vertices
 for (const auto& k : vertices) {
   // some logic ...
   k.add_edge();
@@ -107,6 +108,7 @@ for (const auto& k : vertices) {
 
 ```cpp
 auto vertices = std::vector<Vertex>();
+// fill vertices
 for (const auto& vertex : vertices) {
   // some logic ...
   vertex.add_edge();
@@ -136,7 +138,7 @@ for (const auto& vertex : vertices) {
 struct Vertex {
   std::vector<EdgeId> edges;
 
-  void has_edge(EdgeId edge) const {
+  bool has_edge(EdgeId edge) const {
     for (const auto& edg : edges) {
       if (edg == edge) {
         return true;
@@ -149,7 +151,7 @@ struct Vertex {
 class Graph {
   std::vector<Edge> edges;
 
-  void has_edge(EdgeId edge) const {
+  bool has_edge(EdgeId edge) const {
     for (const auto& edg : edges) {
       if (edg.id == edge) {
         return true;
@@ -166,14 +168,14 @@ class Graph {
 Но чтобы это понять, нужно внимательно вчитаться в код, и не полениться, сходить посмотреть как они все определены, какие типы данных имеют.
 Зачем вы усложняете жизнь и себе, и тем, кто будет читать ваш код и работать с вами?
 
-Самое основное правило: будьте проще, не усложняйте. Видите `Graph` - назовите его `graph`. Видите `VertexId` - назовите его `vertex_id`. Не нужно никакой криптографии, лишних сокращений, подмены понятий.
+Будьте проще, не усложняйте. Видите `Graph` - назовите его `graph`. Видите `VertexId` - назовите его `vertex_id`. Не нужно никакой криптографии, лишних сокращений, подмены понятий.
 
 ```cpp
 struct Vertex {
   std::vector<EdgeId> edge_ids;
 
   void has_edge(EdgeId id) const {
-    for (const auto& edge_id : edge_id) {
+    for (const auto edge_id : edge_ids) {
       if (id == edge_id) {
         return true;
       }
@@ -243,9 +245,9 @@ class SomeClass {
   int a = 0;
   const std::string s;
 
-  SomeClass(int _a, const std::string& _s) {
-    a = _a;
-    s = _s; // ERROR
+  SomeClass(int init_a, const std::string& init_s) {
+    a = init_a;
+    s = init_s; // ERROR
     // ... some other logic ...
   }
 }
@@ -257,14 +259,14 @@ class SomeClass {
     - `a = 0`, default value.
     - `s = ""`, default value.
 3. Вызывается тело конструктора:
-    - `a = _a`, изменяем значение `a`.
-    - `s = _s`, пытаемся изменить константу `s`.
+    - `a = init_a`, изменяем значение `a`.
+    - `s = init_s`, пытаемся изменить константу `s`.
 4. Заканчивается инициализация объекта `SomeClass`.
 
 Какие проблемы мы здесь наблюдаем?
 1. Переменной `a` присваивается значение 2 раза:
     1. Инициализируем в значение по-умолчанию `0`.
-    2. Присваиваем новое значение `_a`.
+    2. Присваиваем новое значение `init_a`.
 2. Ошибка при изменении значения переменной `s`
     1. Инициализируем в значение по-умолчанию `""`.
     2. Пытаемся присвоить новое значение, но так как переменная `const`, получаем ошибку.
@@ -277,7 +279,7 @@ class SomeClass {
   int a = 0;
   const std::string s;
 
-  SomeClass(int _a, const std::string& _s) : a(_a), s(_s) {
+  SomeClass(int init_a, const std::string& init_s) : a(init_a), s(init_s) {
     // ... some other logic ...
   }
 }
@@ -301,7 +303,15 @@ for (auto it = items.begin(); it != items.end(); it++) {
 }
 ```
 
-Такая форма - верх совершенства:
+Ещё лучше:
+
+```cpp
+for (auto it = items.cbegin(); it != items.cend(); it++) {
+  // ...
+}
+```
+
+Верх совершенства:
 
 ```cpp
 for (const auto& item : items) {
@@ -312,7 +322,7 @@ for (const auto& item : items) {
 # `push` vs `emplace`
 
 Для большинства коллекций реализован метод `emplace`, который существует для того, чтобы создавать новый элемент при добавлении.
-Повторяю, не добавлять уже существующий элемент в коллекцию, а контруировать внутри себя новый.
+Повторяю, не добавлять уже существующий элемент в коллекцию, а конструировать внутри себя новый.
 Этот метод обычно принимает списк аргументов, аналогичный конструктору объекта, который необходимо добавить.
 
 В данном примере вы сначала создаете новый объект самостоятельно, и после этого добавляете его в вектор:
@@ -335,7 +345,7 @@ vector.emplace_back(arg1, arg2);
 
 # Последовательность Секций Видимости в Классах
 
-Больше всего распространена такая последовательность: `public -> protected -> private`.
+Стоит придерживаться такой последовательности: `public -> protected -> private`.
 Каждая секция должна встречаться только 1 раз.
 
 Плохо:
@@ -439,9 +449,12 @@ const int var = ([]() {
     return 3;
   }
 })();
-// `var` is initialized and is `const`
+// `var` is initialized and `const`
 
-int index = 0; // default value
+const int var2 = calculate_var();
+// `var2` is initialized and `const`
+
+const int index = 0; // default value
 get_object(index); // `index` has value
 
 struct Point {
@@ -449,7 +462,7 @@ struct Point {
   int y = 0; // default value
 };
 
-auto point = Point(); // default value
+const auto point = Point(); // default value
 set_point(point); // `point.x` and `point.y` have values
 ```
 
@@ -459,7 +472,7 @@ set_point(point); // `point.x` and `point.y` have values
 
 Плохо:
 ```cpp
-int can_be_nil = get_value();
+const int can_be_nil = get_value();
 if (can_be_nil) {
   // `can_be_nil` is used here ...
 }
@@ -468,7 +481,7 @@ if (can_be_nil) {
 
 Хорошо:
 ```cpp
-if (int can_be_nil = get_value()) {
+if (const int can_be_nil = get_value()) {
   // `can_be_nil` is used here ...
 }
 // `can_be_nil` is not accessible here ...
@@ -511,10 +524,13 @@ for (size_t i = 0; i < size; i++) {
 
 # Unnecessary Big Types
 
-По-умолчанию, всегда используйте `int` и `float`? Это стандартные фундаментальные типы для целых и дробных чисел соответственно.
+По-умолчанию, всегда используйте `int` и `float`. Это стандартные фундаментальные типы для целых и дробных чисел соответственно.
 Используйте `long`, если размера `int` вам не хватает.
 Используйте `double`, если размера `float` вам не хватает.
 Не нужно впустую тратить ресурсы.
+
+Кому сильно интересно:
+- [Дискуссия](https://stackoverflow.com/questions/1074474/should-i-use-double-or-float)
 
 # Нарушение Зоны Ответственности (Single-Responcibility)
 
@@ -676,7 +692,7 @@ class Graph {
 ```cpp
 class Vertex {
   const int id = 0;
-  explicit Vertex(int _id) : id(_id) {}
+  explicit Vertex(int init_id) : id(init_id) {}
 }
 ```
 
@@ -695,7 +711,7 @@ const auto vertex2 = vertex1;
 // 2. vertex2.id = vertex1.id
 ```
 
-Что бы избежать этой проблемы, приходится убирать `const` и ограничивать доступ к данным:
+Чтобы избежать этой проблемы, приходится убирать `const` и ограничивать доступ к данным:
 
 ```cpp
 class Vertex {

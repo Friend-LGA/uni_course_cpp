@@ -12,93 +12,120 @@
 
 # `WSL`: Windows Subsystem for Linux
 
-Если вы используете Windows, то можно сильно упростить свою жизнь используя `WSL`.
-В нашем случае лучше использовать `WSL`, чтобы у всех было одинаковое окружение.
+Если вы используете Windows и ещё не используете WSL, то это пора исправлять.
 
-1. Рекомендую установить совеременный [`Windows Terminal`](https://www.microsoft.com/ru-ru/p/windows-terminal/9n0dx20hk701) из [`Microsoft Store`](https://www.microsoft.com/ru-ru/p/windows-terminal/9n0dx20hk701).
+1. Рекомендую установить современный [`Windows Terminal`](https://www.microsoft.com/ru-ru/p/windows-terminal/9n0dx20hk701) из Microsoft Store.
 1. Установить `WSL` следуя [инструкции](https://docs.microsoft.com/en-us/windows/wsl/install).
 1. Установить Linux дистрибутив, например [Ubuntu](https://www.microsoft.com/ru-ru/p/ubuntu/9nblggh4msv6).
-1. Теперь вы можете использовать `Ubuntu` внутри `Windows Terminal`, ура ура.
+1. Теперь вы можете использовать `Ubuntu` через `WSL` внутри `Windows Terminal`, ура ура.
 
 # [Homebrew (`brew`)](https://brew.sh)
 
 ## For `MacOS`
 
-`Homebrew` is default package manager for `MacOS`.
+`Homebrew` - стандартный менеджер пакетов для `MacOS`.
 
-1. Install either `Xcode` or `Command Line Tools`:
-    - `Xcode`: Install from [`AppStore`](https://apps.apple.com/ru/app/xcode/id497799835).
-    - `Command Line Tools`: Use this command:
+1. Установить `Xcode` или `Command Line Tools`:
+    - `Xcode`: установить из [`AppStore`](https://apps.apple.com/ru/app/xcode/id497799835).
+    - `Command Line Tools`: использовать команду:
       - `sudo xcode-select --install`
-1. Follow [instructions](https://brew.sh) to install `Homebrew`.
-    - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-1. Check `brew` version
+1. Установить `Homebrew` следуя [инструкции](https://brew.sh).
+1. Проверить версию, чтобы убедиться что все работает:
     - `brew --version`
+    - `Homebrew 3.3.13`
 
 ## For `Linux`
 
 Скорее всего вы используете `Ubuntu`.
 Проблема в том, что в ней установлены устаревшие пакеты, так как они тестируются для каждой конкретной версии системы.
-Если вы хотите пользоваться современными версиями, то проще всего будет установить `Homebrew`.
-В нашем случае лучше использовать `Homebrew`, чтобы у всех было одинаковое окружение.
+Чтобы пользоваться современными версиями, то проще всего будет установить `Homebrew`.
 
-1. Install bare minimum of packages:
+1. Предварительная подготовка необходимых инструментов:
     - `sudo apt install build-essential procps curl wget file git`
-1. Follow instruction [Homebrew-on-Linux](https://docs.brew.sh/Homebrew-on-Linux).
-    - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    - `echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile`
-    - `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
-1. Check `brew` version
+1. Установить `Homebrew` следуя [инструкции](https://docs.brew.sh/Homebrew-on-Linux).
+1. Проверить версию, чтобы убедиться что все работает:
     - `brew --version`
+    - `Homebrew 3.3.13`
 
 # Compilation
 
-Для клмпиляции мы будем использовать [`clang`](https://clang.llvm.org/).
+Для компиляции мы будем использовать [`clang`](https://clang.llvm.org/).
 
-1. Install `LLVM` and `clang`
+1. Установить `LLVM` и `clang++`:
     - `brew install llvm`
-1. Check `clang++` version to validate installation is complete
+1. Проверить версию, чтобы убедиться что все работает:
     - `clang++ --version`
+    - `Homebrew clang version 13.0.0`
+
+Версия `g++` так же должна быть свежей, так как от неё есть зависимости.
+
+1. Установить `GCC`:
+    - `brew install gcc`
+1. Проверить версию, чтобы убедиться что все работает:
+    - `g++ --version`
+    - `g++ (Homebrew GCC 11.2.0_3) 11.2.0`
+
+Возможно ваша система будет показывать не установленную через `brew` либу, а старую, идущую в комплекте с ОС.
+В таком случае у вас есть 2 пути:
+
+1. Обновить вашу переменную окружения `$PATH`, так чтобы путь до новых версий был первым в поиске.
+    - Пример:
+      ```
+      export PATH="/usr/local/opt/llvm/bin:$PATH"
+      export PATH="/usr/local/opt/gcc/bin:$PATH"
+      export PATH="$PATH:/$HOME/bin:/usr/local/bin:/usr/local/sbin"
+      ```
+1. Создать `alias` или `function`.
+    - Пример:
+      ```
+      alias clang_new=/usr/local/opt/llvm/bin/clang++
+      alias gcc_new=/usr/local/opt/gcc/bin/g++
+      ```
 
 # Code Formatting, Linter
 
 Для форматирования кода мы будем использовать [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html).
 
-1. Install `clang-format`
+1. Установить `clang-format`:
     - `brew install clang-format`
-1. Check `clang-format` version to validate installation is complete
+1. Проверить версию, чтобы убедиться что все работает:
     - `clang-format --version`
+    - `Homebrew clang-format version 13.0.0`
 
 # [`VCS`](https://en.wikipedia.org/wiki/Version_control): Version Control System
 
 Нашей системой контроля версий будет [`git`](https://git-scm.com).
 
-1. Install `git`
+1. Установить `git`:
     - `brew install git`
-1. Check `git` version
+1. Проверить версию, чтобы убедиться что все работает:
     - `git --version`
-1. Initial Setup ([Docs](https://docs.github.com/en/get-started/getting-started-with-git))
-    - Username: `git config --global user.name "Mona Lisa"`
+    - `git version 2.35.1`
+1. Настроить ([Docs](https://docs.github.com/en/get-started/getting-started-with-git)):
+    - Имя: `git config --global user.name "Mona Lisa"`
     - Email: `git config --global user.email "email@example.com"`
-    - Validate: `git config --global -l`
+        - Адрес должен совпадать с тем, который вы указывали при регистрации на `GitHub`.
+1. Проверить настройки:
+    - `git config --global -l`
 
 # [GitHub](github.com)
 
 Работа будет вестиcь в общем репозитории на [`GitHub`](github.com).
 
-1. Create/Login to your account on [GitHub](github.com)
-1. Generate and add SSH key following the [guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/about-ssh)
+1. Зарегистрируйтесь/Войдите на [GitHub](github.com).
+1. Сгенерируйте и добавьте SSH ключ по [инструкции](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/about-ssh).
 
-# VSCode Setup
+# `VSCode` Setup
 
-VSCode поддерживает `clang` и `clang-format` из коробки. Для этого просто нужно установить официальный плагин для `C++`:
-  - [C/C++ for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+`VSCode` поддерживает `clang` и `clang-format` из коробки. Для этого просто нужно установить официальный плагин для `C++`:
+
+- [C/C++ for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 
 Так же нужно обновить настройки:
 
 1. Откройте настройки:
     - `File` или `Code` -> `Preferences` -> `Settings`.
-1. Update `clang-format` Fallback Style:
+1. Update `clang-format` `Fallback Style`:
     - Search for `C_Cpp.clang_format_fallbackStyle`.
     - Set it to `Chromium`.
 1. Update `clang` version of `C++`:
@@ -107,11 +134,17 @@ VSCode поддерживает `clang` и `clang-format` из коробки. �
 1. Specify `clang` compiler path:
     - Search for `C_Cpp.default.compilerPath`.
     - Specify path to your `clang++` binary.
-      - Пример: `/usr/bin/clang++`
+      - Пример: `/usr/local/opt/llvm/bin/clang++`
       - Чтобы узнать ваш путь, можете воспользоваться командой:
         - `where clang++`
 
-Форматировать файл в VSCode можно сочетанием клавиш: `alt` или `opt` + `shift` + `f`.
+Форматировать файл в `VSCode` можно сочетанием клавиш: (`alt` или `opt`) + `shift` + `f`.
+
+# Shell
+
+Рекомендация:
+Лично я использую `zsh`, на мой взгляд он удобней, чем `bash`.
+Чтобы расширить его возможности, есть крутой фреймворк [`oh-my-zsh`](https://github.com/ohmyzsh/ohmyzsh).
 
 # Hello World App
 
@@ -140,9 +173,9 @@ VSCode поддерживает `clang` и `clang-format` из коробки. �
 - [`clang` Documentation](https://clang.llvm.org)
 - [`clang-format` Documentation](https://clang.llvm.org/docs/ClangFormat.html)
 - `git` Documentation and Guides:
-  - https://docs.github.com/en/get-started/quickstart/set-up-git
-  - https://docs.github.com/en/get-started/getting-started-with-git
-  - https://github.com/git-guides
-  - https://en.wikipedia.org/wiki/Version_control
-  - https://en.wikipedia.org/wiki/Git
+  - [GitHub: Set Up Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
+  - [GitHub: Getting Started with Git](https://docs.github.com/en/get-started/getting-started-with-git)
+  - [GitHub: Git Guides](https://github.com/git-guides)
+  - [Wiki: Version Control](https://en.wikipedia.org/wiki/Version_control)
+  - [Wiki: Git](https://en.wikipedia.org/wiki/Git)
 - [GitHub](github.com)

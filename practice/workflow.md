@@ -10,16 +10,16 @@
     - [Docs: Syncing a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
 1. Для каждой новой задачи создаете новый `branch`:
     - Формат названий бранчей следующий:
-      - `name_surname/task_number`
+      - `surname_name/task_number`
     - Пример:
-      - `grigorii_lutkov/task_01`
+      - `lutkov_grigorii/task_01`
     - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches)
 1. Все файлы должны находиться в вашей подпапке:
     - Формат иерархии директорий следующий:
-      - `/name_surname/*`
+      - `/surname_name/*`
     - Пример:
-      - `/grigorii_lutkov/*`
-1. Все изменения должны находиться только внутри данной папки. Так как мы все работаем в одном общем репозитории, то каждый работает только внутри своей папки и не трогает файлы других студентов. Каждый отдельный `branch` должен включать в себя только те изменения, которые имеют отношения к конкретной задаче.
+      - `/lutkov_grigorii/*`
+1. Все изменения должны находиться только внутри данной папки. Так как мы все работаем в одном общем репозитории, то каждый работает только внутри своей папки и не трогает файлы других студентов. Каждый отдельный `branch` должен включать в себя только те изменения, которые имеют отношение к конкретной задаче.
 1. Когда задача готова, вы должны прогнать ваши файлы через `linter`:
     - Мы будем используем `clang-format`, инструкция по установки описана в [`Initial Setup`](initial_setup).
     - Файл конфигурации уже лежит в корне общего репозитория и выглядит так: [`.clang-format`](.clang-format).
@@ -33,18 +33,19 @@
         - Вариант 2, в две строки, у кого в одну строку не работает:
           - `clang-format -i -style=Chromium *.cpp`
           - `clang-format -i -style=Chromium *.hpp`
-            - `-i` - означает `Inplace`, то есть `linter` будет обновлять файлы при форматировании.
+            - `-i` - означает `inplace`, то есть `linter` будет обновлять файлы при форматировании.
             - `-style=Chromium` - базовый стиль форматирования.
             - `*.cpp` - путь и маска, по которому искать файлы.
-    - Можно создать `makefile` и автоматизировать этот процесс. Это уже по желанию.
+    - Можно создать `makefile` и автоматизировать процесс. Это уже по желанию.
+    - Можно форматировать через `VSCode`, настройка описана в [`Initial Setup`](initial_setup).
 1. После этого создаете `Pull Request` со следующими параметрами:
     - Base Repository: Общий репозиторий
     - Base Branch: `master`
     - Head Repository: Ваш `fork` общего репозитория
     - Compare Branch: `branch`, в котором вы выполняли работу по конкретной задаче
-    - Name: `name_surname/task_number`
+    - Name: `surname_name/task_number`
       - Пример:
-        - `grigorii_lutkov/task_01`
+        - `lutkov_grigorii/task_01`
     - Status: `Ready for Review`
       - [Docs: Changing the State of a Pull Request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request)
     - Reviewers: `Grigorii Lutkov`
@@ -64,10 +65,13 @@
     - Я подтверждаю изменения.
       - Вы можете мерджить `Pull Request`
         - [Docs: Merging a Pull Request](https://docs.github.com/en/github/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request)
+      - Если возникли конфликты, их нужно разрешить и завершить слияние
+        - [Docs: About Merge Conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/about-merge-conflicts)
+        - [Docs: Resolving a Merge Conflict](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
     - Я оставляю комментарии и запрашиваю изменения.
-      - Исправляете ошибки
-      - Коммитите исправления в свой `branch`
-      - `Pull Request` обновится автоматически
+      - Исправляете ошибки.
+      - Коммитите исправления в свой `branch`.
+      - `Pull Request` обновится автоматически.
       - Запрашиваете ревью:
         - [Docs: Requesting a Pull Request Review](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)
 1. Повторяем предыдущий шаг, пока не добьемся успеха.
@@ -76,18 +80,21 @@
 
 Если у вас заблокирован `merge` для вашего `Pull Request`, или есть другая необходимость получить свежие изменения из общего мастера, то нужно следовать следующей логике:
 
-1. Обновить ваш форк
+1. Подтянуть изменения из `master` общего репо в `master` вашего форка.
+    - Кнопка `Fetch Upstream` на странице вашего форка. Не перепутайте ветку.
     - [Docs: Syncing a Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
-1. Перейти в локальный master
+1. Перейти в локальный master:
+    - `git switch master`
+    - или
     - `git checkout master`
-1. Обновить локальный master
+1. Подтянуть изменения:
     - `git pull origin master`
-1. Перейти в свою ветку
-    - `git checkout name_of_my_branch`
-1. Добавить в неё новые изменения из мастера
+1. Перейти в свою ветку:
+    - `git switch name_of_my_branch`
+1. Добавить в неё новые изменения из мастера:
     - `git merge master`
     - Docs: [Git](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), [Atlassian](https://www.atlassian.com/git/tutorials/using-branches/git-merge)
-1. Обновить свой PR
+1. Обновить свой PR:
     - `git push origin name_of_my_branch`
 
 # Rollback Changes from Pull Request
@@ -101,8 +108,6 @@
   - Читать выше, [Updating Your Fork](#updating-your-fork)
 - Переходите в свой `branch`
   - `git switch your_branch`
-  - или
-  - `git checkout your_branch`
 - Откатываете изменение для файлов:
   - `git checkout master -- file_path`
 - Создаете `commit` с изменениями

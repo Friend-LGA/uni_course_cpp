@@ -137,7 +137,7 @@ namespace uni_course_cpp {
     }  // namespace config
     ```
 1. Пример пути до директории `temp`:
-    - `/name_surname/temp/`
+    - `/surname_name/temp/`
 1. Добавить директорию `temp` в конец файла `/.gitignore`:
 1. Соответственно, этой директории в вашем ПР быть не должно.
 
@@ -189,7 +189,7 @@ namespace uni_course_cpp {
       ```
 1. Файл `log.txt` создавать внутри поддиректории `temp`.
     - Пример:
-      - `/name_surname/temp/log.txt`
+      - `/surname_name/temp/log.txt`
 1. Обновить `config` и забирать из него путь до файла `log.txt`:
     ```cpp
     namespace config {
@@ -241,14 +241,9 @@ int main() {
 # Содержание `Pull Request`
 
 - `*.cpp` и `*.hpp` исходные файлы.
-- Скомпилированный бинарник.
 - Изменения в `/.gitignore`.
-- `makefile` (по желанию).
+- `makefile` по желанию.
 
 # Время Выполнения
 
 1 Неделя.
-
-# Количество Баллов
-
-10 Баллов.

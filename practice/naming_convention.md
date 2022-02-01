@@ -1,12 +1,10 @@
 # Naming Convention
 
 В каждой команде, которая ведет разработку совместно, всегда имеется свой стандарт написания кода.
-
-Поэтому давайте договоримся с вами о наших стандартах наименования:
+Наши стандары наименования будут следующими:
 
 - Файлы:
-  - `snake_case` или `CamelCase`
-  - Главное, чтобы было постоянство.
+  - `snake_case`
   - Расширения файлов:
     - `.hpp` - header files
     - `.cpp` - source files
@@ -14,9 +12,6 @@
     ```cpp
     - graph_generator.hpp
     - graph_generator.cpp
-    // или
-    - GraphGenerator.hpp
-    - GraphGenerator.cpp
     ```
 - Названия для `Struct`, `Class`, `Enum`, `Type` и опций внутри `Enum`:
   - `CamelCase`
@@ -28,15 +23,11 @@
     using SomeType = int;
     ```
 - Названия для перменных и функций:
-  - `snake_case` или `camelCase`
-  - Главное, чтобы было постоянство.
+  - `snake_case`
   - Пример:
     ```cpp
     int some_var = 15;
     void some_function();
-    // или
-    int someVar = 15;
-    void someFunction();
     ```
 - Названия для приватных переменных:
   - Оканчиваются на `_`
@@ -49,16 +40,17 @@
       int private_var_;
     }
     ```
-- Названия  констант:
-  - `ALL_CUPS` или `kCamelCase` или `k_snake_case`
+- Названия глобальных констант:
+  - `kCamelCase`
   - Пример:
     ```cpp
-    static constexpr int MONTHS_COUNT = 12;
-    // или
     static constexpr int kMonthsCount = 12;
-    // или
-    static constexpr int k_months_count = 12;
     ```
+- Не использовать зарезервированные форматы:
+  - Все буквы капсом - `ALL_CAPS`
+  - Начинающиеся с подчеркивания - `_name`
+- Сначала `const` модификатор, потом тип данных, потом ссылка или указатель:
+  - `const Graph& graph;`
 
 # Links
 
