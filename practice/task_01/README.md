@@ -57,7 +57,7 @@
     ```
 1. Добавьте новые файлы в индекс, чтобы `git` отслеживал изменения в них:
     - Вариант 1: перечислить все файлы:
-        - `git add README.md hello_world.cpp hello_world screenshot.png`
+        - `git add README.md hello_world.cpp screenshot.png`
     - Вариант 2: добавляет все файлы по указанному пути:
         - `git add ./` или `git add .`
     - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [GitHub](https://github.com/git-guides/git-add), [Atlassian](https://www.atlassian.com/git/tutorials/saving-changes)
