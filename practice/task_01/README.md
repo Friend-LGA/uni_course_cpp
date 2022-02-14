@@ -44,6 +44,7 @@
     - `git --version`
     - `git config --global user.name`
     - `git config --global user.email`
+    - `git remote get-url origin`
     - `./hello_world`
 1. Сделайте скриншот окна терминала с полученной информацией.
     ![Screenshot](screenshot.png)
