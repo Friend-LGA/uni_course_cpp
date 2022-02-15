@@ -220,7 +220,7 @@ int main() {
   prepare_temp_directory();
 
   const auto params = GraphGenerationParams(depth, new_vertices_count);
-  const auto generator = GraphGenerator(params);
+  const auto generator = GraphGenerator(std::move(params));
   auto& logger = Logger::get_logger();
 
   for (int i = 0; i < graphs_count; i++) {

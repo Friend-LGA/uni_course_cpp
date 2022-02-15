@@ -95,7 +95,7 @@ class GraphTraversalController {
   using TraversalFinishedCallback =
       std::function<void(int index,
                          const Graph& graph,
-                         std::vector<GraphPath> paths)>;
+                         std::vector<GraphPath>&& paths)>;
 
   class Worker;
 
@@ -121,7 +121,7 @@ void traverse_graphs(const std::vector<Graph>& graphs) {
         logger.log(traversal_started_string(index));
       },
       [&logger](int index, const Graph& graph,
-                std::vector<GraphPath> paths) {
+                std::vector<GraphPath>&& paths) {
         logger.log(traversal_finished_string(index, paths));
       });
 }
@@ -134,7 +134,7 @@ int main() {
   prepare_temp_directory();
 
   const auto params = GraphGenerator::Params(depth, new_vertices_count);
-  const auto graphs = generate_graphs(params, graphs_count, threads_count);
+  const auto graphs = generate_graphs(std::move(params), graphs_count, threads_count);
 
   traverse_graphs(graphs);
 

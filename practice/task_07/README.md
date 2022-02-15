@@ -32,7 +32,7 @@ class GraphGenerationController {
  public:
   using JobCallback = std::function<void()>;
   using GenStartedCallback = std::function<void(int index)>;
-  using GenFinishedCallback = std::function<void(int index, Graph graph)>;
+  using GenFinishedCallback = std::function<void(int index, Graph&& graph)>;
 
   class Worker {
    public:
@@ -53,7 +53,7 @@ class GraphGenerationController {
 
   GraphGenerationController(int threads_count,
                             int graphs_count,
-                            GraphGenerator::Params graph_generator_params);
+                            GraphGenerator::Params&& graph_generator_params);
 
   void generate(const GenStartedCallback& gen_started_callback,
                 const GenFinishedCallback& gen_finished_callback);
@@ -148,7 +148,7 @@ std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
                                    int graphs_count,
                                    int threads_count) {
   auto generation_controller =
-      GraphGenerationController(threads_count, graphs_count, params);
+      GraphGenerationController(threads_count, graphs_count, std::move(params));
 
   auto& logger = Logger::get_logger();
 
@@ -159,11 +159,11 @@ std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
       [&logger](int index) {
         logger.log(generation_started_string(index));
       },
-      [&logger, &graphs](int index, Graph graph) {
+      [&logger, &graphs](int index, Graph&& graph) {
         const auto graph_description = printing::print_graph(graph);
         logger.log(generation_finished_string(index, graph_description));
-        graphs.push_back(graph);
         const auto graph_json = printing::json::print_graph(graph);
+        graphs.push_back(graph);
         write_to_file(graph_json, "graph_" + std::to_string(index) + ".json");
       });
 
@@ -178,7 +178,7 @@ int main() {
   prepare_temp_directory();
 
   const auto params = GraphGenerator::Params(depth, new_vertices_count);
-  const auto graphs = generate_graphs(params, graphs_count, threads_count);
+  const auto graphs = generate_graphs(std::move(params), graphs_count, threads_count);
 
   return 0;
 }

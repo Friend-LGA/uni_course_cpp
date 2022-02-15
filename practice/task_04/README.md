@@ -227,7 +227,7 @@ int main() {
   const int new_vertices_count = handle_new_vertices_count_input();
 
   const auto params = GraphGenerationParams(depth, new_vertices_count);
-  const auto generator = GraphGenerator(params);
+  const auto generator = GraphGenerator(std::move(params));
   const auto graph = generator.generate();
 
   const auto graph_json = printing::json::print_graph(graph);

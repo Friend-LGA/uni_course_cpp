@@ -6,7 +6,7 @@
   ```cpp
   struct Edge {
     using Duration = int;
-    Duration duration_;
+    const Duration duration;
   };
   ```
   - `Duration` может принимать рандомное значение из соответствующего диапазона:
@@ -108,7 +108,7 @@ int main() {
   logger.log(game_preparing_string());
 
   const auto params = GraphGenerator::Params(depth, new_vertices_count);
-  const auto game_generator = GameGenerator(params);
+  const auto game_generator = GameGenerator(std::move(params));
   const auto game = game_generator.generate();
 
   logger.log(game_ready_string(game));
