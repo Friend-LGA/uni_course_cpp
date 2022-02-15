@@ -46,35 +46,25 @@ class Graph {
 Вершина должна иметь поле `id` и ничего более:
 ```cpp
 struct Vertex {
- public:
-  explicit Vertex(VertexId id) : id_(id) {}
+  explicit Vertex(VertexId init_id) : id(init_id) {}
 
-  VertexId id() const { return id_; }
-
- private:
-  VertexId id_ = 0;
+  const VertexId id = 0;
 }
 ```
 
 Грань должна иметь поле `id` и `id` вершин, которые она связывает, и ничего более:
 ```cpp
 struct Edge {
- public:
-  Edge(EdgeId id,
-       VertexId from_vertex_id,
-       VertexId to_vertex_id) :
-    id_(id),
-    from_vertex_id_(from_vertex_id),
-    to_vertex_id_(to_vertex_id) {}
+  Edge(EdgeId init_id,
+       VertexId init_from_vertex_id,
+       VertexId init_to_vertex_id) :
+    id(init_id),
+    from_vertex_id(init_from_vertex_id),
+    to_vertex_id(init_to_vertex_id) {}
 
-  EdgeId id() const { return id_; }
-  VertexId from_vertex_id() const { return from_vertex_id_; }
-  VertexId to_vertex_id() const { return to_vertex_id_; }
-
- private:
-  EdgeId id_ = 0;
-  VertexId from_vertex_id_ = 0;
-  VertexId to_vertex_id_ = 0;
+  const EdgeId id = 0;
+  const VertexId from_vertex_id = 0;
+  const VertexId to_vertex_id = 0;
 }
 ```
 
