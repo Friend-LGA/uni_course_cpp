@@ -37,7 +37,6 @@ class Graph {
 Интерфейс для взаимодействия с графом должен быть следующий:
 ```cpp
 class Graph {
- public:
   void add_vertex();
   void add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 };
