@@ -98,7 +98,7 @@ void Worker::stop() {
 }
 
 Worker::~Worker() {
-  // При удалении мы обязательно должны остановить поток, если он запущен
+  // Деструктор обязан очищать все ресурсы, которыми владеет объект
   stop();
 }
 ```
@@ -128,14 +128,10 @@ void GraphGenerationController::generate(
 }
 ```
 
-Данный код - не полная реализация, он - это база, которую вы должны доработать.
-Не забудьте добавить синхронизацию там, где необходимо.
-- `std::mutex`
-- `std::atomic`
-
 ## Синхронизация потоков
 
 Для синхронизации потоков вам понадобятся 2 инструмента:
+- [`std::atomic`](https://en.cppreference.com/w/cpp/atomic/atomic)
 - [`std::mutex`](https://en.cppreference.com/w/cpp/thread/mutex)
 - [`std::lock_goard`](https://en.cppreference.com/w/cpp/thread/lock_guard)
 
