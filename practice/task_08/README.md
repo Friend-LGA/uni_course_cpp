@@ -57,6 +57,7 @@ class GraphTraverser {
 # Реализовать многопоточный поиск путей среди множества графов
 
 - По аналогии с `task_07` создать `GraphTraversalController`, который будет принимать список графов и находить для каждого все кратчайшие пути.
+- Вынести `GraphGenerationController::Worker` в отдельную сущность и переиспользовать его.
 - Максимальное количество воркеров:
   - `const int MAX_WORKERS_COUNT = std::thread::hardware_concurrency();`
 - Логировать начало и конец обхода каждого графа, аналогично логированию генерации графов:
@@ -90,15 +91,6 @@ class GraphTraverser {
 
 ```cpp
 class GraphTraversalController {
-  using TraversalStartedCallback =
-      std::function<void(int index, const Graph& graph)>;
-  using TraversalFinishedCallback =
-      std::function<void(int index,
-                         const Graph& graph,
-                         std::vector<GraphPath>&& paths)>;
-
-  class Worker;
-
   GraphTraversalController(const std::vector<Graph>& graphs);
 
   void traverse(
@@ -117,11 +109,10 @@ void traverse_graphs(const std::vector<Graph>& graphs) {
   auto& logger = Logger::get_logger();
 
   traversal_controller.traverse(
-      [&logger](int index, const Graph& graph) {
+      [...](...) {
         logger.log(traversal_started_string(index));
       },
-      [&logger](int index, const Graph& graph,
-                std::vector<GraphPath>&& paths) {
+      [...](...) {
         logger.log(traversal_finished_string(index, paths));
       });
 }
