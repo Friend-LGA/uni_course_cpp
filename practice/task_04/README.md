@@ -48,7 +48,7 @@ class GraphGenerator {
     int new_vertices_count_ = 0;
   };
 
-  explicit GraphGenerator(Params&& params) : params_(params) {}
+  explicit GraphGenerator(const Params&& params) : params_(params) {}
 
   Graph generate() const {
     auto graph = Graph();
