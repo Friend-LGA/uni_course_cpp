@@ -56,7 +56,16 @@
 
 ### Логика генерации остальных цветных граней
 
-Тут все просто, оборачиваете генерацию граней каждого отдельного цвета в отдельный поток (`std::thread`).
+1) Оборачиваете генерацию граней каждого отдельного цвета в отдельный поток (`std::thread`).
+2) Так как обработка вершин не взаимосвязана, используйте многопоточную версию цикла `for` с параллельной политикой выполнения `std::execution::par`:
+
+```cpp
+std::for_each(std::execution::par, begin, end, lambda_function);
+```
+
+Ссылки:
+- [`for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each)
+- [`execution_policy`](https://en.cppreference.com/w/cpp/algorithm/execution_policy_tag_t)
 
 ## Псевдокод
 
@@ -88,7 +97,7 @@ class GraphGenerator {
 
   void generate_grey_edges(...) {
     // Job - это lambda функция,
-    // которая энкапсулирует в себе генерацию однйо ветви
+    // которая энкапсулирует в себе генерацию одной ветви
     using JobCallback = std::function<void()>;
     auto jobs = std::list<JobCallback>();
 
@@ -149,7 +158,6 @@ class GraphGenerator {
 }
 ```
 
-Данный код - не полная реализация, он - это база, которую вы должны доработать.
 Не забудьте добавить синхронизацию там, где необходимо.
 - `std::mutex`
 - `std::atomic`
