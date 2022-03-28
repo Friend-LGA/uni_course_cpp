@@ -60,7 +60,7 @@ class GraphGenerator {
   }
 
  private:
-  Params params_ = Params();
+  Params params_ = Params(0, 0);
 };
 ```
 
