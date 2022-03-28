@@ -219,7 +219,7 @@ int main() {
   const int graphs_count = handle_graphs_count_input();
   prepare_temp_directory();
 
-  const auto params = GraphGenerationParams(depth, new_vertices_count);
+  const auto params = GraphGenerator::Params(depth, new_vertices_count);
   const auto generator = GraphGenerator(std::move(params));
   auto& logger = Logger::get_logger();
 
