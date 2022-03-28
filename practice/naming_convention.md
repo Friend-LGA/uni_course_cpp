@@ -22,12 +22,13 @@
     enum class SomeEnum { OptionOne, OptionTwo, OptionThree };
     using SomeType = int;
     ```
-- Названия для перменных и функций:
+- Названия для перменных, функций и неймспейсов:
   - `snake_case`
   - Пример:
     ```cpp
     int some_var = 15;
     void some_function();
+    namespace some_namespace {}
     ```
 - Названия для приватных переменных:
   - Оканчиваются на `_`
@@ -38,7 +39,7 @@
       int public_var;
      private:
       int private_var_;
-    }
+    };
     ```
 - Названия глобальных констант:
   - `kCamelCase`
