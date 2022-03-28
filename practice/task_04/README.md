@@ -37,7 +37,7 @@ class GraphGenerator {
  public:
   struct Params {
    public:
-    explicit Params(Graph::Depth depth, int new_vertices_count) :
+    Params(Graph::Depth depth, int new_vertices_count) :
       depth_(depth), new_vertices_count_(new_vertices_count) {}
 
     Graph::Depth depth() const { return depth_; }
