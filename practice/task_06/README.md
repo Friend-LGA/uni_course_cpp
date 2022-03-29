@@ -134,8 +134,7 @@ class GraphGenerator {
       };
 
     // Создаем и запускаем потоки с воркерами
-    // MAX_THREADS_COUNT = 4
-    const auto threads_count = std::min(MAX_THREADS_COUNT, new_vertices_count);
+    const auto threads_count = std::min(kMaxThreadsCount, new_vertices_count);
     auto threads = std::vector<std::thread>();
     threads.reserve(threads_count);
     // fill threads
