@@ -112,7 +112,7 @@ class GraphGenerator {
     // Создаем воркера,
     // который в бесконечном цикле проверяет,
     // есть ли работа, и выполняет её
-    auto worker = [&should_terminate, &jobs_mutex, &jobs]() {
+    const auto worker = [&should_terminate, &jobs_mutex, &jobs]() {
         while (true) {
           // Проверка флага, должны ли мы остановить поток
           if (should_terminate) {
