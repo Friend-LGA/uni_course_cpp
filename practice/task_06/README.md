@@ -67,6 +67,128 @@ std::for_each(std::execution::par, begin, end, lambda_function);
 - [`for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each)
 - [`execution_policy`](https://en.cppreference.com/w/cpp/algorithm/execution_policy_tag_t)
 
+## Работа с потоками
+
+Базовой структурой для работы с потоками в `C++` является [`std::thread`](https://en.cppreference.com/w/cpp/thread/thread).
+
+При создании `std::thread` необходимо
+1) Указать функцию или лямбда функцию, которую он будет выполнять.
+2) Выполнить одну из следующих операций:
+    - `.join()` - означает что родительский поток в этом месте дождется завершения
+    выполнения порожденного потока, и только после этого продолжит своё выполнение.
+    - `.detach()` - означает что родительский поток не будет дожидаться завершения
+    выполнения порожденного потока и сразу же продолжит своё выполнение.
+
+До момента выхода из скопа, где вы создали поток, обязательно нужно выполнить либо
+`join`, либо `detach`, иначе программа выкинет исключение.
+
+```cpp
+void some_function() {
+  int a = 1;
+  int b = 5;
+  int c = 0;
+  // Создаем поток, который выполнит лямда функцию и сложит a + b
+  const auto thread = std::thread([a, b, &c]() {
+    c = a + b;
+  });
+  // Выведет на экран "0"
+  std::cout << c << std::endl;
+  // Дожидаемся выполнения потока
+  thread.join();
+  // Выведет на экран "6"
+  std::cout << c << std::endl;
+}
+```
+
+## Синхронизация потоков
+
+Когда у вас есть разделяемые ресурсы между потоками, другими словами,
+когда есть несколько потоков, которые обращаются и изменяют одни и те же ресурсы,
+необходимо такие ресурсы синхронизировать.
+
+Для этого давайте рассмотри 3 базовых инструмента:
+
+1\) [`std::atomic`](https://en.cppreference.com/w/cpp/atomic/atomic) - используется, когда вам нужно синхронизировать обращение к примитивным типам.
+Помогает избежать оверхэда, возникающего при работе с `std::mutex`.
+
+```cpp
+std::atomic<bool> atomic_bool = false;
+
+const auto thread1 = std::thread([&atomic_bool]() {
+  if (atomic_bool) {
+    atomic_bool = false;
+  }
+});
+
+const auto thread2 = std::thread([&atomic_bool]() {
+  if (!atomic_bool) {
+    atomic_bool = true;
+  }
+});
+```
+
+В данном коде у нас с вами происходит, так называемое "Race Condition".
+Оба потока обращаются и изменяют одни и те же данные. В этом случае
+логика программы будет предсказуема, так как мы используем `std::atomic`.
+
+2\) [`std::mutex`](https://en.cppreference.com/w/cpp/thread/mutex) - используется для синхронизации общей логики между потоками. Для начала синхронизации необходимо вызвать
+`.lock()`, и для завершения синхронизации - `.unlock()`.
+
+```cpp
+bool flag = false;
+std::mutex flag_mutex;
+
+const auto thread1 = std::thread([&flag, &flag_mutex]() {
+  flag_mutex.lock();
+  if (flag) {
+    flag = false;
+  }
+  flag_mutex.unlock();
+});
+
+const auto thread2 = std::thread([&flag, &flag_mutex]() {
+  flag_mutex.lock();
+  if (!flag) {
+    flag = true;
+  }
+  flag_mutex.unlock();
+});
+```
+
+3\) [`std::lock_guard`](https://en.cppreference.com/w/cpp/thread/lock_guard) - используется как альтернатива ручному контролю блокировки `std::mutex`.
+При использовании `std::lock_guard` нет необходимости выывать `lock` и `unlock`,
+так как деструктор объекта `std::lock_guard` вызовет `unlock` автоматически.
+
+Возможные ошибки при ручном контроле блокировок:
+```cpp
+std::mutex some_mutex;
+
+// Пример 1
+some_mutex.lock();
+if (flag) {
+  // ...
+} else if (other_flag) {
+  // Ошибка!!! `some_mutex` остался заблокированным
+  return false;
+} else {
+  // Ошибка!!! `some_mutex` остался заблокированным
+  throw std::runtime_error();
+}
+some_mutex.unlock();
+```
+
+Использование `std::lock_guard`:
+```cpp
+const std::lock_guard lock(mutex);
+if (flag) {
+  // ...
+} else if (other_flag) {
+  return false;
+} else {
+  throw std::runtime_error();
+}
+```
+
 ## Псевдокод
 
 ```cpp
@@ -158,8 +280,9 @@ class GraphGenerator {
 ```
 
 Не забудьте добавить синхронизацию там, где необходимо.
-- `std::mutex`
 - `std::atomic`
+- `std::mutex`
+- `std::lock_guard`
 
 ## Функция `main` вашей программы
 
