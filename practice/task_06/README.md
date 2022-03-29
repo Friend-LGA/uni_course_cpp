@@ -37,7 +37,7 @@
                  ╰──────────────────────────────────────────────╯
   ```
     - Максимальное число потоков `std::thread::hardware_concurrency()`, независимо от `new_vertices_count`
-      - `const int MAX_THREADS_COUNT = std::thread::hardware_concurrency();`
+      - `const int kMaxThreadsCount = std::thread::hardware_concurrency();`
     - Если все потоки заняты, соответственно следующие ветви ждут своей очереди.
 - После того, как вершины и серые грани сгенерированы, переходим к остальным цветам граней:
   - Зеленые грани генерируются в отдельном потоке
