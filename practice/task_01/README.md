@@ -1,6 +1,6 @@
 # Задача 1
 
-1. Открыть [GitHub.com](github.com)
+1. Открыть [`GitHub`](github.com)
 1. Сделать `fork` репозитория, куда вы будете загружать выполненные задачи (ссылку спросить у меня).
     - [Docs: About Forks](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks)
     - [Docs: Fork a Repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
@@ -21,7 +21,7 @@
     - Пример:
       - `lutkov_grigorii`
 1. Перейдите в свою папку.
-1. Напишите простую C++ программу `hello_world.cpp`, которая будет выводить на экран 2 строки:
+1. Напишите простую `C++` программу `hello_world.cpp`, которая будет выводить на экран 2 строки:
     ```cpp
     #include <iostream>
 
@@ -65,12 +65,12 @@
 1. Создайте локально новый коммит с названием `Add hello_world app`
     - `git commit -m "Add hello_world app"`
       - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [GitHub](https://github.com/git-guides/git-commit), [Atlassian](https://www.atlassian.com/git/tutorials/saving-changes/git-commit)
-1. Отправьте ваши изменения в ветке `surname_name/task_01` в ваш `fork` на GitHub:
+1. Отправьте ваши изменения в ветке `surname_name/task_01` в ваш `fork` на `GitHub`:
     - `git push origin surname_name/task_01`
       - Docs: [Git](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes), [GitHub](https://github.com/git-guides/git-push), [Atlassian](https://www.atlassian.com/git/tutorials/syncing/git-push)
 1. Переключитесь на ветку `master`
     - `git switch master`
-1. Откройте свой `fork` на [GitHub.com](github.com) и создайте `Pull Request` со следующими параметрами:
+1. Откройте свой `fork` на [`GitHub`](github.com) и создайте `Pull Request` со следующими параметрами:
     - Base Repository: Тот, откуда вы делали `fork`
     - Base Branch: `master`
     - Head Repository: Ваш `fork`
@@ -90,8 +90,8 @@
 
 Все эти шаги так же описаны в основном [`Workflow`](/workflow.md).
 
-Обратите внимание, что `git` требует обятательного наличия знака новой строки `\n` в конце файла.
-Иначе в вашем `Pull Request` вы увидите ошибку - `no newline at end of file`.
+Обратите внимание, что `git` требует обязательного наличия знака новой строки `\n` в конце файла,
+иначе в вашем `Pull Request` вы увидите ошибку - `no newline at end of file`.
 Будьте внимательны.
 
 # Содержание `Pull Request`
@@ -109,9 +109,9 @@
   - [Docs: Git](https://git-scm.com/doc)
   - [Guides: GitHub](https://github.com/git-guides/)
   - [Guides: Atlassian Git](https://www.atlassian.com/git)
-- GitHub
+- `GitHub`
   - [Docs](https://docs.github.com/en)
-- Markdown
+- `Markdown`
   - [Docs](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
   - [Guides](https://guides.github.com/features/mastering-markdown/)
 - `.gitignore`
