@@ -189,7 +189,7 @@ if (flag) {
 }
 ```
 
-## Псевдокод
+# Псевдокод
 
 ```cpp
 class GraphGenerator {
@@ -284,7 +284,11 @@ class GraphGenerator {
 - `std::mutex`
 - `std::lock_guard`
 
-## Функция `main` вашей программы
+# Частые Ошибки
+
+- [Не инициализированные переменные](/practice/common_mistakes.md#uninitialised-variables)
+
+# Функция `main` вашей программы
 
 Без изменений.
 
