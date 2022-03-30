@@ -94,17 +94,27 @@
 иначе в вашем `Pull Request` вы увидите ошибку - `no newline at end of file`.
 Будьте внимательны.
 
+# Частые Ошибки
+
+- [Неверное название бранчей](/practice/common_mistakes.md#incorrect-branch-naming)
+- [Неверная иерархия файлов](/practice/common_mistakes.md#incorrect-file-hierarchy)
+- [Добавление в `Pull Request` неотносящихся изменений](/practice/common_mistakes.md#unrelated-changes-inside-pull-request)
+- [Отсутвие символа новой строки в конце файла](/practice/common_mistakes.md#no-newline-at-end-of-file)
+- [Использование `using namespace`](/practice/common_mistakes.md#using-of-using-namespace)
+- [Ненужные аргументы в `main()`](/practice/common_mistakes.md#unnecessary-main-arguments)
+
 # Содержание `Pull Request`
 
 - `hello_world.cpp` исходный файл.
 - `screenshot.png` cкриншот командной строки с данными.
-- `README.md` с вашими именем и фамилией (eng + rus) и скриншотом.
+- `README.md` с вашими именем и фамилией (`eng` + `rus`) и скриншотом.
 
 # Время Выполнения
 
 1 Неделя.
 
 # Полезные ссылки
+
 - `git`
   - [Docs: Git](https://git-scm.com/doc)
   - [Guides: GitHub](https://github.com/git-guides/)
