@@ -1,6 +1,6 @@
 # Common Mistakes
 
-# Incorrect Branch Naming
+## Incorrect Branch Naming
 ### Неверное название бранчей (`branch`)
 
 Повторяю:
@@ -9,7 +9,7 @@
 - Пример:
   - `lutkov_grigorii/task_01`
 
-# Incorrect File Hierarchy
+## Incorrect File Hierarchy
 ### Неверная иерархия файлов
 
 Повторяю:
@@ -18,7 +18,7 @@
 - Пример:
   - `/lutkov_grigorii/*`
 
-# Unrelated Changes Inside `Pull Request`
+## Unrelated Changes Inside `Pull Request`
 ### Добавление в `Pull Request` неотносящихся изменений
 
 К примеру, при добавлении файлов первой задачи, вы, зачем-то, удаляете файлы других студентов из репозитория :))
@@ -27,7 +27,7 @@
 
 Вернемся к примеру выше: для реализации первой задачи, необходимости удалять чужие файлы из репозитория нет.
 
-# No Newline at End of File
+## No Newline at End of File
 ### Отсутвие символа новой строки в конце файла
 
 У текстовых фалов есть определенный формат, и, следуя этому формату, заканчиваться они должны символом новой строки. Это необходимо чтобы правильно определять количество строк в файле.
@@ -36,7 +36,7 @@
 - [Дискуссия 1](https://stackoverflow.com/questions/5813311/whats-the-significance-of-the-no-newline-at-end-of-file-log)
 - [Дискуссия 2](https://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file)
 
-# Using of `using namespace`
+## Using of `using namespace`
 ### Использование `using namespace`
 
 Использовать `using namespace` считается плохой практикой.
@@ -57,7 +57,7 @@ std::cout << "..." << std::endl;
 Кому сильно интересно:
 - [Дискуссия](https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice)
 
-# Unnecessary `main()` Arguments
+## Unnecessary `main()` Arguments
 ### Ненужные аргументы в `main()`
 
 Если вы не передаете в `main` никаких аргументов, то и не стоит усложнять свой код.
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) { return 0; }
 int main() { return 0; }
 ```
 
-# Short Names
+## Short Names
 ### Короткие названия
 
 Мы с вами пытаемся писать не шифр, который необходимо декодировать, и не машинный код.
@@ -98,7 +98,7 @@ const auto edges = std::vector<Edge>(e);
 const auto graph = Graph(vertices, edges);
 ```
 
-# Naming of Different Entities
+## Naming of Different Entities
 ### Наименование различных сущностей
 
 1. Если это объект, например класс или структура, то он должен быть назван как какая-то сущность, например `генератор графа`:
@@ -114,7 +114,7 @@ const auto graph = Graph(vertices, edges);
     - `namespace graph_generation {}`
     - `graph_generation.hpp`
 
-# Naming of Variables
+## Naming of Variables
 ### Наименование переменных
 
 1. Если это единственный объект, то он, соотвественно, должен называться в единственном числе:
@@ -128,7 +128,7 @@ const auto graph = Graph(vertices, edges);
       const auto edges = std::vector<Edge>();
       ```
 
-# Misleading Naming
+## Misleading Naming
 ### Подмена понятий
 
 Ещё один интересный пример. Предположим у вас есть следующие типы данных:
@@ -212,7 +212,7 @@ class Graph {
 Как вам такой вариант? Проще? Понятней? Не нужно никуда ходить и ничего проверять, все очевидно из названий перменных.
 Это то, к чему вы должны стремиться, ясный, легко читаемый код, а не закодированный шифр.
 
-# `Struct` vs `Class`
+## `Struct` vs `Class`
 ### `Struct` или `Class`
 
 `Struct` и `Class` взаимозаменяемые. Единственное их отличие в том,
@@ -221,7 +221,7 @@ class Graph {
 Для простых объектов, которые только хранят данные и не имеют сложной логики, принято использовать `Struct`.
 Для более сложных объектов, которые не только хранят данные, но и реализуют логику, лучше использовать `Class`.
 
-# `explicit` Keyword
+## `explicit` Keyword
 ### `explicit` ключевое слово
 
 `explicit` ключевое слово, использумое для запрета автоматического (`implicit`) приведения типов при создании нового экземпляра объекта.
@@ -275,7 +275,7 @@ struct Edge {
 }
 ```
 
-# `const` vs `constexpr`
+## `const` vs `constexpr`
 ### `const` или `constexpr`
 
 `const` сигнализирует компилятору, что данная переменная не должна изменяться в ходе выполнения программы, и, соотвественно, он выдаст ошибку, если вы попытаетесь её изменить.
@@ -285,7 +285,7 @@ struct Edge {
 Используйте `const` для локальных переменных и аргументов в функциях.
 Используйте `constexpr` для глобальных констант.
 
-# Member Initializer List
+## Member Initializer List
 ### Список инициализации
 
 Когда вы инициализируете члены класса таким образом:
@@ -336,7 +336,7 @@ class SomeClass {
 }
 ```
 
-# Order of Ownership Sectors
+## Order of Ownership Sectors
 ### Последовательность Секторов Видимости
 
 Стоит придерживаться такой последовательности: `public -> protected -> private`.
@@ -370,7 +370,7 @@ class SomeClass {
 }
 ```
 
-# Mutability of Variables
+## Mutability of Variables
 ### Мутабельность переменных
 
 Часто у вас в коде встречаются переменные, которые не изменяются, но при этом не помечены как `const`.
@@ -396,7 +396,7 @@ for (const auto vertex_id : vertex_ids) {
 }
 ```
 
-# Mutability of Function Arguments
+## Mutability of Function Arguments
 ### Мутабельность аргументов функции
 
 Когда вы передаете аргументы в функцию, следуйте следующим правилам:
@@ -411,7 +411,7 @@ for (const auto vertex_id : vertex_ids) {
   - Хорошо:
     - `std::pair<int, bool> function();`
 
-# Mutability of Function Return Value
+## Mutability of Function Return Value
 ### Мутабельность возвращаемого значения из функции
 
 Когда вы возвращаете значение из функции, следуйте следующим правилам:
@@ -424,7 +424,7 @@ for (const auto vertex_id : vertex_ids) {
 - Возвращайте по изменяемой ссылке только в том случае, когда уверены, что данные должны быть изменяемыми, и это заложено в вашем дизайне интерфейса.
   - `Vertex& get_vertex(int id);`
 
-# Mutability of Member Methods
+## Mutability of Member Methods
 ### Мутабельность методов класса
 
 Методы класса можно разделить на 2 вида:
@@ -470,7 +470,7 @@ const auto const_graph = Graph();
 }
 ```
 
-# Complex and/or Many Constructors
+## Complex and/or Many Constructors
 ### Сложные и/или много конструкторов
 
 В продолжении темы про зону ответственности.
@@ -489,7 +489,7 @@ const auto const_graph = Graph();
 
 Поэтому, не надо захламлять ваш класс миллионом конструкторов, подумайте, какой из них является минимально необходимым. Если в ходе написания большого приложения, вы поймете, что у вас есть специфические требования по частой генерации объекта с похожими входными параметрами, даже в этом случае, вам скорее нужно будет написать фабрику, или, другими словами, генератор, чья ответственность как раз и будет тем, чтобы генерировать эти самые объекты.
 
-# `push` vs `emplace`
+## `push` vs `emplace`
 ### `push` или `emplace`
 
 Для большинства коллекций реализован метод `emplace`, который существует для того, чтобы создавать новый элемент при добавлении.
@@ -515,7 +515,7 @@ vector.emplace_back(arg1, arg2);
 1. Нет лишней переменной.
 1. Избегаем лишнего копирования.
 
-# `const` Class Members
+## `const` Class Members
 ### `const` члены класса
 
 Если данные в объекте при жизни не меняются - имеет смысл делать их `const`, например:
@@ -556,7 +556,7 @@ class Vertex {
 
 Теперь копирование будет работать.
 
-# Single-Responsibility Principle
+## Single-Responsibility Principle
 ### Принцип единственной ответственности
 
 Часто встречается плохое понимание зоны отвественности объявляемой сущности, например класса `Graph`.
@@ -575,7 +575,7 @@ class Vertex {
 
 Та логика, за которую он не в отвественности, должна быть реализована вне данного класса.
 
-# Collections Traversal
+## Collections Traversal
 ### Обход коллекций
 
 Использовать индекс считается наихудшим вариантом, так как это очень детальная запись,
@@ -611,7 +611,7 @@ for (const auto& item : items) {
 }
 ```
 
-# Collections Traversal Naming
+## Collections Traversal Naming
 ### Наименование при обходе коллекций
 
 1\) Для обхода по индексу, индекс обычно наызвают `i`, `k`, `j`
@@ -645,7 +645,7 @@ for (const auto edge_id : edge_ids) {
 }
 ```
 
-# Huge Functions
+## Huge Functions
 ### Большие функции
 
 В продолжение разговора о `Single-Responcibility`. Этот принцип так же относится и к функциям.
@@ -684,7 +684,7 @@ int main() {
 }
 ```
 
-# `unsigned` Data Types
+## `unsigned` Data Types
 ### `unsigned` типы данных
 
 В целом, старайтесь избегать `unsigned`, так как при конвертации между `signed` и `unsigned` вас могут подстерегать неприятности.
@@ -692,7 +692,7 @@ int main() {
 
 - [CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-mix)
 
-# `int` vs `size_t`
+## `int` vs `size_t`
 ### `int` или `size_t`
 
 Контейнеры используют `size_t` для хранения своего размера и для обращения к элементам по индексу.
@@ -714,7 +714,7 @@ for (size_t i = 0; i < size; i++) {
 }
 ```
 
-# Unnecessary Big Data Types
+## Unnecessary Big Data Types
 ### Использование больших типов данных без необходимости
 
 По-умолчанию, всегда используйте `int` и `float`. Это стандартные фундаментальные типы для целых и дробных чисел соответственно.
@@ -725,7 +725,7 @@ for (size_t i = 0; i < size; i++) {
 Кому сильно интересно:
 - [Дискуссия](https://stackoverflow.com/questions/1074474/should-i-use-double-or-float)
 
-# Free Functions
+## Free Functions
 ### Cвободные функции
 
 Если функция использует только переданные в неё аргументы, то она является свободной функцией и не должна быть частью интерфейса класса.
@@ -777,7 +777,7 @@ for (size_t i = 0; i < size; i++) {
   }
   ```
 
-# Uninitialised Variables
+## Uninitialised Variables
 ### Не инициализированные переменные
 
 Старайтесь никогда не оставлять неинициализхированные перменные, особенно если они теряют `const` из-за этого.
@@ -838,7 +838,7 @@ const auto point = Point(); // default value
 set_point(point); // `point.x` and `point.y` have values
 ```
 
-# Variable Visibility Scope
+## Variable Visibility Scope
 ### Зона Видимости Переменных
 
 Если есть возможность, переменную всегда стоит объявлять в локальной зоне видимости.
@@ -860,7 +860,7 @@ if (const int can_be_nil = get_value()) {
 // `can_be_nil` is not accessible here ...
 ```
 
-# `const` Methods Overriding
+## `const` Methods Overriding
 ### Перегрузка `const` методов
 
 Бывает такое, что вам нужно иметь 2 версии одного метода, `const` и `non-const`.
