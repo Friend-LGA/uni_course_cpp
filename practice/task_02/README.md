@@ -3,10 +3,10 @@
 Данная, и последующие задачи выполняются поверх файлов предыдущей задачи.
 В вашей папке не должны находиться файлы с решением отдельных задач.
 Все изменения накладываются друг на друга.
-Каждый новый ПР изменяет состояние вашего проекта (вашей папки).
+Каждый новый `Pull Request` изменяет состояние вашего проекта (вашей папки).
 У вас должна быть только одна программа с одной функцией `int main()`.
 
-Тот код, который вы увидите здесь ниже и дальше по заданиям - это псевдокод, близкий к C++.
+Тот код, который вы увидите здесь ниже и дальше по заданиям - это псевдокод, близкий к `C++`.
 Я не гарантирую, что он компилируется. Вы должны его придерживаться, но, можете вносить небольние изменения, если считаете это необходимым.
 
 # Написать граф
@@ -45,25 +45,30 @@ class Graph {
 Вершина должна иметь поле `id` и ничего более:
 ```cpp
 struct Vertex {
-  explicit Vertex(VertexId init_id) : id(init_id) {}
+ public:
+  explicit Vertex(VertexId id) : id_(id) {}
+  VertexId id() const { return id_; }
 
-  const VertexId id = 0;
+ private:
+  VertexId id_ = 0;
 }
 ```
 
 Грань должна иметь поле `id` и `id` вершин, которые она связывает, и ничего более:
 ```cpp
 struct Edge {
-  Edge(EdgeId init_id,
-       VertexId init_from_vertex_id,
-       VertexId init_to_vertex_id) :
-    id(init_id),
-    from_vertex_id(init_from_vertex_id),
-    to_vertex_id(init_to_vertex_id) {}
+ public:
+  Edge(EdgeId id, VertexId from_vertex_id, VertexId to_vertex_id) :
+    id_(id), from_vertex_id_(from_vertex_id), to_vertex_id_(to_vertex_id) {}
 
-  const EdgeId id = 0;
-  const VertexId from_vertex_id = 0;
-  const VertexId to_vertex_id = 0;
+    EdgeId id() const { return id_; }
+    VertexId from_vertex_id() const { return from_vertex_id_; }
+    VertexId to_vertex_id() const { return to_vertex_id_; }
+
+ private:
+  EdgeId id_ = 0;
+  VertexId from_vertex_id_ = 0;
+  VertexId to_vertex_id_ = 0;
 }
 ```
 
@@ -74,13 +79,28 @@ struct Edge {
 
 Визуализация дана только для лучшего понимания задачи, вам ничего рисовать не нужно.
 
-## Функция `main` вашей программы
+# Частые ошибки
+
+- [Короткие названия](/practice/common_mistakes.md#short-names)
+- [Наименование различных сущностей](/practice/common_mistakes.md#naming-of-different-entities)
+- [Наименование переменных](/practice/common_mistakes.md#naming-of-variables)
+- [Подмена понятий](/practice/common_mistakes.md#misleading-naming)
+- [`Struct` или `Class`](/practice/common_mistakes.md#struct-vs-class)
+- [`explicit` ключевое слово](/practice/common_mistakes.md#explicit-keyword)
+- [`const` или `constexpr`](/practice/common_mistakes.md#const-vs-constexpr)
+- [Список инициализации](/practice/common_mistakes.md#member-initializer-list)
+- [Последовательность Секторов Видимости](/practice/common_mistakes.md#order-of-ownership-sectors)
+- [Мутабельность переменных](/practice/common_mistakes.md#mutability-of-variables)
+- [Мутабельность аргументов функции](/practice/common_mistakes.md#mutability-of-function-arguments)
+- [Мутабельность возвращаемого значения из функции](/practice/common_mistakes.md#mutability-of-function-return-value)
+- [Мутабельность методов класса](/practice/common_mistakes.md#mutability-of-member-methods)
+- [Сложные и/или много конструкторов](/practice/common_mistakes.md#complex-and-or-many-constructors)
+- [`push` или `emplace`](/practice/common_mistakes.md#push-vs-emplace)
+- [`const` члены класса](/practice/common_mistakes.md#const-class-members)
+
+# Функция `main` вашей программы
 
 ```cpp
-// ... some other logic ...
-
-static constexpr int kVerticesCount = 14;
-
 int main() {
   auto graph = Graph();
 
@@ -120,6 +140,7 @@ int main() {
 
 1 Неделя.
 
-# Полезные ссылки:
+# Полезные ссылки
+
 - [Graph Theory](https://en.wikipedia.org/wiki/Graph_theory)
 - [JSON](https://en.wikipedia.org/wiki/JSON)
