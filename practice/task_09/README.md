@@ -1,4 +1,4 @@
-# Задача 8
+# Задача 9
 
 # Реализовать поиск кратчайшего пути
 
@@ -6,25 +6,20 @@
 - Внутри `GraphTraverser` реализовать интерфейс для поиска кратчайшего пути между 2умя вершинами по алгоритму Дейкстры.
   - [Wiki: Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 - Возвращать путь между вершинами в виде массивов из `VertexId` и `EdgeId`.
-  - Для реализации данной логики создать структуру `GraphPath`.
+  - Для реализации данной логики создать интерфейс `IGraphPath` и структуру `GraphPath`.
 - Для определения дистанции между вершинами добавить пользовательский тип:
-  - `using Distance = int;`
+  - `using PathDistance = int;`
 - На данный момент дистанция между любыми 2умя вершинами - `1`.
 
 ## Пример интерфейса
 
-`graph_path.hpp`:
+`i_graph_path.hpp`:
 ```cpp
-struct GraphPath {
- public:
-  using Distance = int;
-
-  GraphPath(...) : ... {}
-  Distance distance() const;
-
- private:
-  std::vector<VertexId> vertex_ids_;
-  std::vector<EdgeId> edge_ids_;
+using PathDistance = int;
+struct IGraphPath {
+  PathDistance distance() const = 0;
+  const std::vector<VertexId>& vertex_ids() const = 0;
+  const std::vector<EdgeId> edge_ids() const = 0;
 };
 ```
 
@@ -46,7 +41,7 @@ class GraphTraverser {
   - Path 1: 0 -> ... -> ... -> 15
   - Path 2: 0 -> ... -> ... -> 28
 
-## Пример интерфейса
+## Пример класса
 
 ```cpp
 class GraphTraverser {
@@ -63,8 +58,8 @@ class GraphTraverser {
   ```
   date_time Graph 0, Traversal Started
   date_time Graph 0, Traversal Finished, Paths: [
-    {vertices: [root_vertex_id, .., .., .., last_depth_vertex_id], distance: distance},
-    {vertices: [root_vertex_id, .., .., .., last_depth_vertex_id], distance: distance},
+    {vertices: [root_vertex_id, .., last_vertex_id], edges: [first_edge_id, .., last_edge_id], distance: distance},
+    {vertices: [root_vertex_id, .., last_vertex_id], edges: [first_edge_id, .., last_edge_id], distance: distance},
     ...
   ]
   ```
@@ -72,16 +67,16 @@ class GraphTraverser {
   ```
   2021.12.06 19:16:28 Graph 0, Traversal Started
   2021.12.06 19:16:28 Graph 0, Traversal Finished, Paths: [
-    {vertices: [0, 2, 18, 19, 20], distance: 4},
-    {vertices: [0, 2, 6, 7, 5, 9], distance: 5},
-    {vertices: [0, 2, 6, 12, 13, 14], distance: 5}
+    {vertices: [0, 2, 18, 19, 20], edges: [1, 15, 17, 25], distance: 4},
+    {vertices: [0, 2, 6, 7, 5, 9], edges: [1, 7, 12, 9, 13], distance: 5},
+    {vertices: [0, 2, 6, 12, 13, 14], edges: [1, 7, 17, 20, 29], distance: 5}
   ]
   ```
 - Расширить логику `printing`:
   ```cpp
   namespace printing {
 
-  std::string print_path(const GraphPath& path);
+  std::string print_path(const IGraphPath& path);
 
   }  // namespace printing
   ```
@@ -90,7 +85,7 @@ class GraphTraverser {
 
 ```cpp
 class GraphTraversalController {
-  GraphTraversalController(const std::vector<Graph>& graphs);
+  GraphTraversalController(const std::vector<unique_ptr<IGraph>>& graphs);
 
   void traverse(
       const TraversalStartedCallback& traversalStartedCallback,
@@ -103,7 +98,7 @@ class GraphTraversalController {
 ```cpp
 // ... some other logic ...
 
-void traverse_graphs(const std::vector<Graph>& graphs) {
+void traverse_graphs(const std::vector<unique_ptr<IGraph>>& graphs) {
   auto traversal_controller = GraphTraversalController(graphs);
   auto& logger = Logger::get_logger();
 
