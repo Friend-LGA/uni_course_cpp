@@ -228,7 +228,7 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 
 - [Большие функции](/practice/common_mistakes.md#huge-functions)
 - [`unsigned` типы](/practice/common_mistakes.md#unsigned-data-types)
-- [`int` или `size_t`](/practice/common_mistakes.md#int-vs-size-t)
+- [`int` или `size_t`](/practice/common_mistakes.md#int-vs-size_t)
 - [Использование больших типов данных без необходимости](/practice/common_mistakes.md#unnecessary-big-data-types)
 
 # Функция `main` вашей программы
