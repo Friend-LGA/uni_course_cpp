@@ -1,120 +1,221 @@
 # Задача 8
 
-# Реализовать поиск кратчайшего пути
+# Вынести интерфейсы классов
 
-- Создать класс `GraphTraverser`, ответственностью которого будет обход графа.
-- Внутри `GraphTraverser` реализовать интерфейс для поиска кратчайшего пути между 2умя вершинами по алгоритму Дейкстры.
-  - [Wiki: Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-- Возвращать путь между вершинами в виде массивов из `VertexId` и `EdgeId`.
-  - Для реализации данной логики создать структуру `GraphPath`.
-- Для определения дистанции между вершинами добавить пользовательский тип:
-  - `using Distance = int;`
-- На данный момент дистанция между любыми 2умя вершинами - `1`.
+В мире `C++` интерфейсом называется абстрактный класс, содержащий только `public` секцию и только `pure virtual functions`.
 
-## Пример интерфейса
-
-`graph_path.hpp`:
-```cpp
-struct GraphPath {
-  using Distance = int;
-
-  Distance distance() const;
-
-  std::vector<VertexId> vertex_ids;
-  std::vector<EdgeId> edge_ids;
-};
-```
-
-`graph_traverser.hpp`:
-```cpp
-class GraphTraverser {
-  GraphTraverser(const Graph& graph);
-
-  GraphPath find_shortest_path(VertexId source_vertex_id,
-                               VertexId destination_vertex_id) const;
-};
-```
-
-# Реализовать многопоточный поиск кратчайших путей
-
-- По аналогии с `task_06` добавить `find_all_paths` метод, который будет искать все кратчайшие пути между корневой вершиной и вершинами на последней глубине.
-- Максимальное количество воркеров:
-  - `const int MAX_WORKERS_COUNT = std::thread::hardware_concurrency();`
-- Пример. Если корневая вершина - `0`, а на последней глубине 3 вершины - `[32, 15, 28]`, то `find_all_paths` должен найти и вернуть 3 пути:
-  - Path 0: 0 -> ... -> ... -> 32
-  - Path 1: 0 -> ... -> ... -> 15
-  - Path 2: 0 -> ... -> ... -> 28
-
-## Пример интерфейса
-
-```cpp
-class GraphTraverser {
-  // From root vertex to all vertices at the last depth
-  std::vector<GraphPath> find_all_paths() const;
-}
-```
-
-# Реализовать многопоточный поиск путей среди множества графов
-
-- По аналогии с `task_07` создать `GraphTraversalController`, который будет принимать список графов и находить для каждого все кратчайшие пути.
-- Вынести `GraphGenerationController::Worker` в отдельную сущность и переиспользовать его.
-- Максимальное количество воркеров:
-  - `const int MAX_WORKERS_COUNT = std::thread::hardware_concurrency();`
-- Логировать начало и конец обхода каждого графа, аналогично логированию генерации графов:
-  ```
-  date_time Graph 0, Traversal Started
-  date_time Graph 0, Traversal Finished, Paths: [
-    {vertices: [root_vertex_id, .., .., .., last_depth_vertex_id], distance: distance},
-    {vertices: [root_vertex_id, .., .., .., last_depth_vertex_id], distance: distance},
-    ...
-  ]
-  ```
-  Пример:
-  ```
-  2021.12.06 19:16:28 Graph 0, Traversal Started
-  2021.12.06 19:16:28 Graph 0, Traversal Finished, Paths: [
-    {vertices: [0, 2, 18, 19, 20], distance: 4},
-    {vertices: [0, 2, 6, 7, 5, 9], distance: 5},
-    {vertices: [0, 2, 6, 12, 13, 14], distance: 5}
-  ]
-  ```
-- Расширить логику `printing`:
+- [Virtual Function](https://en.cppreference.com/w/cpp/language/virtual) -
+функция, которая может быть перегружена (`overriden`) в наследуемом классе.
+При вызове такой функции будет вызвана самая последняя перегруженная версия в цепочке наследования.
+Для указания функции вуртуальной нужно использовать ключевое слово `virtual`.
   ```cpp
-  namespace printing {
+  class A {
+    // Virtual Destructor
+    virtual ~A {}
 
-  std::string print_path(const GraphPath& path);
+    // Virtual Function
+    virtual void virtual_func() {
+      std::cout << "A::virtual_func()" << std::endl;
+    }
+  };
 
-  }  // namespace printing
+  class B : public A {
+    // notice `override` keyword
+    void virtual_func() override {
+      A::virtual_func(); // call to a parent class
+      std::cout << "B::virtual_func()" << std::endl;
+    }
+  };
+  ```
+- [Pure Virtual Function](https://en.cppreference.com/w/cpp/language/abstract_class) -
+виртуальная функция, которая не имеет реализации. Обязана быть перегруженной при наследовании.
+Помечается специальной записью `= 0`.
+  ```cpp
+  class A {
+    // Virtual Destructor
+    virtual ~A {}
+
+    // Pure Virtual Func
+    virtual void virtual_func() = 0;
+  };
+  ```
+- [Абстрактный класс](https://en.cppreference.com/w/cpp/language/abstract_class) -
+класс, который имеет хотя бы одну `pure virtual function`.
+
+Стоит обратить внимание на следующее:
+- Если подразумевается наследование, то нужно обязательно добавлять виртуальный деструктор.
+Это необходимо делать, чтобы при удалении были вызваны деструкторы всех классов в цепочке наследования.
+- При перегрузке нужно указывать метод как `override`.
+Технически это не обязательно, но практичеки рекомедуется указывать всегда для наглядности.
+- Для того, чтобы вызвать метод из родительского класса используется такая запись: `ParentClass::method_name()`.
+- Создать экземпляр абстрактного класса нельзя, можно только передать на него ссылку или указатель.
+
+Интерфейсом является такой абстрактный класс, который включает в себя только публичный интерфейс реализуемого класса.
+
+## Интерфейс или Наследование
+
+Выделение интерфейса в отдельный абстрактный класс является по факту наследованием.
+Но так как это абстрактный класс, который не включает в себя никаких лишних данных и логики,
+это позволяет избежать возрастающей сложности наследования, а так же ускорить компиляцию,
+так как в большинстве файлов можно инклудить легковесный интерфейс вместо полноценных тяжелых классов.
+
+## Необходимые действия
+
+1\) Вам нужно будет создать новую папку `interfaces` и поместить туда следующие интерфейсы:
+- `interfaces/i_graph.hpp`
+- `interfaces/i_vertex.hpp`
+- `interfaces/i_edge.hpp`
+- `interfaces/i_worker.hpp`
+
+2\) Пример интерфейса:
+- `i_vertex.hpp`
+  ```cpp
+  #pragma once
+
+  namespace uni_course_cpp {
+
+  using VertexId = int;
+
+  struct IVertex {
+  public:
+    virtual ~IVertex() {};
+
+    virtual VertexId id() const = 0;
+  };
+
+  }  // namespace uni_course_cpp
+  ```
+- ``
+
+3\) Перенести псевдонимы и зависимые данные:
+- `VertexId` -> `i_vertex.hpp`
+  ```cpp
+  namespace uni_course_cpp {
+  using VertexId = int;
+  class IVertex {...};
+  } // namespace uni_course_cpp
+  ```
+- `EdgeId` -> `i_edge.hpp`<br>
+  `Edge::Color` -> `EdgeColor` -> `i_edge.hpp`
+  ```cpp
+  namespace uni_course_cpp {
+  using EdgeId = int;
+  enum class EdgeColor { Grey, Green, Blue, Yellow, Red };
+  class IEdge {...};
+  } // namespace uni_course_cpp
+  ```
+- `Depth` -> `GraphDepth` -> `i_graph.hpp`
+  ```cpp
+  namespace uni_course_cpp {
+  using GraphDepth = int;
+  class IGraph {...};
+  } // namespace uni_course_cpp
+  ```
+- `Vertex` -> `Graph(private)`<br>
+  `Edge` -> `Graph(private)`
+  ```cpp
+  class Graph {
+   private:
+    struct Vertex {...};
+    struct Edge {...};
+  };
   ```
 
-## Пример интерфейса
+4\) Отнаследовать реализуемые классы от их интерфейсов.
 
+Пример `graph.hpp`:
 ```cpp
-class GraphTraversalController {
-  GraphTraversalController(const std::vector<Graph>& graphs);
-
-  void traverse(
-      const TraversalStartedCallback& traversalStartedCallback,
-      const TraversalFinishedCallback& traversalFinishedCallback);
+class Graph : public IGraph {
+ private:
+  struct Vertex : public IVertex {
+   public:
+    explicit Vertex(VertexId id) : id_(id) {}
+    VertexId id() const override { return id_; }
+   private:
+    VertexId id_;
+  };
+  struct Edge : public IEdge {...};
 };
 ```
+
+5\) Отрефакторить ваш код на использование интерфейсов заместо их реализаций.
+Это должно быть сделано повсеместно.
+
+Пример `graph_json_printer`:
+```cpp
+#pragma once
+
+#include <string>
+#include "interface/i_graph.hpp"
+
+namespace uni_course_cpp {
+namespace printing {
+namespace json {
+
+std::string print_graph(const IGraph& graph);
+std::string print_vertex(const IVertex& vertex, const IGraph& graph);
+std::string print_edge(const IEdge& edge, const IGraph& graph);
+
+}  // namespace json
+}  // namespace printing
+}  // namespace uni_course_cpp
+```
+
+6\) Единственное место, где вы должны напрямую обращаться к классу `Graph` - это `graph_generator.cpp`.
+Во всех остальных файлах вы опрерируете только с интерфейсом.
+
+Тут возникает небольшая проблема, так как мы не можем создать экземпляр абстрактного класса,
+то как нам вернуть сгенерированный `IGraph` из `GraphGenerator`? В этом, и только в этом
+случае мы обернем его в `std::unique_ptr`. Смарт поинтер может указывать даже не абстрактный класс.
+Для создания нового объекта `std::unique_ptr` нужно использовать специальную конструкцию `std::make_unique`.
+
+Ещё один момент: для `std::unique_ptr` запрещено копирование, поэтому его можно только перемещать.
+
+Пример:
+- `graph_generator.hpp`
+  ```cpp
+  class GraphGenerator {
+    std::unique_ptr<IGraph> generate() const;
+  };
+  ```
+- `graph_generator.cpp`
+  ```cpp
+  std::unique_ptr<IGraph> GraphGenerator::generate() const {
+    auto graph = Graph();
+    // генерируем все вершины и ветви
+    return std::make_unique<Graph>(std::move(graph));
+  }
+  ```
+
 
 # Функция `main` вашей программы
 
 ```cpp
 // ... some other logic ...
 
-void traverse_graphs(const std::vector<Graph>& graphs) {
-  auto traversal_controller = GraphTraversalController(graphs);
+std::vector<std::unique_ptr<IGraph>> generate_graphs(
+    GraphGenerator::Params&& params,
+    int graphs_count,
+    int threads_count) {
+  auto generation_controller =
+      GraphGenerationController(threads_count, graphs_count, std::move(params));
+
   auto& logger = Logger::get_logger();
 
-  traversal_controller.traverse(
-      [...](...) {
-        logger.log(traversal_started_string(index));
-      },
-      [...](...) {
-        logger.log(traversal_finished_string(index, paths));
+  auto graphs = std::vector<std::unique_ptr<IGraph>>();
+  graphs.reserve(graphs_count);
+
+  generation_controller.generate(
+      [&logger](int index) { logger.log(generation_started_string(index)); },
+      [&logger, &graphs](int index, std::unique_ptr<IGraph> graph) {
+        graphs.push_back(graph);
+        const auto graph_description = printing::print_graph(*graph);
+        logger.log(generation_finished_string(index, graph_description));
+        const auto graph_json = printing::json::print_graph(*graph);
+        write_to_file(graph_json, "graph_" + std::to_string(index) + ".json");
       });
+
+  return graphs;
 }
 
 int main() {
@@ -124,10 +225,9 @@ int main() {
   const int threads_count = handle_threads_count_input();
   prepare_temp_directory();
 
-  const auto params = GraphGenerator::Params(depth, new_vertices_count);
-  const auto graphs = generate_graphs(std::move(params), graphs_count, threads_count);
-
-  traverse_graphs(graphs);
+  auto params = GraphGenerator::Params(depth, new_vertices_count);
+  const auto graphs =
+      generate_graphs(std::move(params), graphs_count, threads_count);
 
   return 0;
 }

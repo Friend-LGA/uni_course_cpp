@@ -42,10 +42,16 @@
     };
     ```
 - Названия глобальных констант:
-  - `kCamelCase`
+  - `kCamelCase` (начинаются на `k`)
   - Пример:
     ```cpp
     static constexpr int kMonthsCount = 12;
+    ```
+- Названия интерфейсов:
+  - `IClassName` (начинаются на `I`)
+  - Пример:
+    ```cpp
+    class ISomeInterface {};
     ```
 - Не использовать зарезервированные форматы:
   - Все буквы капсом - `ALL_CAPS`
