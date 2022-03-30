@@ -30,15 +30,22 @@
 ```cpp
 class GraphGenerationController {
  public:
-  using JobCallback = std::function<void()>;
   using GenStartedCallback = std::function<void(int index)>;
   using GenFinishedCallback = std::function<void(int index, Graph&& graph)>;
+
+  GraphGenerationController(int threads_count,
+                            int graphs_count,
+                            GraphGenerator::Params&& graph_generator_params);
+
+  void generate(const GenStartedCallback& gen_started_callback,
+                const GenFinishedCallback& gen_finished_callback);
+
+ private:
+  using JobCallback = std::function<void()>;
 
   class Worker {
    public:
     using GetJobCallback = std::function<std::optional<JobCallback>()>;
-
-    enum class State { Idle, Working, ShouldTerminate };
 
     explicit Worker(const GetJobCallback& get_job_callback);
 
@@ -46,23 +53,16 @@ class GraphGenerationController {
     void stop();
 
    private:
+    enum class State { Idle, Working, ShouldTerminate };
+
     std::thread thread_;
     GetJobCallback get_job_callback_;
     State state_ = State::Idle;
   };
 
-  GraphGenerationController(int threads_count,
-                            int graphs_count,
-                            const GraphGenerator::Params&& graph_generator_params);
-
-  void generate(const GenStartedCallback& gen_started_callback,
-                const GenFinishedCallback& gen_finished_callback);
-
-
- private:
   std::list<Worker> workers_;
   std::list<JobCallback> jobs_;
-  // std::mutex ...
+  // ...
 };
 ```
 
@@ -128,19 +128,12 @@ void GraphGenerationController::generate(
 }
 ```
 
-## Синхронизация потоков
-
-Для синхронизации потоков вам понадобятся 2 инструмента:
-- [`std::atomic`](https://en.cppreference.com/w/cpp/atomic/atomic)
-- [`std::mutex`](https://en.cppreference.com/w/cpp/thread/mutex)
-- [`std::lock_goard`](https://en.cppreference.com/w/cpp/thread/lock_guard)
-
-## Функция `main` вашей программы
+# Функция `main` вашей программы
 
 ```cpp
 // ... some other logic ...
 
-std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
+std::vector<Graph> generate_graphs(GraphGenerator::Params&& params,
                                    int graphs_count,
                                    int threads_count) {
   auto generation_controller =
@@ -156,10 +149,10 @@ std::vector<Graph> generate_graphs(const GraphGenerator::Params& params,
         logger.log(generation_started_string(index));
       },
       [&logger, &graphs](int index, Graph&& graph) {
+        graphs.push_back(graph);
         const auto graph_description = printing::print_graph(graph);
         logger.log(generation_finished_string(index, graph_description));
         const auto graph_json = printing::json::print_graph(graph);
-        graphs.push_back(graph);
         write_to_file(graph_json, "graph_" + std::to_string(index) + ".json");
       });
 
@@ -173,8 +166,9 @@ int main() {
   const int threads_count = handle_threads_count_input();
   prepare_temp_directory();
 
-  const auto params = GraphGenerator::Params(depth, new_vertices_count);
-  const auto graphs = generate_graphs(std::move(params), graphs_count, threads_count);
+  auto params = GraphGenerator::Params(depth, new_vertices_count);
+  const auto graphs =
+      generate_graphs(std::move(params), graphs_count, threads_count);
 
   return 0;
 }

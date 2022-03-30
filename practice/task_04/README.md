@@ -48,7 +48,7 @@ class GraphGenerator {
     int new_vertices_count_ = 0;
   };
 
-  explicit GraphGenerator(const Params&& params) : params_(params) {}
+  explicit GraphGenerator(Params&& params) : params_(std::move(params)) {}
 
   Graph generate() const {
     auto graph = Graph();
@@ -240,7 +240,7 @@ int main() {
   const int depth = handle_depth_input();
   const int new_vertices_count = handle_new_vertices_count_input();
 
-  const auto params = GraphGenerator::Params(depth, new_vertices_count);
+  auto params = GraphGenerator::Params(depth, new_vertices_count);
   const auto generator = GraphGenerator(std::move(params));
   const auto graph = generator.generate();
 
