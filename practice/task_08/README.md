@@ -68,7 +68,8 @@
 - `interfaces/i_worker.hpp`
 
 2\) Пример интерфейса:
-- `i_vertex.hpp`
+
+`i_vertex.hpp`:
   ```cpp
   #pragma once
 
@@ -85,18 +86,20 @@
 
   }  // namespace uni_course_cpp
   ```
-- ``
 
 3\) Перенести псевдонимы и зависимые данные:
 - `VertexId` -> `i_vertex.hpp`
+
   ```cpp
   namespace uni_course_cpp {
   using VertexId = int;
   class IVertex {...};
   } // namespace uni_course_cpp
   ```
+
 - `EdgeId` -> `i_edge.hpp`<br>
   `Edge::Color` -> `EdgeColor` -> `i_edge.hpp`
+
   ```cpp
   namespace uni_course_cpp {
   using EdgeId = int;
@@ -104,15 +107,19 @@
   class IEdge {...};
   } // namespace uni_course_cpp
   ```
+
 - `Depth` -> `GraphDepth` -> `i_graph.hpp`
+
   ```cpp
   namespace uni_course_cpp {
   using GraphDepth = int;
   class IGraph {...};
   } // namespace uni_course_cpp
   ```
+
 - `Vertex` -> `Graph(private)`<br>
   `Edge` -> `Graph(private)`
+
   ```cpp
   class Graph {
    private:
@@ -141,7 +148,7 @@ class Graph : public IGraph {
 5\) Отрефакторить ваш код на использование интерфейсов заместо их реализаций.
 Это должно быть сделано повсеместно.
 
-Пример `graph_json_printer`:
+Пример `graph_json_printer.hpp`:
 ```cpp
 #pragma once
 
@@ -173,12 +180,15 @@ std::string print_edge(const IEdge& edge, const IGraph& graph);
 
 Пример:
 - `graph_generator.hpp`
+
   ```cpp
   class GraphGenerator {
     std::unique_ptr<IGraph> generate() const;
   };
   ```
+
 - `graph_generator.cpp`
+
   ```cpp
   std::unique_ptr<IGraph> GraphGenerator::generate() const {
     auto graph = Graph();
