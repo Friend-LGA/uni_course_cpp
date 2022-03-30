@@ -67,7 +67,13 @@ std::string print_edge(const Graph::Edge& edge, const Graph& graph);
 
 Пример файла можете посмотреть здесь: [graph.json](graph.json).
 
-## Функция `main` вашей программы
+# Частые Ошибки
+
+- [Принцип единственной ответственности](/practice/common_mistakes.md#single-responsility-principle)
+- [Обход коллекций](/practice/common_mistakes.md#collections-traversal)
+- [Наименование при обходе коллекций](/practice/common_mistakes.md#collections-traversal-naming)
+
+# Функция `main` вашей программы
 
 ```cpp
 // ... some other logic ...
@@ -92,6 +98,7 @@ int main() {
 
 1 Неделя.
 
-# Полезные ссылки:
+# Полезные ссылки
+
 - [Graph Theory](https://en.wikipedia.org/wiki/Graph_theory)
 - [JSON](https://en.wikipedia.org/wiki/JSON)
