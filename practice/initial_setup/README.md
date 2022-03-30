@@ -10,13 +10,13 @@
 
 Лично я рекомендую использовать `VSCode`.
 
-# `WSL`: Windows Subsystem for Linux
+# [`WSL`](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux): Windows Subsystem for Linux
 
 Если вы используете Windows и ещё не используете WSL, то это пора исправлять.
 
 1. Рекомендую установить современный [`Windows Terminal`](https://www.microsoft.com/ru-ru/p/windows-terminal/9n0dx20hk701) из Microsoft Store.
 1. Установить `WSL` следуя [инструкции](https://docs.microsoft.com/en-us/windows/wsl/install).
-1. Установить Linux дистрибутив, например [Ubuntu](https://www.microsoft.com/ru-ru/p/ubuntu/9nblggh4msv6).
+1. Установить `Linux` дистрибутив, например [`Ubuntu`](https://www.microsoft.com/ru-ru/p/ubuntu/9nblggh4msv6).
 1. Теперь вы можете использовать `Ubuntu` через `WSL` внутри `Windows Terminal`, ура ура.
 
 # [Homebrew (`brew`)](https://brew.sh)
@@ -112,8 +112,8 @@
 
 Работа будет вестиcь в общем репозитории на [`GitHub`](github.com).
 
-1. Зарегистрируйтесь/Войдите на [GitHub](github.com).
-1. Сгенерируйте и добавьте SSH ключ по [инструкции](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/about-ssh).
+1. Зарегистрируйтесь/Войдите на [`GitHub`](github.com).
+1. Сгенерируйте и добавьте `SSH` ключ по [инструкции](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/about-ssh).
 
 # `VSCode` Setup
 
