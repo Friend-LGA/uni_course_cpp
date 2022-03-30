@@ -48,10 +48,10 @@
     static constexpr int kMonthsCount = 12;
     ```
 - Названия интерфейсов:
-  - `IClassName` (начинаются на `I`)
+  - `ICamelCase` (начинаются на `I`)
   - Пример:
     ```cpp
-    class ISomeInterface {};
+    class IClassName {};
     ```
 - Не использовать зарезервированные форматы:
   - Все буквы капсом - `ALL_CAPS`
