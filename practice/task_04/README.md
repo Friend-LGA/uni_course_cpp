@@ -65,12 +65,16 @@ class GraphGenerator {
 ```
 
 Обратите внимание, в конструкторе `GraphGenerator` мы используем `rvalue reference`, это нужно для того, чтобы избежать лишнего копирования данных.
+Таким образом реализуется перемещение данных. Другими словами, создается новый объект, но он имеет `те же данные` (!!!), что и оригинальный объект,
+в отличие от копирования, когда новый объект имеет `копии данных` (!!!) оригинального объекта.
+
 Чтобы получить такую `rvalue` ссылку на объект, можно использовать `std::move`, например:
 ```cpp
 const auto params = Params();
 const auto generator = GraphGenerator(std::move(params));
 ```
-`std::move` не гарантирует сохранность объекта, поэтому оригинальный `params` после `std::move` использовать нельзя, так как объект более не считается валидным.
+
+Важно: `std::move` не гарантирует сохранность объекта, поэтому оригинальный объект после `std::move` использовать нельзя, так как он более не считается валидным.
 
 ## Новые вершины будут генерироваться с определенной вероятностью
 
@@ -192,7 +196,10 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 
 # 2. Доработать `JSON` репрезентацию
 
-Добавить глубину графа и вершин, а так же цвет граней.
+Добавить:
+- глубину графа
+- глубину вершин
+- цвет граней
 
 ```json
 {
@@ -217,7 +224,14 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
 - Возможные цвета граней: `grey`, `green`, `yellow`, `red`.
 - Пример файла можете посмотреть здесь: [graph.json](graph.json).
 
-## Функция `main` вашей программы
+# Частые Ошибки
+
+- [Большие функции](/practice/common_mistakes.md#huge-functions)
+- [`unsigned` типы](/practice/common_mistakes.md#unsigned-data-types)
+- [`int` или `size_t`](/practice/common_mistakes.md#int-vs-size-t)
+- [Использование больших типов данных без необходимости](/practice/common_mistakes.md#unnecessary-big-data-types)
+
+# Функция `main` вашей программы
 
 ```cpp
 // ... some other logic ...
@@ -249,4 +263,5 @@ int main() {
 1 Неделя.
 
 # Полезные ссылки
+
 - [Graph Depth](https://en.wikipedia.org/wiki/Tree-depth)
