@@ -67,6 +67,14 @@ std::for_each(std::execution::par, begin, end, lambda_function);
 - [`for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each)
 - [`execution_policy`](https://en.cppreference.com/w/cpp/algorithm/execution_policy_tag_t)
 
+> **Update**: Как выяснилось, `clang` до сих пор не поддерживает параллельну политику выполнения.
+> Кому интересно попробовать - можете использовать `gcc` для компиляции, с ним должно работать.
+> Для того чтобы на `Pull Request` прошли все проверки необходимо чтобы ваш код компилировался с помощью `clang`, поэтому перед отправкой просто уберите указание политики выполнения:
+>
+> ```cpp
+> std::for_each(begin, end, lambda_function);
+> ```
+
 # Работа с потоками
 
 Базовой структурой для работы с потоками в `C++` является [`std::thread`](https://en.cppreference.com/w/cpp/thread/thread).
@@ -283,6 +291,15 @@ class GraphGenerator {
 - `std::atomic`
 - `std::mutex`
 - `std::lock_guard`
+
+# Доп. Информация
+
+На линуксе необходимо добавить `-pthread` флаг компиляции.
+
+Пример:
+```cpp
+clang++ *.cpp -o main -std=c++17 -pthread -Werror
+```
 
 # Частые Ошибки
 
