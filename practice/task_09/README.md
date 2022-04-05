@@ -26,7 +26,7 @@ struct IGraphPath {
 `graph_traverser.hpp`:
 ```cpp
 class GraphTraverser {
-  GraphTraverser(const Graph& graph);
+  GraphTraverser(const IGraph& graph);
 
   GraphPath find_shortest_path(VertexId source_vertex_id,
                                VertexId destination_vertex_id) const;
