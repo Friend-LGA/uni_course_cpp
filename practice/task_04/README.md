@@ -208,7 +208,7 @@ Edge& add_edge(VertexId from_vertex_id, VertexId to_vertex_id);
     {
       "id": 0,
       "edge_ids": [0, 1, 2, 43],
-      "depth": 0
+      "depth": 1
     }
   ],
   "edges": [
