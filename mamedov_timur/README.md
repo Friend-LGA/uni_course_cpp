@@ -1,3 +1,3 @@
 # Mamedov Timur
-# Мамедов Тимурр
+# Мамедов Тимур
 ![Screenshot](screenshot.png)
