@@ -32,7 +32,7 @@
 1. Установить `Homebrew` следуя [инструкции](https://brew.sh).
 1. Проверить версию, чтобы убедиться что все работает:
     - `brew --version`
-    - `Homebrew 3.3.13`
+    - `Homebrew 3.6.0`
 
 ## For `Linux`
 
@@ -45,7 +45,7 @@
 1. Установить `Homebrew` следуя [инструкции](https://docs.brew.sh/Homebrew-on-Linux).
 1. Проверить версию, чтобы убедиться что все работает:
     - `brew --version`
-    - `Homebrew 3.3.13`
+    - `Homebrew 3.6.0`
 
 # Compilation
 
@@ -55,7 +55,8 @@
     - `brew install llvm`
 1. Проверить версию, чтобы убедиться что все работает:
     - `clang++ --version`
-    - `Homebrew clang version 13.0.0`
+    - `Homebrew clang version 14.0.0`
+    - Должна быть выше `>= 14.0.0`
 
 Версия `g++` так же должна быть свежей, так как от неё есть зависимости.
 
@@ -63,7 +64,8 @@
     - `brew install gcc`
 1. Проверить версию, чтобы убедиться что все работает:
     - `g++ --version`
-    - `g++ (Homebrew GCC 11.2.0_3) 11.2.0`
+    - `g++ (Homebrew GCC 12.0.0) 12.0.0`
+    - Должна быть выше `>= 12.0.0`
 
 Возможно ваша система будет показывать не установленную через `brew` либу, а старую, идущую в комплекте с ОС.
 В таком случае у вас есть 2 пути:
@@ -90,7 +92,8 @@
     - `brew install clang-format`
 1. Проверить версию, чтобы убедиться что все работает:
     - `clang-format --version`
-    - `Homebrew clang-format version 13.0.0`
+    - `Homebrew clang-format version 14.0.0`
+    - Должна соответствовать версии `clang`
 
 # [`VCS`](https://en.wikipedia.org/wiki/Version_control): Version Control System
 
@@ -100,7 +103,7 @@
     - `brew install git`
 1. Проверить версию, чтобы убедиться что все работает:
     - `git --version`
-    - `git version 2.35.1`
+    - `git version 2.37.0`
 1. Настроить ([Docs](https://docs.github.com/en/get-started/getting-started-with-git)):
     - Имя: `git config --global user.name "Mona Lisa"`
     - Email: `git config --global user.email "email@example.com"`
