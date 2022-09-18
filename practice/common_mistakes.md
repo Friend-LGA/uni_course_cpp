@@ -672,7 +672,7 @@ int main() {
 ```cpp
 void prepare_graph();
 void print_graph();
-void pring_vertex();
+void print_vertex();
 void print_edge();
 void write_to_file();
 
