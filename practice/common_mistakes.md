@@ -922,7 +922,7 @@ class Graph {
 ```cpp
 class Graph {
   const Vertex& get_vertex(int id) const {
-    // ... some complix logic to get the vertex ...
+    // ... some complex logic to get the vertex ...
   }
 
   Vertex& get_vertex(int id) {
