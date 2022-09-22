@@ -407,7 +407,7 @@ for (const auto vertex_id : vertex_ids) {
   - `void function(const MyClass& arg);`
 - Если вы планируете изменять переданный аргумент, то, возможно, это должен быть не аргумент, а возвращаемое значение:
   - Плохо:
-    - `int functrion(bool& is_success);`
+    - `int function(bool& is_success);`
   - Хорошо:
     - `std::pair<int, bool> function();`
 
