@@ -14,7 +14,7 @@
     - graph_generator.cpp
     ```
 - Названия для `Struct`, `Class`, `Enum`, `Type` и опций внутри `Enum`:
-  - `CamelCase`
+  - `PascalCase`
   - Пример:
     ```cpp
     struct SomeStruct {};
@@ -22,12 +22,13 @@
     enum class SomeEnum { OptionOne, OptionTwo, OptionThree };
     using SomeType = int;
     ```
-- Названия для перменных, функций и неймспейсов:
+- Названия для перменных, функций, аргументов функций и неймспейсов:
   - `snake_case`
   - Пример:
     ```cpp
     int some_var = 15;
     void some_function();
+    void some_function(int some_arg);
     namespace some_namespace {}
     ```
 - Названия для приватных переменных:
@@ -42,21 +43,21 @@
     };
     ```
 - Названия глобальных констант:
-  - `kCamelCase` (начинаются на `k`)
+  - `kPascalCase` (начинаются на `k`)
   - Пример:
     ```cpp
     static constexpr int kMonthsCount = 12;
     ```
 - Названия интерфейсов:
-  - `ICamelCase` (начинаются на `I`)
+  - `IPascalCase` (начинаются на `I`)
   - Пример:
     ```cpp
     class IClassName {};
     ```
-- Не использовать зарезервированные форматы:
+- Не использовать зарезервированные форматы (запрещено):
   - Все буквы капсом - `ALL_CAPS`
   - Начинающиеся с подчеркивания - `_name`
-- Сначала `const` модификатор, потом тип данных, потом ссылка или указатель:
+- Порядок записи: сначала `const` модификатор, потом тип данных, потом ссылка или указатель:
   - `const Graph& graph;`
 
 # Links
