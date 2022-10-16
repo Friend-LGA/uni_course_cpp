@@ -939,3 +939,73 @@ class Graph {
 Реальные примеры:
 - [std::vector::at](https://en.cppreference.com/w/cpp/container/vector/at)
 - [std::map::find](https://en.cppreference.com/w/cpp/container/map/find)
+
+## Lambda Capture List
+### Список захвата в лямда функциях
+
+Прелесть лябмда функций состоит в том, что у них есть доступ к окружающим их переменным. Для этого их необходимо захватить, делается это с помощью квадртаных скобок при записи лямбда функции
+
+```cpp
+const auto lambda = [/* capture list */](/* arguments */) {
+  // body of lambda function
+};
+```
+
+Захват может производиться:
+- по значению с помощью знака `=`
+- по ссылке с посощью знака `&`
+
+При этом захват всех переменных окружения считается плохой практикаой и их нужно захватывать индивидуально.
+
+Плохо:
+```cpp
+const int a = 2;
+const int b = 5;
+const std::string c = "hello";
+const std::string d = "world";
+
+//captures everything by value
+const auto lambda = [=]() {
+  return a + b;
+  // also has access to `c` and `d`
+}
+
+//captures everything by reference
+const auto lambda = [&]() {
+  return c + d;
+  // also has access to `a` and `b`
+}
+```
+
+Хорошо:
+```cpp
+const int a = 2;
+const int b = 5;
+const std::string c = "hello";
+const std::string d = "world";
+
+//captures only `a` and `b` by value
+const auto lambda = [a, b]() {
+  return a + b;
+  // also has access to `c` and `d`
+}
+
+//captures only `c` and `d` by reference
+const auto lambda = [&c, &d]() {
+  return c + d;
+}
+```
+
+Дополнительная информация:
+
+Если вам нужно захватить приватный член класса, то можно создать именованную переменную для захвата:
+
+```cpp
+const auto lambda = [captured_by_value = private_var_]() {
+  // usign captured_by_value
+}
+
+const auto lambda = [&captured_by_ref = private_var_]() {
+  // using captured_by_ref
+}
+```
