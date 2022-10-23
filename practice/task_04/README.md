@@ -74,7 +74,9 @@ const auto params = Params();
 const auto generator = GraphGenerator(std::move(params));
 ```
 
-Важно: `std::move` не гарантирует сохранность объекта, поэтому оригинальный объект после `std::move` использовать нельзя, так как он более не считается валидным.
+Важно:
+1) `std::move` не гарантирует сохранность объекта, поэтому оригинальный объект после `std::move` использовать нельзя, так как он более не считается валидным.
+2) Если необходимо передать `rvalue reference` несколько раз, то нужно использовать `std::move` на каждом этапе.
 
 ## Новые вершины будут генерироваться с определенной вероятностью
 
@@ -136,7 +138,7 @@ struct Edge {
 ```cpp
 namespace printing {
 
-std::string print_edge_color(const Edge::Color& color) const;
+std::string print_edge_color(Edge::Color color) const;
 
 }  // namespace printing
 ```
