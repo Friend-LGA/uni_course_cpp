@@ -1,0 +1,80 @@
+---
+name: Ubuntu Check
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  get_changed_files:
+    name: Get Changed Files
+    runs-on: ubuntu-latest
+    outputs:
+      all: ${{ steps.changed_files.outputs.all }}
+      directory: ${{ steps.changed_directory.outputs.directory }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Get Changed Files
+        id: changed_files
+        uses: Ana06/get-changed-files@v2.0.0
+      - name: Get Changed Directory
+        id: changed_directory
+        run: |
+          FUNCTION_RESULT="";
+          find_dir_name() {
+            RESULT_DIR_NAME="";
+            PREV_RESULT_DIR_NAME="";
+            for FILE_NAME in ${{ steps.changed_files.outputs.all }}; do
+              echo "CHANGED_FILE: $FILE_NAME"
+              RESULT_DIR_NAME="$(dirname "$FILE_NAME")";
+              PREV_RESULT_DIR_NAME="$RESULT_DIR_NAME";
+              while [ "$RESULT_DIR_NAME" != "$(dirname "$RESULT_DIR_NAME")" ]; do
+                DIR_NAME=$(basename "$RESULT_DIR_NAME");
+                FUNCTION_RESULT="$PREV_RESULT_DIR_NAME";
+                PREV_RESULT_DIR_NAME="$RESULT_DIR_NAME";
+                RESULT_DIR_NAME="$(dirname "$RESULT_DIR_NAME")";
+              done;
+            done;
+          }
+          find_dir_name;
+          # Check if empty
+          if [[ -z "$FUNCTION_RESULT" ]]; then
+            echo "CHANGED DIRECTORY not found";
+          else
+            echo "CHANGED DIRECTORY found: $FUNCTION_RESULT";
+          fi;
+          echo "::set-output name=directory::$FUNCTION_RESULT";
+  compile:
+    name: Compile
+    runs-on: ubuntu-latest
+    needs: get_changed_files
+    if: ${{ needs.get_changed_files.outputs.directory }}
+    steps:
+    - name: Checkout Repository Code
+      uses: actions/checkout@v2
+    - name: Install Clang
+      run: sudo apt-get install clang;
+    - name: Build
+      run: |
+        clang++ --version;
+        g++ --version;
+        echo "Compile directory with changes: ${{ needs.get_changed_files.outputs.directory }}";
+        clang++ ${{ needs.get_changed_files.outputs.directory }}/*.cpp -o ${{ needs.get_changed_files.outputs.directory }}/test_build -std=c++17 -pthread -Werror;
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: get_changed_files
+    if: ${{ needs.get_changed_files.outputs.directory }}
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Lint
+        uses: github/super-linter/slim@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CLANG_FORMAT: true
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
