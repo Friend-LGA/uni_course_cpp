@@ -1,4 +1,6 @@
 ---
+# This is an example configuration of how GitHub Actions can be implemented to
+# perform compilation and linting to have basic tasks validation before review.
 name: Ubuntu Check
 on:
   push:
