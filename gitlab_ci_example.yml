@@ -1,0 +1,62 @@
+---
+# This is an example configuration of how GitLab CI can be implemented to
+# perform compilation and linting to have basic tasks validation before review.
+
+stages:
+  - prepare
+  - compile
+  - lint
+
+get_dir_path:
+  stage: prepare
+  image: alpine:3.17
+  before_script:
+    - # find path
+    - # ...
+    - # ...
+    - echo "$STUDENT_DIR_PATH"
+  script:
+    - # test that path exists
+    - # ...
+    - # ...
+    - echo "STUDENT_DIR_PATH="$STUDENT_DIR_PATH"" >> dir_path.env
+  artifacts:
+    reports:
+      dotenv: dir_path.env
+
+get_changed_files:
+  stage: prepare
+  image: alpine:3.17
+  before_script:
+    - echo "$CI_COMMIT_SHA"
+    - echo "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - apk add --no-cache git
+    - git --version
+    - git fetch origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - CHANGED_FILES=$(git diff --name-only "$CI_COMMIT_SHA" origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME")
+    - echo "$CHANGED_FILES"
+  script:
+    - test -z "$CHANGED_FILES" && echo "No changed files has been found" && exit 0
+    - echo "CHANGED_FILES="$CHANGED_FILES"" >> changed_files.env
+  artifacts:
+    reports:
+      dotenv: changed_files.env
+
+compile:
+  stage: compile
+  image: alpine:3.17
+  before_script:
+    - # install clang++
+    - # prepare temp
+  script:
+    - # clang++ "STUDENT_DIR_PATH"/*.cpp -o temp_dir/test_build -std=c++17 -Werror
+  after_script:
+    - # clear temp
+
+lint:
+  stage: lint
+  image: alpine:3.17
+  before_script:
+    - # install clang-format
+  script:
+    - # clang-format -style=Chromium "$CHANGED_FILES"
